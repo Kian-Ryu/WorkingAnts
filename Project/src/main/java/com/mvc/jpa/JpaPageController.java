@@ -8,55 +8,34 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class JpaPageController {
 
-	@GetMapping("/about")
-	public String about() {
-		return "/about";
+	@GetMapping("/tablerequest")
+	public String tablerequest() {
+		return "/tablerequest";
 	}
 
-	@GetMapping("/blog")
-	public String blog() {
-		return "/blog";
+	@GetMapping("/tableresult")
+	public String tableresult() {
+		return "/tableresult";
 	}
 
-	@GetMapping("/contact")
-	public String contact() {
-		return "/contact";
+	@GetMapping("/tabletrying")
+	public String tabletrying() {
+		return "/tabletrying";
 	}
 
-	@GetMapping("/detail")
-	public String detail() {
-		return "/detail";
+	@GetMapping("/login")
+	public String login() {
+		return "/login";
 	}
 
-	@GetMapping("/feature")
-	public String feature() {
-		return "/feature";
+	@GetMapping("/register")
+	public String register() {
+		return "/register";
 	}
 
-	@GetMapping("/index")
-	public String index() {
-		return "/index";
+	@GetMapping("/password")
+	public String password() {
+		return "/password";
 	}
-
-	@GetMapping("/product")
-	public String product() {
-		return "/product";
-	}
-
-	@GetMapping("/service")
-	public String service() {
-		return "/service";
-	}
-
-	@GetMapping("/team")
-	public String team() {
-		return "/team";
-	}
-
-	@GetMapping("/testimonial")
-	public String testimonial() {
-		return "/testimonial";
-	}
-
 
 }
