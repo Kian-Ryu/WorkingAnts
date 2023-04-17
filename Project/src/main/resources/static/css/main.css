@@ -1,0 +1,281 @@
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #24252e;
+}
+
+header, nav, #content {
+	border-bottom: solid #9e9ea447 1px;
+}
+
+/* header */
+header {
+	display: grid;
+	grid-template-areas:
+		"logo searchWrapper searchWrapper . . . . . userWrapper"
+}
+
+#logoImg {
+	background-image: url("../img/logo.png");
+	background-size: contain;
+	width: 30vw;
+	height: 15vh;
+	background-repeat: no-repeat;
+	grid-area: logo;
+}
+
+.searchContainer {
+	display: grid;
+	justify-items: start;
+	align-items: center;
+	grid-area: searchWrapper;
+}
+
+#userWrapper {
+	display: grid;
+	align-items: center;
+	grid-area: userWrapper;
+}
+
+#searchInput {
+	height: 5vh;
+	width: 40vw;
+	text-indent: 33px;
+	border-radius: 10px;
+}
+
+#searchInput:focus {
+	box-shadow: none;
+	border: none;
+}
+
+.bi-search {
+	cursor: pointer;
+	position: absolute;
+	top: 5px;
+	left: 10px;
+}
+
+.form {
+	position: relative;
+}
+
+
+/* logoutheader */
+#logoutHeaderWrapper #logout {
+	float: left;
+	overflow: hidden;
+}
+
+#logoutHeaderWrapper #logout {
+	font-size: 16px;
+	border: none;
+	outline: none;
+	background-color: white;
+	padding: 14px 50px;
+	font-family: inherit;
+	margin: 0;
+}
+
+#logoutHeaderWrapper #userWrapper .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: fit-content;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+	right: 4%;
+	bottom: 80%;
+}
+
+#logoutHeaderWrapper #userWrapper .dropdown-content a {
+	float: none;
+	color: black;
+	padding: 12px 14px;
+	text-decoration: none;
+	font-size: 0.5rem;
+	display: block;
+	text-align: left;
+	font-weight: normal;
+}
+
+#logoutHeaderWrapper #userWrapper:hover .dropdown-content {
+	display: block;
+}
+
+/* nav */
+.nav {
+	width: 100%;
+	background-color:white;
+	 overflow : hidden;
+	display: flex;
+	justify-content: center;
+	position: sticky;
+	top:0;
+	overflow: hidden;
+}
+
+.nav a {
+	display: inline-block;
+	float: left;
+	font-size: 16px;
+	/* color: white; */
+	text-align: center;
+	padding: 14px 50px;
+	text-decoration: none;
+	font-weight: bolder;
+}
+
+.nav .dropdown {
+	float: left;
+	overflow: hidden;
+}
+
+.nav .dropdown .dropbtn {
+	font-size: 16px;
+	border: none;
+	outline: none;
+	padding: 14px 50px;
+	background-color: inherit;
+	font-family: inherit;
+	font-weight: bolder;
+	margin: 0;
+}
+
+.nav a:hover, nav .dropdown:hover .dropbtn {
+	background-color: #9e9ea415;
+}
+
+.nav .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.nav .dropdown-content a {
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	font-size: 0.5rem;
+	display: block;
+	text-align: left;
+	font-weight: normal;
+}
+
+.nav .dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.nav .dropdown:hover .dropdown-content {
+	display: block;
+}
+
+
+/* footer */
+footer {
+	width: 100vw;
+	display: grid;
+	grid-template-areas: "one two three  four . ";
+	margin: 10px 50px;
+}
+
+footer #footerContainer1 {
+	grid-area: one;
+	display: grid;
+	grid-template-areas: "linkone linktwo";
+}
+
+footer #footerContainer2 {
+	grid-area: two;
+	margin: auto;
+}
+
+footer #footerContainerone p {
+	font-size: 1.5rem;
+	font-weight: bolder;
+}
+
+footer #footerContainerone {
+	grid-area: linkone;
+	display: grid;
+	justify-items: end;
+}
+
+footer #footerContainertwo {
+	margin: auto;
+	font-size: 0.8rem;
+	grid-area: linktwo;
+}
+
+footer .grayfont {
+	color: gray;
+	font-size: 0.5rem;
+	margin-top: 10px;
+}
+
+footer #footerContainer3 {
+	grid-area: three;
+	font-size: 0.8rem;
+	text-align: center;
+}
+
+footer #footerContainer4 {
+	grid-area: four;
+	font-size: 0.8rem;
+	text-align: center;
+}
+
+
+/* content */
+#contentbody  {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-align:center;
+}
+#contentbody #antHot{
+	text-align: center;
+	padding: 10px;
+	width : 70%;
+	margin: auto;
+}
+
+#contentbody #antHotCards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+	justify-content: space-evenly
+}
+
+#contentbody .card {
+	margin: 20px;
+	border-radius: 15px;
+	text-align: center;
+	border: 1px solid green;
+	padding: 5px;
+}
+#contentbody .card-body{
+margin:auto;
+}
+
+#contentbody .graytext {
+	color: gray;
+	font-size: 0.8rem;
+}
+#contentbody #contentImg{
+	width:70%;
+	margin:20px auto;
+}
+#contentbody .cardImg{
+	background-repeat: no-repeat;
+	background-image: url("../img/helpAnt.png");
+	background-size: contain;
+	height: 15vh;
+}
