@@ -11,6 +11,10 @@ public class JspPageController {
 	public String forgot() {
 		return "main";
 	}
+	@GetMapping("/faq")
+	public String faq() {
+		return "service/faq";
+	}
 //	@GetMapping("/forgot-password")
 //	public String forgot() {
 //		return "/member/forgot-password";
