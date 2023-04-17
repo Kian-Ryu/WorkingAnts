@@ -38,4 +38,9 @@ public class JpaPageController {
 		return "/password";
 	}
 
+	@GetMapping("/admin")
+	public String admin() {
+		return "/admin";
+	}
+
 }
