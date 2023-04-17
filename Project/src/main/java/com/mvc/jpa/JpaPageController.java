@@ -10,37 +10,37 @@ public class JpaPageController {
 
 	@GetMapping("/tablerequest")
 	public String tablerequest() {
-		return "/tablerequest";
+		return "/user/tablerequest";
 	}
 
 	@GetMapping("/tableresult")
 	public String tableresult() {
-		return "/tableresult";
+		return "/user/tableresult";
 	}
 
 	@GetMapping("/tabletrying")
 	public String tabletrying() {
-		return "/tabletrying";
+		return "/user/tabletrying";
 	}
 
 	@GetMapping("/login")
 	public String login() {
-		return "/login";
+		return "/user/login";
 	}
 
 	@GetMapping("/register")
 	public String register() {
-		return "/register";
+		return "/user/register";
 	}
 
 	@GetMapping("/password")
 	public String password() {
-		return "/password";
+		return "/user/password";
 	}
 
 	@GetMapping("/admin")
 	public String admin() {
-		return "/admin";
+		return "/user/admin";
 	}
 
 }

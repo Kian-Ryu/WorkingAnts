@@ -71,6 +71,13 @@
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>jstl</artifactId>
 		</dependency>
+		<!-- 세션로그인 전용 boot 시큐리티 디펜던시-->
+		<!--<dependency>
+  			<groupId>org.springframework.boot</groupId>
+ 			 <artifactId>spring-boot-starter-security</artifactId>
+		</dependency>-->
+		
+		<!-- /세션로그인 전용 boot 시큐리티 디펜던시-->
 
 	</dependencies>
 
