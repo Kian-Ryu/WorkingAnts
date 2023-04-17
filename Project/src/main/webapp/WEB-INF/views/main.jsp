@@ -47,6 +47,7 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <body>
+asdfwerqtrey
 	<jsp:include page="layout/header.jsp" />
 	<jsp:include page="layout/nav.jsp" />
 	<div id="content">
