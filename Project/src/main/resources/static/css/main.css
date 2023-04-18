@@ -36,7 +36,7 @@ header {
 	grid-area: searchWrapper;
 }
 
-#userWrapper {
+.navWrapper, #userWrapper {
 	display: grid;
 	align-items: center;
 	grid-area: userWrapper;
@@ -127,13 +127,13 @@ header {
 	text-decoration: none;
 	font-weight: bolder;
 }
-.nav #userWrapper{
+.nav .navWrapper{
 	position:relative;
 	display:inline-block;
 	text-align: center;
 	padding: 14px 50px;
 }
-.nav #userWrapper #serviceCenter,.nav #userWrapper #myPage {
+.nav .navWrapper #serviceCenter,.nav .navWrapper #myPage,.nav .navWrapper #ChatPage,.nav .navWrapper #WorkPage {
 	float: left;
 	font-weight: bolder;
 	font-size: 16px;
@@ -147,7 +147,7 @@ header {
 	margin: 0;
 }
 
-.nav #userWrapper #serviceCenterContent {
+.nav .navWrapper #serviceCenterContent,.nav .navWrapper #myContent,.nav .navWrapper #WorkContent {
 	display: none;
 	position: absolute;
 	background-color: #f9f9f9;
@@ -156,7 +156,7 @@ header {
 	top:50px;
 }
 
-.nav #userWrapper #serviceCenterContent a {
+.nav .navWrapper #serviceCenterContent a,.nav .navWrapper #myContent a,.nav .navWrapper #WorkContent a {
 	float: none;
 	color: black;
 	padding: 12px 20px;
@@ -167,7 +167,7 @@ header {
 	font-weight: normal;
 }
 
-.nav #userWrapper:hover #serviceCenterContent {
+.nav .navWrapper:hover #serviceCenterContent,.nav .navWrapper:hover #myContent,.nav .navWrapper:hover #WorkContent {
 	display: block;
 	z-index:30;
 }
@@ -177,7 +177,13 @@ header {
 	display: flex;
 	justify-content: center;
 }
-
+#contentbody .btn-primary{
+	background-color: #ffc022;
+	border-color: #ffc022;
+}
+#contentbody .card-body .card-detail{
+	margin:10px;
+}
 #contentbody .card img {
 	max-width: 100%;
 	max-height: 100%;
@@ -213,6 +219,7 @@ header {
 	margin-top:5vh;
 	margin-bottom:5vh;
 }
+
 
 /* footer */
 footer {
@@ -292,7 +299,7 @@ footer #footerContainer4 {
 	margin: 20px;
 	border-radius: 15px;
 	text-align: center;
-	border: 1px solid green;
+	border: 1px solid  #ffc022;
 	padding: 5px;
 }
 #contentbody .card-body{
