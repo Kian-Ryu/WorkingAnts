@@ -12,7 +12,7 @@
 		<a href="/jsp/index" id="logoImg"> </a>
 		<div class="searchContainer justify-content-center align-items-center">
 			<div
-				class="row height d-flex justify-content-center align-items-center">
+				class="row height d-flex align-items-center">
 				<div class="col-md-6 " id="searchFrmWrapper">
 					<div class="form">
 						<input type="text" class="form-control" id="searchInput">

@@ -11,7 +11,7 @@
 		<a href="/jsp/index" id="logoImg"> </a>
 		<div class="searchContainer justify-content-center align-items-center">
 			<div
-				class="row height d-flex justify-content-center align-items-center">
+				class="row height d-flex align-items-center">
 				<div class="col-md-6 " id="searchFrmWrapper">
 					<div class="form">
 						<input type="text" class="form-control" id="searchInput">
@@ -25,10 +25,8 @@
 				<i class="bi bi-person-fill"></i> Logout
 			</button>
 			<div class="dropdown-content">
-				<a href="#">Quest</a> <a href="#">MyPage</a>
+				<a href="#">심부름</a> <a href="#">내 정보</a>
 			</div>
-		</div>
-		</a>
 		</div>
 	</header>
 </body>

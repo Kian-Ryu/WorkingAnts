@@ -8,20 +8,33 @@
 
 </head>
 <body>
-
-<nav class="nav">
-	<div class="container">
-  <a href="#">일자리</a>
-  <a href="#">채팅</a>
-  <div class="dropdown">
-    <button class="dropbtn">고객지원 
-    </button>
-    <div class="dropdown-content">
-      <a href="#">자주묻는질문</a>
-      <a href="#">온라인문의</a>
-    </div>
-  </div>
-  </div> 
-</nav>
+	<nav class="nav">
+		<div class="justify-content-center" id="dropdownMenuLink"
+			data-bs-toggle="dropdown" aria-expanded="false">
+			<div id="userWrapper">
+				<button class="dropbtn" id="serviceCenter">심부름</button>
+				<div class="dropdown-content" id="serviceCenterContent">
+					<a href="#">사무</a> <a href="#">주거</a><a href="#">반려동물</a> <a
+						href="#">대행</a><a href="#">기타</a>
+				</div>
+			</div>
+			<div id="userWrapper">
+				<button class="dropbtn" id="serviceCenter">채팅</button>
+			</div>
+			<div id="userWrapper">
+				<button class="dropbtn" id="myPage">마이페이지</button>
+				<div class="dropdown-content" id="serviceCenterContent">
+					<a href="#">내 정보</a> <a href="#">내 심부름</a>
+				</div>
+			</div>
+			<div id="userWrapper">
+				<button class="dropbtn" id="serviceCenter">고객센터</button>
+				<div class="dropdown-content" id="serviceCenterContent">
+					<a href='javascript:void(0);' id="moveFAQ" >자주 묻는 질문</a>
+					<a href='javascript:void(0);' id="moveInquiry" >문의하기</a>
+				</div>
+			</div>
+		</div>
+	</nav>
 </body>
 </html>
