@@ -91,12 +91,6 @@
 		</dependency>-->
 		
 		<!-- /세션로그인 전용 boot 시큐리티 디펜던시-->
-
-		<dependency>
-			<groupId>com.example</groupId>
-			<artifactId>spring_study</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
 	</dependencies>
 
 	<build>
