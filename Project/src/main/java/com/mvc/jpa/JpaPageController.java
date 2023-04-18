@@ -57,6 +57,6 @@ public class JpaPageController {
 	public String testimonial() {
 		return "/testimonial";
 	}
-
+	
 
 }

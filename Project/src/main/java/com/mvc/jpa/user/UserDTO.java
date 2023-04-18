@@ -27,12 +27,9 @@ public class UserDTO {
 	
 	private String userPhone;
 	
-	private String userProfile;
+	private String proName;
 	
-	public User toEntity() {
-		User build = User.builder().userCode(userCode).userRegion(userRegion).userName(userName).userNickname(userNickname).userId(userId).userPw(userPw).userEmail(userEmail).userPhone(userPhone).userProfile(userProfile).build();
-		
-		return build;
-	}
+	private String proPath;
+	
 	
 }

@@ -56,6 +56,7 @@
 	<jsp:include page="layout/footer.jsp" />
 	
 	<script>
+	/board/read(bno = ${dto.bno}, page= ${result.page}, type=${pageRequestDTO.type} , keyword = ${pageRequestDTO.keyword})}
 	$('#moveFAQ').on('click', function(){
 		$('#content').load('/jsp/faq');
 	})
@@ -67,7 +68,7 @@
 	})
 	$('#myPage').on('click', function(){
 		// HTML test연결
-		$('#content').load('');
+		$('#content').load('/user/mypage');
 	})
 	</script>
 </body>

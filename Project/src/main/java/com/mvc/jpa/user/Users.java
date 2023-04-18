@@ -2,27 +2,21 @@ package com.mvc.jpa.user;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
-@Getter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Builder
-@EntityListeners(AuditingEntityListener.class)
-public class User {
+public class Users {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -50,5 +44,9 @@ public class User {
 	private String userPhone;
 	
 	@Column(nullable = true)
-	private String userProfile;
+	private String proName;
+	
+	@Column(nullable = true)
+	private String proPath;
+	
 }

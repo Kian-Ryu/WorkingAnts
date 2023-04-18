@@ -1,10 +1,12 @@
 package com.mvc.jpa.user;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public interface UserService {
-	Long register(UserDTO dto);
+	Long register(UserDTO dto, MultipartFile file);
 	
-	default User dToEntity(UserDTO dto) {
-		User entity = User.builder()
+	default Users dToEntity(UserDTO dto) {
+		Users entity = Users.builder()
 				.userCode(dto.getUserCode())
 				.userRegion(dto.getUserRegion())
 				.userName(dto.getUserName())
@@ -13,12 +15,13 @@ public interface UserService {
 				.userPw(dto.getUserPw())
 				.userEmail(dto.getUserEmail())
 				.userPhone(dto.getUserPhone())
-				.userProfile(dto.getUserProfile())
+				.proName(dto.getProName())
+				.proPath(dto.getProPath())
 				.build();
 		return entity;
 				
 	}
-	default UserDTO EntityToDTO(User entity) {
+	default UserDTO EntityToD(Users entity) {
 		UserDTO dto = UserDTO.builder()
 				.userCode(entity.getUserCode())
 				.userRegion(entity.getUserRegion())
@@ -28,9 +31,12 @@ public interface UserService {
 				.userPw(entity.getUserPw())
 				.userEmail(entity.getUserEmail())
 				.userPhone(entity.getUserPhone())
-				.userProfile(entity.getUserProfile())
+				.proName(entity.getProName())
+				.proPath(entity.getProPath())
 				.build();
 		return dto;
 	}
+
+	UserDTO read(long userCode);
 	
 }
