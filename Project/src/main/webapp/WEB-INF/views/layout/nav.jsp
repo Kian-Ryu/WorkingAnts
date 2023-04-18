@@ -22,7 +22,7 @@
 				<button class="dropbtn" id="serviceCenter">채팅</button>
 			</div>
 			<div id="userWrapper">
-				<button class="dropbtn" id="serviceCenter">마이페이지</button>
+				<button class="dropbtn" id="myPage">마이페이지</button>
 				<div class="dropdown-content" id="serviceCenterContent">
 					<a href="#">내 정보</a> <a href="#">내 심부름</a>
 				</div>
@@ -30,7 +30,8 @@
 			<div id="userWrapper">
 				<button class="dropbtn" id="serviceCenter">고객센터</button>
 				<div class="dropdown-content" id="serviceCenterContent">
-					<a href="#">자주 묻는 질문</a> <a href="#">문의하기</a>
+					<a href='javascript:void(0);' id="moveFAQ" >자주 묻는 질문</a>
+					<a href='javascript:void(0);' id="moveInquiry" >문의하기</a>
 				</div>
 			</div>
 		</div>

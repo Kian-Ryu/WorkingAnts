@@ -8,13 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/jsp")
 public class JspPageController {
 	@GetMapping("/index")
-	public String forgot() {
+	public String mainPage() {
 		return "main";
 	}
 	@GetMapping("/faq")
-	public String faq() {
+	public String faqPage() {
 		return "service/faq";
 	}
+	@GetMapping("/inquiry")
+	public String inqPage() {
+		return "service/inquiry";
+	}
+	
 //	@GetMapping("/forgot-password")
 //	public String forgot() {
 //		return "/member/forgot-password";

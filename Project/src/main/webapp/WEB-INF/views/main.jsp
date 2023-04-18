@@ -54,5 +54,21 @@
 		<jsp:include page="./content.jsp" />
 	</div>
 	<jsp:include page="layout/footer.jsp" />
+	
+	<script>
+	$('#moveFAQ').on('click', function(){
+		$('#content').load('/jsp/faq');
+	})
+	$('#serviceCenter').on('click', function(){
+		$('#content').load('/jsp/faq');
+	})
+	$('#moveInquiry').on('click', function(){
+		$('#content').load('/jsp/inquiry');
+	})
+	$('#myPage').on('click', function(){
+		// HTML test연결
+		$('#content').load('');
+	})
+	</script>
 </body>
 </html>
