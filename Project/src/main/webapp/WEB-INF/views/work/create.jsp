@@ -11,99 +11,8 @@
 <script src="../summernote/summernote-lite.js"></script>
 <script src="../summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="../summernote/summernote-lite.css">
+<link rel="stylesheet" href="../css/work.css">
 </head>
-<style>
-.CreateWrapper {
-	width: 80%;
-	margin: 10vh auto;
-}
-
-.CreateWrapper .main_div {
-	padding: 30px;
-}
-.CreateWrapper #listCreateTime input{
-	display:inline-block;
-}
-.CreateWrapper input, .CreateWrapper textarea {
-	background: none;
-	color: #53596e;
-	font-size: 18px;
-	padding: 8px 8px 8px 13px;
-	display: block;
-	width: 320px;
-	border: none;
-	border-radius: 10px;
-	border: 1px solid #c6c6c6;
-}
-
-.CreateWrapper input:hover {
-	border: 3px solid black;
-}
-
-.CreateWrapper input:focus, .CreateWrapper textarea:focus {
-	outline: none;
-	border: 3px solid #f00;
-}
-
-.CreateWrapper input ~ label, .CreateWrapper textarea ~ label {
-	top: -5px;
-	font-size: 12px;
-	color: #000;
-	left: 11px;
-}
-
-.CreateWrapper input:focus ~ label, .CreateWrapper input:valid ~ label, .CreateWrapper textarea:focus ~ label,
-	.CreateWrapper textarea:valid ~ label {
-	color: #f00;
-}
-
-.CreateWrapper input:focus ~ .bar:before, .CreateWrapper textarea:focus ~ .bar:before {
-	width: 320px;
-}
-
-.CreateWrapper input[type="password"] {
-	letter-spacing: 0.3em;
-}
-
-.CreateWrapper #inputGroupSelect01{
-	border-top-left-radius:10px;
-	border-bottom-left-radius:10px;
-	border: 1px solid #c6c6c6;
-	padding-left:10px;
-	padding-right:10px;
-}
-
-.CreateWrapper .group {
-	position: relative;
-	margin:5vh auto;
-}
-
-.CreateWrapper label {
-	color: #c6c6c6;
-	font-size: 16px;
-	font-weight: normal;
-	position: absolute;
-	pointer-events: none;
-	left: 15px;
-	top: 12px;
-	transition: 300ms ease all;
-	background-color: #fff;
-	padding: 0 2px;
-}
-.CreateWrapper #btnWrapper{
-	text-align:center;
-	margin-top:10vh;
-}
-.CreateWrapper #listCreateBtn{
-border: 1px solid #c6c6c6;
-padding:10px 15px;
-color:black;
-border-radius : 5px;
-}
-.CreateWrapper #listCreateBtn:hover{
-border: 1px solid gray;
-}
-</style>
 <body>
 	<div class="CreateWrapper">
 		<h4 class="mb-3">구인공고 등록</h4>
@@ -132,7 +41,7 @@ border: 1px solid gray;
 		</div>
 		
 
-		<div class="input-group mb-3">
+		<div class="input-group mb-3 group">
 			<select class="custom-select" id="inputGroupSelect01"
 				name="listCategory">
 				<option selected>카테고리</option>
@@ -170,7 +79,7 @@ border: 1px solid gray;
 		$("#content").load("/jsp/view");
 	}
 		$('.summernote').summernote({
-			height : 150,
+			height : 500,
 			lang : "ko-KR"
 		});
 	</script>

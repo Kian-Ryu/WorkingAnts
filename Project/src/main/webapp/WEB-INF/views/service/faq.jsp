@@ -5,28 +5,8 @@
 <head>
 <meta charset="UTF-8">
 <title>FAQ</title>
+<link rel="stylesheet" href="../css/service.css">
 <style>
-#faqWrapper {
-	width: 70%;
-	margin: auto;
-	margin-bottom: 10vh;
-}
-
-#faqWrapper #faqHeader {
-	margin-top: 50px;
-	margin-bottom: 50px;
-	text-align: center;
-}
-
-#faqWrapper p {
-	color: #565877;
-}
-
-#faqWrapper .accordion-button:focus, #faqWrapper .accordion-button:not(.collapsed)
-	{
-	color: #565877;
-	background-color: #c7c9db29;
-}
 
 #faqWrapper .accordion-button:not(.collapsed)::after {
 	background-image: url(data : image/ svg + xml, % 3csvg xmlns =
@@ -45,12 +25,6 @@
 		/ % 3e % 3c/ svg % 3e) !important;
 }
 
-.accordion-button:focus {
-	z-index: 3;
-	border-color: #ffc02230;
-	outline: 0;
-	box-shadow: 0 0 0 .25rem #ffc02230;
-}
 </style>
 </head>
 
@@ -128,10 +102,6 @@
 
 
 
-	<!-- JavaScript Libraries -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
 
 
 </body>
