@@ -51,7 +51,7 @@ public class UserServiceImple implements UserService {
 	@Override
 	public UserDTO read(long userCode) {
 		log.info(userCode+"서비스연결 완");
-		Optional<Users> result = repo.findById((long) 521);
+		Optional<Users> result = repo.findByUserCode(userCode);
 		if(result.isPresent()) {
 			Users entity = result.get();
 			repo.save(entity);

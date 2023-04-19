@@ -29,14 +29,15 @@ public class UserController {
 		service.register(dto, profile);
 		log.info("처리 완료");
 	}
-	@GetMapping("/mypage")
-	public String mypage_dash() {
+//	@GetMapping("/mypage")
+//	public String mypage_dash() {
+//		return "/mypage_dash";
+//	}
+	@GetMapping("/mypage/{userCode}")
+	public String mypage_dash(@PathVariable long userCode, Model m) {
+		UserDTO dto = service.read(userCode);
+		m.addAttribute("dto", dto);
+//		log.info();
 		return "/mypage_dash";
 	}
-//	@GetMapping("/mypage/{userCode}")
-//	public String mypage_dash(@PathVariable long userCode, Model m) {
-//		UserDTO dto = service.read(userCode);
-//		m.addAttribute("dto", dto);
-//		return "mypage_dash";
-//	}
 }
