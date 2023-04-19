@@ -46,7 +46,7 @@
     <div class="container" id="inquiryWrapper">
         <div class="input-form-backgroud row">
           <div class="input-form col-md-12 mx-auto">
-            <h4 class="mb-3">QNA</h4>
+            <h4 class="mb-3">QnA</h4>
             <form class="validation-form" novalidate>
                 <div class="row">
                   <div class="mb-3">
@@ -95,13 +95,7 @@
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/counterup/counterup.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
 
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
 
 </body>
 </html>

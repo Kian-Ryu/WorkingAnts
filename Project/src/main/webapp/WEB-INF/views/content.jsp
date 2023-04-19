@@ -22,9 +22,10 @@
 								<img src="../img/helpAnt.png" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title">애완견 산책</h5>
-									<div>10,000원</div>
-									<div>위치 : 여의도</div>
-									<a href="#" class="btn btn-primary">More</a>
+									<div class="card-detail">
+										<div>10,000원</div>
+										<div>위치 : 여의도</div>
+									</div>
 								</div>
 							</div>
 						</c:forEach>
@@ -37,9 +38,10 @@
 								<img src="../img/helpAnt.png" class="card-img-top" alt="...">
 								<div class="card-body">
 									<h5 class="card-title">줄서기</h5>
-									<div>10,000원</div>
-									<div>위치 : 여의도</div>
-									<a href="#" class="btn btn-primary">More</a>
+									<div class="card-detail">
+										<div>10,000원</div>
+										<div>위치 : 여의도</div>
+									</div>
 								</div>
 							</div>
 						</c:forEach>

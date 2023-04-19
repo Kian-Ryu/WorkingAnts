@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -56,20 +57,23 @@
 	<jsp:include page="layout/footer.jsp" />
 	
 	<script>
-	/board/read(bno = ${dto.bno}, page= ${result.page}, type=${pageRequestDTO.type} , keyword = ${pageRequestDTO.keyword})}
-	$('#moveFAQ').on('click', function(){
-		$('#content').load('/jsp/faq');
-	})
-	$('#serviceCenter').on('click', function(){
-		$('#content').load('/jsp/faq');
-	})
-	$('#moveInquiry').on('click', function(){
-		$('#content').load('/jsp/inquiry');
-	})
-	$('#myPage').on('click', function(){
-		// HTML test연결
-		$('#content').load('/user/mypage');
-	})
+	$(function(){
+		$('#moveFAQ').on('click', function(){
+			$('#content').load('/jsp/faq');
+		})
+		$('#serviceCenter').on('click', function(){
+			$('#content').load('/jsp/faq');
+		})
+		$('#moveInquiry').on('click', function(){
+			$('#content').load('/jsp/inquiry');
+		})
+		$('#WorkPage').on('click', function(){
+			$('#content').load('/user/mypage');
+		})
+		$('.card').on('click', function(){
+			$('#content').load('/jsp/view');
+		})
+	});
 	</script>
 </body>
 </html>

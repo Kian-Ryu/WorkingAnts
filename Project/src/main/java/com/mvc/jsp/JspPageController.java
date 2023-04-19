@@ -11,6 +11,8 @@ public class JspPageController {
 	public String mainPage() {
 		return "main";
 	}
+	
+	/* service */
 	@GetMapping("/faq")
 	public String faqPage() {
 		return "service/faq";
@@ -19,20 +21,23 @@ public class JspPageController {
 	public String inqPage() {
 		return "service/inquiry";
 	}
-	
-//	@GetMapping("/forgot-password")
-//	public String forgot() {
-//		return "/member/forgot-password";
-//	}
-//
-//	@GetMapping("/login")
-//	public String login() {
-//		return "/member/login";
-//	}
-//
-//	@GetMapping("/register")
-//	public String register() {
-//		return "/member/register";
-//	}
+
+	/* work */
+	@GetMapping("/list")
+	public String workReadPage() {
+		return "work/list";
+	}
+	@GetMapping("/view")
+	public String workViewPage() {
+		return "work/read";
+	}
+	@GetMapping("/create")
+	public String workCreatePage() {
+		return "work/create";
+	}
+	@GetMapping("/modify")
+	public String workModifyPage() {
+		return "work/modify";
+	}
 
 }
