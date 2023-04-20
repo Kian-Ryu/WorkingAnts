@@ -26,7 +26,7 @@ public class UserServiceImple implements UserService {
 	
 	@Override
 	public Long register(UserDTO dto, MultipartFile file) {
-		String projectPath = fdir;
+		String projectPath = System.getProperty("user.dir") + fdir;
 		UUID uuid = UUID.randomUUID();
 		String fileName = uuid + "_" + file.getOriginalFilename();
 		File f = new File(projectPath, fileName);

@@ -62,9 +62,9 @@
         </div>
         <div class="row g-5">
             <div class="col-lg-4">
-                <div class="mb-5 text-center">
+                <div class="mb-5 text-center" id="users">
                     <div class="align-items-center">
-                        <img class="img-fluid mx-auto p-2 border border-5 rounded-circle mb-4" style="max-width: 10rem;" th:src="@{${'/'+dto.proPath+'/'+dto.proName}}" alt="">
+                        <a data-toggle="modal" href="#changeprofile"><img class="img-fluid mx-auto p-2 border border-5 rounded-circle mb-4" style="max-width: 10rem;" th:src="@{${dto.proName}}" alt=""></a>>
                     </div>
                     <h4 class="text-center">닉네임 : [[${dto.userNickname}]]</h4>
                     <p class="mb-0">지역 : [[${dto.userRegion}]]<button class="btn-success rounded-2" data-bs-toggle="modal" data-bs-target="#ModalforReg">지역변경</button></p>
@@ -83,7 +83,7 @@
 					  
 					</span>
                 </div>
-                <div class="row">
+<!--                 <div class="row">
                     <div class="col-4">
                         <span class="bg-secondary rounded-pill d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
                             <i class="fa fa-award fs-4 text-white"></i>
@@ -96,7 +96,7 @@
                             <tr><td>강아지수면가스</td><td>23.04.17</td></tr>
                         </table>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="col-lg-8 border border-dark rounded-1">
                 <ul class="nav nav-pills mb-3 .navbar-dark bg-dark" id="pills-tab" role="tablist">
@@ -137,21 +137,6 @@
                                 <td>1</td>
                                 <td>15년 후에 어쩌고저쩌고</td>
                                 <td><span class="badge bg-success">완료</span></td>
-                            </tr>
-                          </table>
-                    </div>
-                    <div class="tab-pane fade" id="pills-res" role="tabpanel" aria-labelledby="pills-contact-res" onclick="location.href='#'">
-                        <table class="table table-hover" style="width: 100%;">
-                            <caption class="text-white">Response</caption>
-                            <tr>
-                                <th>no</th>
-                                <th>title</th>
-                                <th>state</th>
-                            </tr>
-                            <tr onclick="location.href='#'" style="inherits: false;">
-                                <td>1</td>
-                                <td>12시에 자게 도와주세요</td>
-                                <td><span class="badge bg-danger">실패</span></td>
                             </tr>
                           </table>
                     </div>
@@ -235,9 +220,9 @@
 	            <div class="modal-body">
 	                <form class="row g-3" action="/user/updateReg" method="post" id="forReg">
 	                    <div class="col-md-4">
-	                    	<input type="number" name="userCode" th:value="${dto.userCode}" hidden=true>
+	                    	<input type="number" name="userCode" th:value="${dto.userCode}" id="userCode" hidden=true>
 	                      <label for="userRegion" class="form-label">지역</label>
-	                      <input type="text" class="form-control is-valid" name="userRegion" th:value="${dto.userRegion}" required>
+	                      <input type="text" class="form-control is-valid" name="userRegion" th:value="${dto.userRegion}" id="userRegion" required>
 	                      <div class="valid-feedback">
 	                        Looks good!
 	                      </div>
@@ -245,12 +230,32 @@
 	                  </form>
 	            </div>
 	            <div class="modal-footer">
-	                <button type="submit" class="btn btn-primary" form="forReg">Save changes</button>
+	                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="changeReg()">Save changes</button>
 	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 	            </div>
 	          </div>
 	        </div>
 	      </div>
+	      <div class="modal" id="changeprofile" tabindex="-1">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">프로필</h5>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			        <form action="" method="post" enctype="multipart/form-data" id="changepro">
+			        	<label>profile</label>
+          				<input type="file" name="profile">
+			        </form>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="submit" class="btn btn-primary" form="changepro">Save changes</button>
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -263,29 +268,42 @@
     <!-- 차트관련 -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript">
-	    const drawStar = (target) => {
-	        document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
-	      }
-    </script>
-	<!--
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
-	<script>
-
-		var ctx = document.getElementById("myPieChart");
-		var myPieChart = new Chart(ctx, {
-		  type: 'pie',
-		  data: {
-		    labels: ["반려동물 ", "아이돌봄", "집안일", "기타"],
-		    datasets: [{
-		      data: [12.21, 15.58, 11.25, 8.32],
-		      backgroundColor: ['#007bff', '#dc3545', '#ffc107', '#28a745'],
-		    }],
-		  },
-		});
+	<script th:inline="javascript">
+		function userreload(){
+			$("#users").load(location.href+' #users')
+		}
+		function changeReg() {
+		    var userRegion = $("#userRegion").val();
+		    console.log(userRegion);
+		    var Code = 522;
+		    var json = {"userRegion":userRegion, "Code":Code};
+		    $.ajax({
+		        url: "/user/updateReg",
+		        data: json,
+		        type:"POST",
+		        async : false,
+		        dataType:"json",
+		        complete: function(){
+		        	userreload();
+		        }
+		    })
+		}
 		
-    </script>
-	-->
+		function changepro(){
+			$('#changepro').ajaxSubmit({
+				type: "POST",
+				enctype: 'multipart/form-data',	// 필수
+				url: '/user/updateProfile',
+				data: $("#changepro").serialize(),		// 필수
+				processData: false,	// 필수
+				contentType: false,	// 필수
+				success: function (result) {
+				},
+				error: function (e) {
+				}
+			})
+		}
+	</script>
 </body>
 
 </html>
