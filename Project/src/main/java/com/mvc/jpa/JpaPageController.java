@@ -8,55 +8,58 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class JpaPageController {
 
-	@GetMapping("/about")
-	public String about() {
-		return "/about";
+	@GetMapping("/tablerequest")
+	public String tablerequest() {
+		return "/user/tablerequest";
 	}
 
-	@GetMapping("/blog")
-	public String blog() {
-		return "/blog";
+	@GetMapping("/tableresult")
+	public String tableresult() {
+		return "/user/tableresult";
 	}
 
-	@GetMapping("/contact")
-	public String contact() {
-		return "/contact";
+	@GetMapping("/tabletrying")
+	public String tabletrying() {
+		return "/user/tabletrying";
 	}
 
-	@GetMapping("/detail")
-	public String detail() {
-		return "/detail";
+	@GetMapping("/login")
+	public String login() {
+		return "/user/login";
 	}
 
-	@GetMapping("/feature")
-	public String feature() {
-		return "/feature";
+	@GetMapping("/register")
+	public String register() {
+		return "/user/register";
 	}
 
-	@GetMapping("/index")
-	public String index() {
-		return "/index";
+	@GetMapping("/password")
+	public String password() {
+		return "/user/password";
 	}
 
-	@GetMapping("/product")
-	public String product() {
-		return "/product";
+	@GetMapping("/admin")
+	public String admin() {
+		return "/user/admin";
 	}
-
-	@GetMapping("/service")
-	public String service() {
-		return "/service";
-	}
-
-	@GetMapping("/team")
-	public String team() {
-		return "/team";
-	}
-
-	@GetMapping("/testimonial")
-	public String testimonial() {
-		return "/testimonial";
-	}
-	
-
+//
+//<<<<<<< HEAD
+//	@GetMapping("/service")
+//	public String service() {
+//		return "/service";
+//	}
+//
+//	@GetMapping("/team")
+//	public String team() {
+//		return "/team";
+//	}
+//
+//	@GetMapping("/testimonial")
+//	public String testimonial() {
+//		return "/testimonial";
+//	}
+//	
+//
+//=======
+//>>>>>>> refs/remotes/origin/main
 }
