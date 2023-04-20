@@ -49,4 +49,8 @@ public class Users {
 	@Column(nullable = true)
 	private String proPath;
 	
+	public void changeUserRegion(String userRegion) {
+		this.userRegion = userRegion;
+	}
+	
 }

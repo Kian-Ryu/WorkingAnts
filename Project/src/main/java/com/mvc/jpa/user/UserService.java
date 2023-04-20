@@ -38,5 +38,7 @@ public interface UserService {
 	}
 
 	UserDTO read(long userCode);
+
+	void updateReg(long userCode, String userRegion);
 	
 }

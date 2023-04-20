@@ -59,4 +59,15 @@ public class UserServiceImple implements UserService {
 		return result.isPresent()?EntityToD(result.get()):null;
 	}
 
+	@Override
+	public void updateReg(long userCode, String userRegion) {
+		log.info(userCode+"서비스연결 완");
+		Optional<Users> result = repo.findByUserCode(userCode);
+		if(result.isPresent()) {
+			Users entity = result.get();
+			entity.changeUserRegion(userRegion);
+			repo.save(entity);
+		}
+	}
+	
 }

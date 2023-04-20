@@ -26,32 +26,29 @@
 
     
     <style>
-                    .star-ratings {
-            color: #aaa9a9; 
-            position: relative;
-            unicode-bidi: bidi-override;
-            width: max-content;
-            -webkit-text-fill-color: transparent; /* Will override color (regardless of order) */
-            -webkit-text-stroke-width: 1.3px;
-            -webkit-text-stroke-color: #2b2a29;
-            }
-            
-            .star-ratings-fill {
-            color: #fff58c;
-            padding: 0;
-            position: absolute;
-            z-index: 1;
-            display: flex;
-            top: 0;
-            left: 0;
-            overflow: hidden;
-            -webkit-text-fill-color: gold;
-            }
-            
-            .star-ratings-base {
-            z-index: 0;
-            padding: 0;
-            }
+		  .star {
+		    position: relative;
+		    font-size: 2rem;
+		    color: #ddd;
+		  }
+		  
+		  .star input {
+		    width: 100%;
+		    height: 100%;
+		    position: absolute;
+		    left: 0;
+		    opacity: 0;
+		    cursor: pointer;
+		  }
+		  
+		  .star span {
+		    width: 0;
+		    position: absolute; 
+		    left: 0;
+		    color: red;
+		    overflow: hidden;
+		    pointer-events: none;
+		  }
     </style>
 
 </head>
@@ -67,10 +64,10 @@
             <div class="col-lg-4">
                 <div class="mb-5 text-center">
                     <div class="align-items-center">
-                        <img class="img-fluid mx-auto p-2 border border-5 rounded-circle mb-4" style="max-width: 10rem;" src="img/대표이미지.png" alt="">
+                        <img class="img-fluid mx-auto p-2 border border-5 rounded-circle mb-4" style="max-width: 10rem;" th:src="@{${'/'+dto.proPath+'/'+dto.proName}}" alt="">
                     </div>
                     <h4 class="text-center">닉네임 : [[${dto.userNickname}]]</h4>
-                    <p class="mb-0">지역 : [[${dto.userRegion}]]</p>
+                    <p class="mb-0">지역 : [[${dto.userRegion}]]<button class="btn-success rounded-2" data-bs-toggle="modal" data-bs-target="#ModalforReg">지역변경</button></p>
                     <p class="mb-0">이메일 : [[${dto.userEmail}]]</p>
                     <p class="mb-0">전화번호 : [[${dto.userPhone}]]</p>
                     <br>
@@ -79,17 +76,12 @@
                     <p class="align-self-center">
                         평점 : 
                     </p>
-                    <div class="star-ratings text-center">
-                        <div 
-                        class="star-ratings-fill space-x-2 text-lg"
-                        :style="{ width: ratingToPercent + '%' }"
-                        >
-                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                        </div>
-                        <div class="star-ratings-base space-x-2 text-lg">
-                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                        </div>
-                    </div>
+					<span class="star">
+					  ★★★★★
+					  <span style="width:20%">★★★★★</span>
+					  <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+					  
+					</span>
                 </div>
                 <div class="row">
                     <div class="col-4">
@@ -120,23 +112,18 @@
                   </ul>
                   <div class="tab-content" id="pills-tabContent">
                     <div class="tab-pane fade show active" id="pills-count" role="tabpanel" aria-labelledby="pills-home-count">
-                    <!-- 
-                            <div>
-                                <canvas  id="myPieChart" width="100%" height="50"></canvas>
-                            </div>
-                            <hr>
-                     -->
-                            <div class="align-items-center">
-                                <p class="bg-danger text-white-50" style="opacity: 50%;">
-                                    Request : 50000
-                                </p>
-                                <p class="bg-success text-white-50" style="opacity: 50%;">
-                                    Response : 100000
-                                </p>
-                                <hr>
-                                <div class="bg-success text-white"> 총 50000을 버셨어요~</div>
-                            </div>
+							
 
+                      <div class="align-items-center">
+                         <p class="bg-danger text-white-50" style="opacity: 50%;">
+                             Request : 50000
+                         </p>
+                         <p class="bg-success text-white-50" style="opacity: 50%;">
+                             Response : 100000
+                         </p>
+                         <hr>
+                         <div class="bg-success text-white"> 총 50000을 버셨어요~</div>
+                     </div>
                     </div>
                     <div class="tab-pane fade" id="pills-req" role="tabpanel" aria-labelledby="pills-profile-req" onclick="location.href='#'">
                         <table class="table table-hover" style="width: 100%;">
@@ -182,7 +169,7 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="row g-3">
+                <form class="row g-3" action="">
                     <div class="col-md-4">
                       <label for="validationServer02" class="form-label">name</label>
                       <input type="text" class="form-control is-valid" id="validationServer02" value="Otto" required>
@@ -228,9 +215,6 @@
                         </div>
                       </div>
                     </div>
-                    <div class="col-12">
-                      <button class="btn btn-primary" type="submit">Submit form</button>
-                    </div>
                   </form>
             </div>
             <div class="modal-footer">
@@ -241,6 +225,32 @@
         </div>
       </div>
 
+	 <div class="modal fade" id="ModalforReg" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	        <div class="modal-dialog">
+	          <div class="modal-content">
+	            <div class="modal-header">
+	              <h5 class="modal-title" id="exampleModalLabel">지역변경</h5>
+	              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                <form class="row g-3" action="/user/updateReg" method="post" id="forReg">
+	                    <div class="col-md-4">
+	                    	<input type="number" name="userCode" th:value="${dto.userCode}" hidden=true>
+	                      <label for="userRegion" class="form-label">지역</label>
+	                      <input type="text" class="form-control is-valid" name="userRegion" th:value="${dto.userRegion}" required>
+	                      <div class="valid-feedback">
+	                        Looks good!
+	                      </div>
+	                    </div>
+	                  </form>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="submit" class="btn btn-primary" form="forReg">Save changes</button>
+	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -253,7 +263,11 @@
     <!-- 차트관련 -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <script type="text/javascript">
+	    const drawStar = (target) => {
+	        document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+	      }
+    </script>
 	<!--
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
 	<script>

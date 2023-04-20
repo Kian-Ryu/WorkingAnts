@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -39,5 +40,11 @@ public class UserController {
 		m.addAttribute("dto", dto);
 //		log.info();
 		return "/mypage_dash";
+	}
+	@PostMapping("/updateReg")
+	public String updateReg(long userCode, String userRegion) {
+		log.info("updatereg 실행");
+		service.updateReg(userCode, userRegion);
+		return "redirect:/user/mypage/"+userCode;
 	}
 }

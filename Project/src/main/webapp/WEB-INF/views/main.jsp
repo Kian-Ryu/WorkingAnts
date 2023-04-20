@@ -68,7 +68,7 @@
 			$('#content').load('/jsp/inquiry');
 		})
 		$('#WorkPage').on('click', function(){
-			$('#content').load('/user/mypage');
+			$('#content').load('/user/mypage/522');
 		})
 		$('.card').on('click', function(){
 			$('#content').load('/jsp/view');
