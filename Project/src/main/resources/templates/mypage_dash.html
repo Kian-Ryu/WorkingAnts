@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Favicon -->
+    <link th:href="@{img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+    
+    <style>
+		  .star {
+		    position: relative;
+		    font-size: 2rem;
+		    color: #ddd;
+		  }
+		  
+		  .star input {
+		    width: 100%;
+		    height: 100%;
+		    position: absolute;
+		    left: 0;
+		    opacity: 0;
+		    cursor: pointer;
+		  }
+		  
+		  .star span {
+		    width: 0;
+		    position: absolute; 
+		    left: 0;
+		    color: red;
+		    overflow: hidden;
+		    pointer-events: none;
+		  }
+    </style>
+
+</head>
+
+<body>
+   
+    <!--Body Start-->
+    <div class="container py-5 pb-lg-0">
+        <div class="mx-auto text-center mb-3 pb-2" style="max-width: 500px;">
+            <h1 class="display-5 ">MyPage</h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-4">
+                <div class="mb-5 text-center" id="users">
+                    <div class="align-items-center">
+                        <a data-toggle="modal" href="#changeprofile"><img class="img-fluid mx-auto p-2 border border-5 rounded-circle mb-4" style="max-width: 10rem;" th:src="@{${dto.proName}}" alt=""></a>>
+                    </div>
+                    <h4 class="text-center">닉네임 : [[${dto.userNickname}]]</h4>
+                    <p class="mb-0">지역 : [[${dto.userRegion}]]<button class="btn-success rounded-2" data-bs-toggle="modal" data-bs-target="#ModalforReg">지역변경</button></p>
+                    <p class="mb-0">이메일 : [[${dto.userEmail}]]</p>
+                    <p class="mb-0">전화번호 : [[${dto.userPhone}]]</p>
+                    <br>
+                    <button class="btn-success rounded-2" data-bs-toggle="modal" data-bs-target="#exampleModal">수정하기</button>
+                    <hr>
+                    <p class="align-self-center">
+                        평점 : 
+                    </p>
+					<span class="star">
+					  ★★★★★
+					  <span style="width:20%">★★★★★</span>
+					  <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+					  
+					</span>
+                </div>
+<!--                 <div class="row">
+                    <div class="col-4">
+                        <span class="bg-secondary rounded-pill d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
+                            <i class="fa fa-award fs-4 text-white"></i>
+                        </span>
+                    </div>
+                    <div class="col-8">
+                        <h4>칭호</h4>
+                        <table class="table table-hover" style="width: 100%;">
+                            <tr><td>동심수호자</td><td>23.04.17</td></tr>
+                            <tr><td>강아지수면가스</td><td>23.04.17</td></tr>
+                        </table>
+                    </div>
+                </div> -->
+            </div>
+            <div class="col-lg-8 border border-dark rounded-1">
+                <ul class="nav nav-pills mb-3 .navbar-dark bg-dark" id="pills-tab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-count" type="button" role="tab" aria-controls="pills-count" aria-selected="true">현황</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-req" type="button" role="tab" aria-controls="pills-req" aria-selected="false">Request</button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-res" type="button" role="tab" aria-controls="pills-res" aria-selected="false">Response</button>
+                    </li>
+                  </ul>
+                  <div class="tab-content" id="pills-tabContent">
+                    <div class="tab-pane fade show active" id="pills-count" role="tabpanel" aria-labelledby="pills-home-count">
+							
+
+                      <div class="align-items-center">
+                         <p class="bg-danger text-white-50" style="opacity: 50%;">
+                             Request : 50000
+                         </p>
+                         <p class="bg-success text-white-50" style="opacity: 50%;">
+                             Response : 100000
+                         </p>
+                         <hr>
+                         <div class="bg-success text-white"> 총 50000을 버셨어요~</div>
+                     </div>
+                    </div>
+                    <div class="tab-pane fade" id="pills-req" role="tabpanel" aria-labelledby="pills-profile-req" onclick="location.href='#'">
+                        <table class="table table-hover" style="width: 100%;">
+                            <caption class="text-white">Requset</caption>
+                            <tr>
+                                <th>no</th>
+                                <th>title</th>
+                                <th>state</th>
+                            </tr>
+                            <tr onclick="location.href='#'" style="inherits: false;">
+                                <td>1</td>
+                                <td>15년 후에 어쩌고저쩌고</td>
+                                <td><span class="badge bg-success">완료</span></td>
+                            </tr>
+                          </table>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <!--Body End-->
+   
+    <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="row g-3" action="">
+                    <div class="col-md-4">
+                      <label for="validationServer02" class="form-label">name</label>
+                      <input type="text" class="form-control is-valid" id="validationServer02" value="Otto" required>
+                      <div class="valid-feedback">
+                        Looks good!
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <label for="validationServerUsername" class="form-label">Username</label>
+                      <div class="input-group has-validation">
+                        <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                        <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                          Please choose a username.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <label for="validationServer03" class="form-label">City</label>
+                      <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                      <div id="validationServer03Feedback" class="invalid-feedback">
+                        Please provide a valid city.
+                      </div>
+                    </div>
+                    <div class="col-md-3">
+                      <label for="validationServer04" class="form-label">State</label>
+                      <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                        <option selected disabled value="">Choose...</option>
+                        <option>...</option>
+                      </select>
+                      <div id="validationServer04Feedback" class="invalid-feedback">
+                        Please select a valid state.
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="form-check">
+                        <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
+                        <label class="form-check-label" for="invalidCheck3">
+                          Agree to terms and conditions
+                        </label>
+                        <div id="invalidCheck3Feedback" class="invalid-feedback">
+                          You must agree before submitting.
+                        </div>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+	 <div class="modal fade" id="ModalforReg" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	        <div class="modal-dialog">
+	          <div class="modal-content">
+	            <div class="modal-header">
+	              <h5 class="modal-title" id="exampleModalLabel">지역변경</h5>
+	              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	            </div>
+	            <div class="modal-body">
+	                <form class="row g-3" action="/user/updateReg" method="post" id="forReg">
+	                    <div class="col-md-4">
+	                    	<input type="number" name="userCode" th:value="${dto.userCode}" id="userCode" hidden=true>
+	                      <label for="userRegion" class="form-label">지역</label>
+	                      <input type="text" class="form-control is-valid" name="userRegion" th:value="${dto.userRegion}" id="userRegion" required>
+	                      <div class="valid-feedback">
+	                        Looks good!
+	                      </div>
+	                    </div>
+	                  </form>
+	            </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="changeReg()">Save changes</button>
+	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      <div class="modal" id="changeprofile" tabindex="-1">
+			  <div class="modal-dialog">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">프로필</h5>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			        <form action="" method="post" enctype="multipart/form-data" id="changepro">
+			        	<label>profile</label>
+          				<input type="file" name="profile">
+			        </form>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="submit" class="btn btn-primary" form="changepro">Save changes</button>
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script th:src="@{/lib/easing/easing.min.js}"></script>
+    <script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
+    <script th:src="@{/lib/counterup/counterup.min.js}"></script>
+    <script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+    <!-- Template Javascript -->
+    <script th:src="@{/js/main.js}"></script>
+    <!-- 차트관련 -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script th:inline="javascript">
+		function userreload(){
+			$("#users").load(location.href+' #users')
+		}
+		function changeReg() {
+		    var userRegion = $("#userRegion").val();
+		    console.log(userRegion);
+		    var Code = 522;
+		    var json = {"userRegion":userRegion, "Code":Code};
+		    $.ajax({
+		        url: "/user/updateReg",
+		        data: json,
+		        type:"POST",
+		        async : false,
+		        dataType:"json",
+		        complete: function(){
+		        	userreload();
+		        }
+		    })
+		}
+		
+		function changepro(){
+			$('#changepro').ajaxSubmit({
+				type: "POST",
+				enctype: 'multipart/form-data',	// 필수
+				url: '/user/updateProfile',
+				data: $("#changepro").serialize(),		// 필수
+				processData: false,	// 필수
+				contentType: false,	// 필수
+				success: function (result) {
+				},
+				error: function (e) {
+				}
+			})
+		}
+	</script>
+</body>
+
+</html>
