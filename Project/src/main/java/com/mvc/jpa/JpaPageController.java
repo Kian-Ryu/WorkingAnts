@@ -1,4 +1,3 @@
-package com.mvc.jpa;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,5 +40,28 @@ public class JpaPageController {
 	@GetMapping("/admin")
 	public String admin() {
 		return "/user/admin";
+<<<<<<< HEAD
 	}
 }
+=======
+	}
+//
+//<<<<<<< HEAD
+//	@GetMapping("/service")
+//	public String service() {
+//		return "/service";
+//	}
+//
+//	@GetMapping("/team")
+//	public String team() {
+//		return "/team";
+//	}
+//
+//	@GetMapping("/testimonial")
+//	public String testimonial() {
+//		return "/testimonial";
+//	}
+//	
+//
+//
+>>>>>>> refs/remotes/origin/main
