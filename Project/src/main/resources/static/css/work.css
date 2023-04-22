@@ -1,0 +1,572 @@
+/* create */
+.CreateWrapper {
+	width: 80%;
+	margin: 10vh auto;
+}
+
+.CreateWrapper .main_div {
+	padding: 30px;
+}
+.CreateWrapper #listCreateTime input{
+	display:inline-block;
+}
+.CreateWrapper .group input, .CreateWrapper .group textarea {
+	background: none;
+	color: #53596e;
+	font-size: 18px;
+	padding: 8px 8px 8px 13px;
+	display: block;
+	width: 320px;
+	border: none;
+	border-radius: 10px;
+	border: 1px solid #c6c6c6;
+}
+.CreateWrapper .note-modal-content{
+	padding:20px;
+}
+.CreateWrapper .note-modal .form-group{
+	margin-top:20px;
+}
+.CreateWrapper .note-modal .note-modal-body label{
+	width:fit-content;
+}
+.CreateWrapper .group input:hover {
+	border: 3px solid black;
+}
+
+.CreateWrapper .group input:focus, .CreateWrapper .group textarea:focus {
+	outline: none;
+	border: 3px solid #f00;
+}
+
+.CreateWrapper .group input ~ label, .CreateWrapper .group textarea ~ label {
+	top: -5px;
+	font-size: 12px;
+	color: #000;
+	left: 11px;
+}
+
+.CreateWrapper .group input:focus ~ label, .CreateWrapper .group input:valid ~ label, .CreateWrapper .group textarea:focus ~ label,
+	.CreateWrapper .group textarea:valid ~ label {
+	color: #f00;
+}
+
+.CreateWrapper .group input:focus ~ .bar:before, .CreateWrapper .group textarea:focus ~ .bar:before {
+	width: 320px;
+}
+
+.CreateWrapper .group input[type="password"] {
+	letter-spacing: 0.3em;
+}
+
+.CreateWrapper #inputGroupSelect01{
+	border-top-left-radius:10px;
+	border-bottom-left-radius:10px;
+	border: 1px solid #c6c6c6;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.CreateWrapper .group {
+	position: relative;
+	margin:5vh auto;
+}
+
+.CreateWrapper  label {
+	color: #c6c6c6;
+	font-size: 16px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 15px;
+	top: 12px;
+	transition: 300ms ease all;
+	background-color: #fff;
+	padding: 0 2px;
+}
+.CreateWrapper #btnWrapper{
+	text-align:center;
+	margin-top:10vh;
+}
+.CreateWrapper #listCreateBtn{
+border: 1px solid #c6c6c6;
+padding:10px 15px;
+color:black;
+border-radius : 5px;
+}
+.CreateWrapper #listCreateBtn:hover{
+border: 1px solid gray;
+}
+#workList #carouselExampleControls {
+	display: flex;
+	justify-content: center;
+}
+#workList .btn-primary{
+	background-color: #ffc022;
+	border-color: #ffc022;
+}
+#workList .card-body .card-detail{
+	margin:10px;
+}
+#workList .card img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#workList .card {
+	margin: 0 0.5em;
+	box-shadow: 2px 6px 8px 0 rgba(22, 22, 26, 0.18);
+	border: none;
+	border-radius: 0;
+}
+
+#workList .carousel-inner {
+	padding: 1em;
+	width: 70%;
+}
+
+#workList .cards-wrapper {
+	display: flex;
+	justify-content: center;
+}
+
+#workList .card img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#workList .card-body {
+	font-size: 0.8rem;
+	padding: 10px;
+}
+#hotWork{
+	margin-top:5vh;
+	margin-bottom:5vh;
+}
+
+#workList #antHot {
+	text-align: center;
+	padding: 10px;
+	width: 70%;
+	margin: auto;
+}
+
+#workList #antHotCards {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(20%, auto));
+	justify-content: space-evenly
+}
+
+#workList .card {
+	margin: 20px;
+	border-radius: 15px;
+	text-align: center;
+	border: 1px solid #ffc022;
+	padding: 5px;
+}
+
+#workList .card-body {
+	margin: auto;
+}
+
+#workList .graytext {
+	color: gray;
+	font-size: 0.8rem;
+}
+
+#workList #contentImg {
+	width: 70%;
+	margin: 20px auto;
+}
+
+#workList .cardImg {
+	background-repeat: no-repeat;
+	background-image: url("../img/helpAnt.png");
+	background-size: contain;
+	height: 15vh;
+}
+.ModifyWrapper {
+	width: 80%;
+	margin: 10vh auto;
+}
+
+.ModifyWrapper .main_div {
+	padding: 30px;
+}
+.ModifyWrapper #listCreateTime input{
+	display:inline-block;
+}
+.ModifyWrapper input, .ModifyWrapper textarea {
+	background: none;
+	color: #53596e;
+	font-size: 18px;
+	padding: 8px 8px 8px 13px;
+	display: block;
+	width: 320px;
+	border: none;
+	border-radius: 10px;
+	border: 1px solid #c6c6c6;
+}
+
+.ModifyWrapper input:hover {
+	border: 3px solid black;
+}
+
+.ModifyWrapper input:focus, .ModifyWrapper textarea:focus {
+	outline: none;
+	border: 3px solid #f00;
+}
+
+.ModifyWrapper input ~ label, .ModifyWrapper textarea ~ label {
+	top: -5px;
+	font-size: 12px;
+	color: #000;
+	left: 11px;
+}
+
+.ModifyWrapper input:focus ~ label, .ModifyWrapper input:valid ~ label, .ModifyWrapper textarea:focus ~ label,
+	.ModifyWrapper textarea:valid ~ label {
+	color: #f00;
+}
+
+.ModifyWrapper input:focus ~ .bar:before, .ModifyWrapper textarea:focus ~ .bar:before {
+	width: 320px;
+}
+
+.ModifyWrapper input[type="password"] {
+	letter-spacing: 0.3em;
+}
+
+.ModifyWrapper #inputGroupSelect01{
+	border-top-left-radius:10px;
+	border-bottom-left-radius:10px;
+	border: 1px solid #c6c6c6;
+	padding-left:10px;
+	padding-right:10px;
+}
+
+.ModifyWrapper .group {
+	position: relative;
+	margin:5vh auto;
+}
+
+.ModifyWrapper label {
+	color: #c6c6c6;
+	font-size: 16px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 15px;
+	top: 12px;
+	transition: 300ms ease all;
+	background-color: #fff;
+	padding: 0 2px;
+}
+.ModifyWrapper #btnWrapper{
+	text-align:center;
+	margin-top:10vh;
+}
+.ModifyWrapper #listModifyBtn{
+border: 1px solid #c6c6c6;
+padding:10px 15px;
+color:black;
+border-radius : 5px;
+}
+.ModifyWrapper #listModifyBtn:hover{
+border: 1px solid gray;
+}
+
+#workMain {
+	display: grid;
+	font-size: 0.8rem;
+	grid-template-columns: 1fr;
+}
+
+#workMain #goChat {
+	margin-right: 10px;
+	color: #fff;
+	font-size: 1.5rem;
+	border: none;
+	background-color: #ffc022;
+	width: fit-content;
+	padding: 10px;
+	border-radius: 5px;
+	cursor:pointer;
+	display:scroll;
+	position:fixed;
+	bottom:15px;
+	right:10px;
+}
+
+#workMain #workContentDate {
+	text-align: end;
+	width: 80%;
+	margin: 20px auto;
+	font-size: 0.8rem;
+}
+
+#workMain #won_icon {
+	background-image: url('../img/won-icon.png');
+	background-size: cover;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	display: inline-block;
+}
+
+#workMain #location_icon {
+	margin-left: 30px;
+	background-image: url('../img/location-icon.png');
+	background-size: cover;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	display: inline-block;
+}
+
+#workMain #date_icon {
+	margin-left: 30px;
+	background-image: url('../img/date-icon.png');
+	background-size: cover;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	display: inline-block;
+}
+
+#workMain #time_icon {
+	margin-left: 30px;
+	background-image: url('../img/time-icon.png');
+	background-size: cover;
+	width: 20px;
+	height: 20px;
+	margin-right: 5px;
+	display: inline-block;
+}
+
+#workMain #contentImg {
+	width: 50%;
+}
+
+#workMain #work_blank_65px {
+	height: 65px;
+}
+
+#workMain #work_blank_30px {
+	height: 30px;
+}
+
+#workMain #workTitle {
+	height: fit-content;
+	width: 80%;
+	margin: auto;
+	border-radius: 10px;
+	box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+		rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
+	padding: 20px;
+}
+
+#workMain #workTitle .contentTitle {
+	margin-bottom: 10px;
+}
+
+#workMain #workTitle div:nth-child(2) {
+	font-size: 1.3rem;
+	font-weight: bolder;
+	color: black;
+}
+
+#workMain #workTitle div:nth-child(1) {
+	color: #ffc022;
+	border: 1px solid #ffc022;
+	background-color: #ffc02210;
+	width: fit-content;
+	padding: 3px;
+	border-radius: 5px;
+}
+
+#workMain #workTitle div:nth-child(3), #workTitle div:nth-child(1), #workTitle span
+	{
+	font-size: 0.8rem;
+}
+
+#workMain #workTitle span:nth-child(1) {
+	color: #ffc022;
+	font-weight: bolder;
+}
+
+#workMain #work_title_location {
+	background-color: #FECCBE;
+	width: 60px;
+	padding: 1px;
+	color: #ff6347;
+	border-radius: 20%;
+	text-align: center;
+}
+
+#workMain #workContent {
+	display: grid;
+	width: 70%;
+	margin: auto;
+	line-height: 30px;
+}
+
+#workMain #work_content_detail {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 5px;
+	border-bottom: solid #9e9ea447 1px;
+}
+
+#workMain #work_content_detail_1 {
+	display: grid;
+	grid-template-columns: auto auto 1fr;
+	gap: 5px;
+}
+
+#workMain #work_content_user_photo {
+	background-image: url('../img/logo.png');
+	background-size: cover;
+	width: 30px;
+	height: 30px;
+	align-self: end;
+	border-radius: 50%;
+}
+
+#workMain #work_content_detail_2 {
+	display: grid;
+	grid-template-columns: 30px auto auto auto auto auto 1fr;
+	gap: 5px;
+}
+
+#workMain #work_view_icon {
+	background-image: url('../img/view-icon.png');
+	background-size: cover;
+	width: 15px;
+	height: 15px;
+	align-self: start;
+	grid-column: 2/3;
+}
+
+#workMain #work_view_num {
+	line-height: 15px;
+	grid-column: 3/4;
+}
+
+#workMain #work_to_list {
+	justify-self: end;
+	grid-column: 7/8;
+	align-self: start;
+}
+
+#workMain #work_to_list:hover {
+	cursor: pointer;
+	color: black;
+}
+
+#workMain #work_content_crud {
+	right: 10px;
+	background-image: url('../img/menu-icon.png');
+	background-size: cover;
+	width: 15px;
+	height: 15px;
+	justify-self: end;
+	align-self: center;
+	grid-column: 8/9;
+}
+
+#workMain #work_content_crud_list {
+	width: 4vw;
+	display: grid;
+	grid-template-rows: repeat(3, 1fr);
+	box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+	font-size: 0.5rem;
+	gap: 3px;
+}
+
+#workMain #work_content_crud:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}
+
+#workMain #work_content_crud:hover #work_content_crud_modify, #work_content_crud:hover #work_content_crud_delete
+	{
+	display: block;
+	cursor: pointer;
+	z-index: 3;
+}
+
+#workMain #work_content_crud_modify {
+	grid-row: 2/3;
+	background-color: white;
+	padding: 2px;
+	display: none;
+}
+
+#workMain #work_content_crud_delete {
+	grid-row: 3/4;
+	background-color: white;
+	padding: 2px;
+	display: none;
+}
+
+#workMain #work_copy_icon {
+	background-image: url('../img/copy-url-icon.png');
+	background-size: cover;
+	width: 15px;
+	height: 18px;
+	justify-self: start;
+	grid-column: 6/7;
+}
+
+#workMain #work_copy_icon:hover {
+	cursor: pointer;
+	transform: scale(1.2);
+}
+
+#workMain #work_content_user_name, #workMain #workTitle span {
+	color: #262b3f;
+}
+
+#workMain #work_content_plan_day {
+	background-color: #FECCBE;
+	width: 60px;
+	padding: 2px;
+	color: #ff6347;
+	border-radius: 20%;
+	text-align: center;
+}
+
+#workMain #work_blank_25px {
+	height: 25px;
+	border-bottom: 1px dashed black;
+}
+
+#workMain #work_content_title {
+	font-size: 1.2rem;
+	font-weight: bolder;
+}
+
+#workMain #work_content_article {
+	min-height: 50vh;
+}
+
+#workMain #work_content_article img {
+	width: 70%;
+	margin: auto;
+}
+
+#workMain #ri_content_plan_day {
+	background-color: #f1f6fa;
+	width: 60px;
+	padding: 2px;
+	color: #3f8ef1;
+	border-radius: 20%;
+	text-align: center;
+	display: inline-block;
+	margin-right: 25px;
+}
+
+#workMain .spanclass {
+	display: none;
+}

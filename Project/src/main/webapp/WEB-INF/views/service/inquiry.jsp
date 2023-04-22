@@ -5,39 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>문의사항</title>
-    <style>
-	#inquiryWrapper input{
-		border-radius:10px;
-	}
-    #inquiryWrapper .input-form {
-            max-width: 680px;
-
-            margin-top: 40px;
-            margin-bottom: 50px;
-            padding: 32px;
-
-            background: #fff;
-            -webkit-border-radius: 10px;
-            -moz-border-radius: 10px;
-            border-radius: 10px;
-            -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-            -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
-            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
-        }
-        #inquiryWrapper h4, #inquiryWrapper #btnWrapper{
-        	text-align:center;
-        }
-         #inquiryWrapper #btnWrapper button{
-         font-weight:bolder;
-         color:black;
-         border:1px solid gray;
-         }
-         #inquiryWrapper #btnWrapper button:hover{
-         
-         border:1px solid black;
-         }
-    </style>
-
+<link rel="stylesheet" href="../css/service.css">
 </head>
 <body>
 
