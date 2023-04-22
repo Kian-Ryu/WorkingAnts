@@ -13,25 +13,25 @@
 </head>
 <body>
 	<div id='workMain'>
-		<div id='workContentDate'>2023-04-18 16:00:58</div>
+		<div id='workContentDate'>${work.listDate }</div>
 
 		<div id='workTitle'>
-			<div class="contentTitle">진행중</div>
-			<div class="contentTitle">[위치]벌레좀 잡아주세요!!</div>
-			<div class="contentTitle">주거/바퀴벌레</div>
+			<div class="contentTitle">${work.listState }</div>
+			<div class="contentTitle">[${work.listRegion }]${work.listTitle }</div>
+			<div class="contentTitle">${work.listCategory }</div>
 			<hr>
 			<div id ="goChat"
 				style="display:inline;">채팅하기
 		</div>
 		<br />
 		<div id='won_icon'></div>
-		<span>10,000원</span>
+		<span>${work.listAmount }원</span>
 		<div id='location_icon'></div>
-		<span>위치</span>
+		<span>${work.listRegion}</span>
 		<div id='date_icon'></div>
-		<span>2023-04-28</span>
+		<span>${work.listFinishDate }</span>
 		<div id='time_icon'></div>
-		<span>9시 ~ 12시</span>
+		<span>${work.listStartTime }시 ~ ${work.listEndTime }시</span>
 
 	</div>
 
@@ -43,19 +43,19 @@
 			<div id='work_content_detail_1'>
 				<div id='work_content_user_photo'
 					style="background-image: url('../img/logo.png')"></div>
-				<div id='work_content_user_name'>닉네임</div>
+				<div id='work_content_user_name'>${userid } </div>
 			</div>
 
 			<div id='work_content_detail_2'>
 				<div id='work_view_icon'></div>
-				<div id='work_view_num'>78</div>
+				<div id='work_view_num'>${work.listCnt }</div>
 				<div id='work_copy_icon'></div>
 
 				<div id='work_to_list' onclick="BackPage()">목록으로</div>
 				<div id='work_content_crud'>
 					<div id='work_content_crud_list'>
-						<div id='work_content_crud_modify' onclick="modifyPageMove()">수정하기</div>
-						<div id='work_content_crud_delete' onclick="deleteTrue()">삭제하기</div>
+						<div id='work_content_crud_modify' onclick="modifyPageMove(${work.listCode})">수정하기</div>
+						<div id='work_content_crud_delete' onclick="deleteTrue(${work.listCode})">삭제하기</div>
 					</div>
 				</div>
 			</div>
@@ -67,9 +67,7 @@
 		<div id='work_blank_30px'></div>
 		<div id='work_content_body'>
 			<div id='blank_div'></div>
-			<img id="contentImg" src="../img/helpAnt.png">
-			<div id='work_blank_30px'></div>
-			<div id='work_content_article'>dpfpfpdkajflekw;lahgjksdpfhewjfnbjv</div>
+			<div id='work_content_article'>${work.listContent }</div>
 
 
 			<div id='work_blank_25px'></div>
@@ -83,10 +81,13 @@
 		function BackPage(){
 			$("#content").load("/jsp/list");
 		}
-		function modifyPageMove(){
-			$("#content").load("/jsp/modify");
+		function modifyPageMove(listCode){
+			console.log("js-modify"+listCode);
+			$.post("/jsp/modify", {listCode:listCode}, function(data){
+		    	$('#content').html(data);				
+		    })  
 		}
-		function deleteTrue(){
+		function deleteTrue(listCode){
 		swal({
 			  title: "정말 삭제하시겠습니까?",
 			  text: "한번 지우면 되돌릴 수 없습니다!",
@@ -99,7 +100,10 @@
 			    swal("지워졌습니다!", {
 			      icon: "success",
 			    }).then(function(){
-			    	$("#content").load("/jsp/list");                   
+			    	console.log(listCode);
+			    	$.post("/jsp/remove", {listCode:listCode}, function(data){
+				    	$('#content').html(data);				
+				    })                   
 			    });
 
 			  } else {
