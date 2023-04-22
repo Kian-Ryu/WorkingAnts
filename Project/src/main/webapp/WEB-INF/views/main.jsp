@@ -41,12 +41,14 @@
 <!-- BootStrap Script -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
 <!-- 서머노트를 위해 추가해야할 부분 -->
 <script src="../summernote/summernote-lite.js"></script>
 <script src="../summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="../summernote/summernote-lite.css">
+
 </head>
 <body>
 	<jsp:include page="layout/header_logout.jsp" />
@@ -55,6 +57,7 @@
 		<jsp:include page="./content.jsp" />
 	</div>
 	<jsp:include page="layout/footer.jsp" />
+
 	
 	<script>
 	$(function(){
