@@ -11,57 +11,65 @@
 	<div id="contentbody" class="bs-component">
 		<img id="contentImg" src="../img/content.png">
 		<div id="hotWork">
-		<h2>요즘 뜨는 심부름</h2>
-		<div id="carouselExampleControls" class="carousel slide carousel-dark"
-			data-ride="carousel justify-content-center">
-			<div class="carousel-inner active">
-				<div class="carousel-item active">
-					<div class="cards-wrapper justify-content-center">
-						<c:forEach var="i" begin="1" end="4">
-							<div class="card">
-								<img src="../img/helpAnt.png" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">애완견 산책</h5>
-									<div class="card-detail">
-										<div>10,000원</div>
-										<div>위치 : 여의도</div>
+			<h2>요즘 뜨는 심부름</h2>
+			<div id="carouselExampleControls"
+				class="carousel slide carousel-dark"
+				data-ride="carousel justify-content-center">
+				<div class="carousel-inner active">
+					<div class="carousel-item active">
+						<div class="cards-wrapper justify-content-center">
+							<c:forEach var="i" begin="0" end="3">
+								<div class="card" onclick="cardView(${ work[i].listCode})">
+									<img src="${imgsrc[i]}" class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">${work[i].listTitle}</h5>
+										<div class="card-detail">
+											<div>${work[i].listAmount}원</div>
+											<div>위치 : ${work[i].listRegion}</div>
+										</div>
 									</div>
 								</div>
-							</div>
-						</c:forEach>
+							</c:forEach>
+						</div>
 					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="cards-wrapper">
-						<c:forEach var="i" begin="1" end="4">
-							<div class="card">
-								<img src="../img/helpAnt.png" class="card-img-top" alt="...">
-								<div class="card-body">
-									<h5 class="card-title">줄서기</h5>
-									<div class="card-detail">
-										<div>10,000원</div>
-										<div>위치 : 여의도</div>
+					<div class="carousel-item">
+						<div class="cards-wrapper">
+							<c:forEach var="i" begin="4" end="7">
+								<div class="card" onclick="cardView(${ work[i].listCode})">
+									<img src="${imgsrc[i]}" class="card-img-top" alt="...">
+									<div class="card-body">
+										<h5 class="card-title">${work[i].listTitle}</h5>
+										<div class="card-detail">
+											<div>${work[i].listAmount}원</div>
+											<div>위치 : ${work[i].listRegion}</div>
+										</div>
 									</div>
 								</div>
-							</div>
-						</c:forEach>
+							</c:forEach>
+						</div>
 					</div>
-				</div>
 
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleControls"
+					role="button" data-slide="prev"> <span
+					class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+					class="sr-only">Previous</span>
+				</a> <a class="carousel-control-next" href="#carouselExampleControls"
+					role="button" data-slide="next"> <span
+					class="carousel-control-next-icon" aria-hidden="true"></span> <span
+					class="sr-only">Next</span>
+				</a>
 			</div>
-			<a class="carousel-control-prev" href="#carouselExampleControls"
-				role="button" data-slide="prev"> <span
-				class="carousel-control-prev-icon" aria-hidden="true"></span> <span
-				class="sr-only">Previous</span>
-			</a> <a class="carousel-control-next" href="#carouselExampleControls"
-				role="button" data-slide="next"> <span
-				class="carousel-control-next-icon" aria-hidden="true"></span> <span
-				class="sr-only">Next</span>
-			</a>
 		</div>
-</div>
 	</div>
 	<script>
+	function cardView(listCode){
+		console.log(listCode);
+	    $.post("/jsp/view", {listCode:listCode}, function(data){
+	    	console.log(listCode);
+	    	$('#content').html(data);				
+	    })
+	}
 		$(function() {
 			// 이미지 슬라이드 컨트롤를 사용하기 위해서는 carousel를 실행해야한다.
 			$('#carousel-example-generic').carousel({
@@ -75,6 +83,9 @@
 				// 키보드 이벤트 설정 여부(?)
 				keyboard : true
 			});
+			
+			
+
 		});
 	</script>
 </body>
