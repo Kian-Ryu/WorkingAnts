@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mvc.grade.GradeService;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -21,6 +23,7 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 public class UserController {
 	private final UserService service;
+	private final GradeService gradeservice;
 	
 	@GetMapping("/register")
 	public String register() {
@@ -32,14 +35,12 @@ public class UserController {
 		service.register(dto, profile);
 		log.info("처리 완료");
 	}
-//	@GetMapping("/mypage")
-//	public String mypage_dash() {
-//		return "/mypage_dash";
-//	}
+
 	@GetMapping("/mypage/{userCode}")
 	public String mypage_dash(@PathVariable long userCode, Model m) {
 		UserDTO dto = service.read(userCode);
 		m.addAttribute("dto", dto);
+		m.addAttribute("avgGrade", gradeservice.avgGrade(userCode));
 //		log.info();
 		return "/mypage_dash";
 	}

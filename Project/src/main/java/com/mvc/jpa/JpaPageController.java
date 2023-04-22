@@ -42,24 +42,4 @@ public class JpaPageController {
 	public String admin() {
 		return "/user/admin";
 	}
-//
-//<<<<<<< HEAD
-//	@GetMapping("/service")
-//	public String service() {
-//		return "/service";
-//	}
-//
-//	@GetMapping("/team")
-//	public String team() {
-//		return "/team";
-//	}
-//
-//	@GetMapping("/testimonial")
-//	public String testimonial() {
-//		return "/testimonial";
-//	}
-//	
-//
-//=======
-//>>>>>>> refs/remotes/origin/main
 }

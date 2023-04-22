@@ -49,6 +49,9 @@
 		    overflow: hidden;
 		    pointer-events: none;
 		  }
+		  #updateprofile {
+		  	cursor : pointer;
+		  }
     </style>
 
 </head>
@@ -64,7 +67,10 @@
             <div class="col-lg-4">
                 <div class="mb-5 text-center" id="users">
                     <div class="align-items-center">
-                        <a data-toggle="modal" href="#changeprofile"><img class="img-fluid mx-auto p-2 border border-5 rounded-circle mb-4" style="max-width: 10rem;" th:src="@{${dto.proName}}" alt=""></a>>
+<!--                     <button class="" data-bs-toggle="modal" data-bs-target="#changeprofile" style="opacity:0"> -->
+	                    <img class="img-fluid mx-auto p-2 border border-5 rounded-circle mb-4" style="max-width: 10rem;" th:src="@{/img/logo.png}" alt="" id="updateprofile">
+                        <!-- @{${dto.proName}} -->
+                    
                     </div>
                     <h4 class="text-center">닉네임 : [[${dto.userNickname}]]</h4>
                     <p class="mb-0">지역 : [[${dto.userRegion}]]<button class="btn-success rounded-2" data-bs-toggle="modal" data-bs-target="#ModalforReg">지역변경</button></p>
@@ -78,8 +84,7 @@
                     </p>
 					<span class="star">
 					  ★★★★★
-					  <span style="width:20%">★★★★★</span>
-					  <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+					  <span th:style="${'width:'+(avgGrade*20)+'%'}">★★★★★</span>
 					  
 					</span>
                 </div>
@@ -236,26 +241,27 @@
 	          </div>
 	        </div>
 	      </div>
-	      <div class="modal" id="changeprofile" tabindex="-1">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title">프로필</h5>
-			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			      </div>
-			      <div class="modal-body">
-			        <form action="" method="post" enctype="multipart/form-data" id="changepro">
-			        	<label>profile</label>
-          				<input type="file" name="profile">
-			        </form>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="submit" class="btn btn-primary" form="changepro">Save changes</button>
-			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
+      <div class="modal" id="changeprofile" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">프로필</h5>
+		        <button type="button" class="btn-close modalclose" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <form action="" method="post" enctype="multipart/form-data" id="changepro">
+		        	<label>profile</label>
+         				<input type="file" name="profile" onchange="readURL(this);">
+		        </form>
+		        <img id="preview" />
+		      </div>
+		      <div class="modal-footer">
+		        <button type="submit" class="btn btn-primary" form="changepro">Save changes</button>
+		        <button type="button" class="btn btn-secondary modalclose" data-bs-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -292,17 +298,34 @@
 		function changepro(){
 			$('#changepro').ajaxSubmit({
 				type: "POST",
-				enctype: 'multipart/form-data',	// 필수
+				enctype: 'multipart/form-data',
 				url: '/user/updateProfile',
-				data: $("#changepro").serialize(),		// 필수
-				processData: false,	// 필수
-				contentType: false,	// 필수
+				data: $("#changepro").serialize(),
+				processData: false,
+				contentType: false,
 				success: function (result) {
 				},
 				error: function (e) {
 				}
 			})
 		}
+ 		$("#updateprofile").click(function(){
+		    $("#changeprofile").fadeIn();
+		  });
+ 		$(".modalclose").click(function(){
+		    $("#changeprofile").fadeOut();
+		  });
+ 		function readURL(input) {
+ 			  if (input.files && input.files[0]) {
+ 			    var reader = new FileReader();
+ 			    reader.onload = function(e) {
+ 			      document.getElementById('preview').src = e.target.result;
+ 			    };
+ 			    reader.readAsDataURL(input.files[0]);
+ 			  } else {
+ 			    document.getElementById('preview').src = "";
+ 			  }
+ 			}
 	</script>
 </body>
 

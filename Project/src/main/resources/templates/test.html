@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Favicon -->
+    <link th:href="@{img/favicon.ico}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+
+    
+    <style>
+		  .star {
+		    position: relative;
+		    font-size: 2rem;
+		    color: #ddd;
+		  }
+		  
+		  .star input {
+		    width: 100%;
+		    height: 100%;
+		    position: absolute;
+		    left: 0;
+		    opacity: 0;
+		    cursor: pointer;
+		  }
+		  
+		  .star span {
+		    width: 0;
+		    position: absolute; 
+		    left: 0;
+		    color: red;
+		    overflow: hidden;
+		    pointer-events: none;
+		  }
+    </style>
+</head>
+<body>
+	<div th:if="${list.listState=='모집완료'}">
+	<form id="graderegister" action="" method="post">
+         <span class="star">
+            ★★★★★
+            <span>★★★★★</span>
+        	<input id="star" type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+		</span>
+        <input name="userCode" type="number" th:value="${dto.userCode}" hidden= true>
+        <input name="listCode" type="number" th:value="${list.listCode}" hidden= true>
+      </form>
+	</div>
+	<div th:if="${list.listState=='평가완료'}">
+		<span class="star">
+		  ★★★★★
+		  <span th:style="${'width:'+(G.grade*20)+'%'}">★★★★★</span>
+		</span>
+	</div>
+	<!--  -->
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script th:src="@{/lib/easing/easing.min.js}"></script>
+    <script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
+    <script th:src="@{/lib/counterup/counterup.min.js}"></script>
+    <script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
+    <!-- Template Javascript -->
+    <script th:src="@{/js/main.js}"></script>
+    <!-- 알람 -->
+	<script th:src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script th:src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+	    const drawStar = (target) => {
+	    	  $(`.star span`).css({ width: `${target.value * 10}%` });
+	    	}
+	    $("#star").mouseup(function(){
+	    	alert($("#star").val());
+	    	Swal.fire({
+                title: '별점을 주시겠습니까?',
+                text: $("#star").val()*0.5+"점이 맞습니까?",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '확인',
+                cancelButtonText: '취소'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                	$('#graderegister').submit(function(){
+            			$('#graderegister').ajaxSubmit(optionG);
+            			return false;
+                	})
+                    Swal.fire(
+                  		'별점을 주셨습니다~',
+                        '',
+                        'success'
+                    )
+                }
+            })
+	    })
+	    
+	    var optionG = {
+	    	type: "POST",
+			url: '/grade/register',
+			data: $("graderegister").serialize,
+			dataType: 'json',
+            processData: false,
+            contentType: false,
+			success: function (result) {
+			},
+			error: function (e) {
+			}
+	    }
+    </script>
+</body>
+</html>

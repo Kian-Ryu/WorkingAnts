@@ -28,5 +28,5 @@ public class Grade {
 	private Long userCode;
 	
 	@Column(nullable = true)
-	private Long grade;
+	private Double grade;
 }
