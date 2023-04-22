@@ -14,7 +14,7 @@ import com.ktj.service.UserService;
 @Controller
 @RequestMapping("/")
 public class PageController {
-	
+
 	@Autowired
 	private UserService userService;
 
@@ -27,7 +27,7 @@ public class PageController {
 	public String password() {
 		return "users/password";
 	}
-	
+
 	// home 확인용
 	@GetMapping("/home")
 	public String home() {
@@ -66,11 +66,15 @@ public class PageController {
 		model.addAttribute("list", userService.UserAll());
 		return "users/admin";
 	}
-	
+
 	@GetMapping("/naverMain")
 	public String naverMain() {
 		return "navermain";
 	}
 
+	@GetMapping("/chat")
+	public String chat() {
+		return "users/chat";
+	}
 
 }

@@ -7,9 +7,11 @@
 .CreateWrapper .main_div {
 	padding: 30px;
 }
-.CreateWrapper #listCreateTime input{
-	display:inline-block;
+
+.CreateWrapper #listCreateTime input {
+	display: inline-block;
 }
+
 .CreateWrapper .group input, .CreateWrapper .group textarea {
 	background: none;
 	color: #53596e;
@@ -21,37 +23,45 @@
 	border-radius: 10px;
 	border: 1px solid #c6c6c6;
 }
-.CreateWrapper .note-modal-content{
-	padding:20px;
+
+.CreateWrapper .note-modal-content {
+	padding: 20px;
 }
-.CreateWrapper .note-modal .form-group{
-	margin-top:20px;
+
+.CreateWrapper .note-modal .form-group {
+	margin-top: 20px;
 }
-.CreateWrapper .note-modal .note-modal-body label{
-	width:fit-content;
+
+.CreateWrapper .note-modal .note-modal-body label {
+	width: fit-content;
 }
+
 .CreateWrapper .group input:hover {
 	border: 3px solid black;
 }
 
-.CreateWrapper .group input:focus, .CreateWrapper .group textarea:focus {
+.CreateWrapper .group input:focus, .CreateWrapper .group textarea:focus
+	{
 	outline: none;
 	border: 3px solid #f00;
 }
 
-.CreateWrapper .group input ~ label, .CreateWrapper .group textarea ~ label {
+.CreateWrapper .group input ~ label, .CreateWrapper .group textarea ~
+	label {
 	top: -5px;
 	font-size: 12px;
 	color: #000;
 	left: 11px;
 }
 
-.CreateWrapper .group input:focus ~ label, .CreateWrapper .group input:valid ~ label, .CreateWrapper .group textarea:focus ~ label,
-	.CreateWrapper .group textarea:valid ~ label {
+.CreateWrapper .group input:focus ~ label, .CreateWrapper .group input:valid 
+	~ label, .CreateWrapper .group textarea:focus ~ label, .CreateWrapper .group textarea:valid 
+	~ label {
 	color: #f00;
 }
 
-.CreateWrapper .group input:focus ~ .bar:before, .CreateWrapper .group textarea:focus ~ .bar:before {
+.CreateWrapper .group input:focus ~ .bar:before, .CreateWrapper .group textarea:focus 
+	~ .bar:before {
 	width: 320px;
 }
 
@@ -59,17 +69,17 @@
 	letter-spacing: 0.3em;
 }
 
-.CreateWrapper #inputGroupSelect01{
-	border-top-left-radius:10px;
-	border-bottom-left-radius:10px;
+.CreateWrapper #inputGroupSelect01 {
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 	border: 1px solid #c6c6c6;
-	padding-left:10px;
-	padding-right:10px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .CreateWrapper .group {
 	position: relative;
-	margin:5vh auto;
+	margin: 5vh auto;
 }
 
 .CreateWrapper  label {
@@ -84,30 +94,37 @@
 	background-color: #fff;
 	padding: 0 2px;
 }
-.CreateWrapper #btnWrapper{
-	text-align:center;
-	margin-top:10vh;
+
+.CreateWrapper #btnWrapper {
+	text-align: center;
+	margin-top: 10vh;
 }
-.CreateWrapper #listCreateBtn{
-border: 1px solid #c6c6c6;
-padding:10px 15px;
-color:black;
-border-radius : 5px;
+
+.CreateWrapper #listCreateBtn {
+	border: 1px solid #c6c6c6;
+	padding: 10px 15px;
+	color: black;
+	border-radius: 5px;
 }
-.CreateWrapper #listCreateBtn:hover{
-border: 1px solid gray;
+
+.CreateWrapper #listCreateBtn:hover {
+	border: 1px solid gray;
 }
+
 #workList #carouselExampleControls {
 	display: flex;
 	justify-content: center;
 }
-#workList .btn-primary{
+
+#workList .btn-primary {
 	background-color: #ffc022;
 	border-color: #ffc022;
 }
-#workList .card-body .card-detail{
-	margin:10px;
+
+#workList .card-body .card-detail {
+	margin: 10px;
 }
+
 #workList .card img {
 	max-width: 100%;
 	max-height: 100%;
@@ -139,9 +156,10 @@ border: 1px solid gray;
 	font-size: 0.8rem;
 	padding: 10px;
 }
-#hotWork{
-	margin-top:5vh;
-	margin-bottom:5vh;
+
+#hotWork {
+	margin-top: 5vh;
+	margin-bottom: 5vh;
 }
 
 #workList #antHot {
@@ -185,6 +203,7 @@ border: 1px solid gray;
 	background-size: contain;
 	height: 15vh;
 }
+
 .ModifyWrapper {
 	width: 80%;
 	margin: 10vh auto;
@@ -193,9 +212,11 @@ border: 1px solid gray;
 .ModifyWrapper .main_div {
 	padding: 30px;
 }
-.ModifyWrapper #listCreateTime input{
-	display:inline-block;
+
+.ModifyWrapper #listCreateTime input {
+	display: inline-block;
 }
+
 .ModifyWrapper input, .ModifyWrapper textarea {
 	background: none;
 	color: #53596e;
@@ -224,12 +245,14 @@ border: 1px solid gray;
 	left: 11px;
 }
 
-.ModifyWrapper input:focus ~ label, .ModifyWrapper input:valid ~ label, .ModifyWrapper textarea:focus ~ label,
-	.ModifyWrapper textarea:valid ~ label {
+.ModifyWrapper input:focus ~ label, .ModifyWrapper input:valid ~ label,
+	.ModifyWrapper textarea:focus ~ label, .ModifyWrapper textarea:valid ~
+	label {
 	color: #f00;
 }
 
-.ModifyWrapper input:focus ~ .bar:before, .ModifyWrapper textarea:focus ~ .bar:before {
+.ModifyWrapper input:focus ~ .bar:before, .ModifyWrapper textarea:focus 
+	~ .bar:before {
 	width: 320px;
 }
 
@@ -237,17 +260,17 @@ border: 1px solid gray;
 	letter-spacing: 0.3em;
 }
 
-.ModifyWrapper #inputGroupSelect01{
-	border-top-left-radius:10px;
-	border-bottom-left-radius:10px;
+.ModifyWrapper #inputGroupSelect01 {
+	border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
 	border: 1px solid #c6c6c6;
-	padding-left:10px;
-	padding-right:10px;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 .ModifyWrapper .group {
 	position: relative;
-	margin:5vh auto;
+	margin: 5vh auto;
 }
 
 .ModifyWrapper label {
@@ -262,18 +285,21 @@ border: 1px solid gray;
 	background-color: #fff;
 	padding: 0 2px;
 }
-.ModifyWrapper #btnWrapper{
-	text-align:center;
-	margin-top:10vh;
+
+.ModifyWrapper #btnWrapper {
+	text-align: center;
+	margin-top: 10vh;
 }
-.ModifyWrapper #listModifyBtn{
-border: 1px solid #c6c6c6;
-padding:10px 15px;
-color:black;
-border-radius : 5px;
+
+.ModifyWrapper #listModifyBtn {
+	border: 1px solid #c6c6c6;
+	padding: 10px 15px;
+	color: black;
+	border-radius: 5px;
 }
-.ModifyWrapper #listModifyBtn:hover{
-border: 1px solid gray;
+
+.ModifyWrapper #listModifyBtn:hover {
+	border: 1px solid gray;
 }
 
 #workMain {
@@ -291,11 +317,11 @@ border: 1px solid gray;
 	width: fit-content;
 	padding: 10px;
 	border-radius: 5px;
-	cursor:pointer;
-	display:scroll;
-	position:fixed;
-	bottom:15px;
-	right:10px;
+	cursor: pointer;
+	display: scroll;
+	position: fixed;
+	bottom: 15px;
+	right: 10px;
 }
 
 #workMain #workContentDate {
@@ -385,8 +411,8 @@ border: 1px solid gray;
 	border-radius: 5px;
 }
 
-#workMain #workTitle div:nth-child(3), #workTitle div:nth-child(1), #workTitle span
-	{
+#workMain #workTitle div:nth-child(3), #workTitle div:nth-child(1),
+	#workTitle span {
 	font-size: 0.8rem;
 }
 
@@ -489,8 +515,8 @@ border: 1px solid gray;
 	transform: scale(1.2);
 }
 
-#workMain #work_content_crud:hover #work_content_crud_modify, #work_content_crud:hover #work_content_crud_delete
-	{
+#workMain #work_content_crud:hover #work_content_crud_modify,
+	#work_content_crud:hover #work_content_crud_delete {
 	display: block;
 	cursor: pointer;
 	z-index: 3;
