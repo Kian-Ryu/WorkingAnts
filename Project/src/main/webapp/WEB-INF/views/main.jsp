@@ -68,9 +68,9 @@
 			$('#content').load('/jsp/inquiry');
 		})
 		$('#WorkPage').on('click', function(){
-			$('#content').load('/jsp/list');
+			$('#content').load('/user/mypage/522');
 		})
-		
+
 	});
 	
 	

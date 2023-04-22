@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="content">
+
+        <h1 class="mt-4">GuestBook Register Page</h1>
+
+        <form th:action="@{/user/register}" th:method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label >userId1</label>
+                <input type="text" class="form-control" name="userId" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+                <label >userPw1</label>
+                <input type="text" class="form-control" name="userPw" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+                <label >userName1</label>
+                <input type="text" class="form-control" name="userName" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+                <label >userNickname1</label>
+                <input type="text" class="form-control" name="userNickname" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+                <label >userEmail1</label>
+                <input type="text" class="form-control" name="userEmail" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+                <label >userPhone1</label>
+                <input type="text" class="form-control" name="userPhone" placeholder="Enter Title">
+            </div>
+            <div class="form-group">
+                <label >userRegion1</label>
+                <input type="text" class="form-control" name="userRegion" placeholder="Enter Title">
+            </div>
+            <div>
+            <label>profile</label>
+            <input type="file" name="profile">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </th:block>
