@@ -22,8 +22,8 @@
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+    		<groupId>org.springframework.boot</groupId>
+   			 <artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -55,12 +55,14 @@
 		<dependency>
 		    <groupId>com.querydsl</groupId>
 		    <artifactId>querydsl-apt</artifactId>
+		    <version>5.0.0</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/com.querydsl/querydsl-jpa -->
 		<dependency>
     		<groupId>com.querydsl</groupId>
    		 <artifactId>querydsl-jpa</artifactId>
+   		 <version>5.0.0</version>
 		</dependency>
 		
 		<dependency>
@@ -71,26 +73,12 @@
 		    <groupId>javax.servlet</groupId>
 		    <artifactId>jstl</artifactId>
 		</dependency>
-		<!-- 세션로그인 전용 boot 시큐리티 디펜던시-->
-		<!--<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
 		
+		<!-- JavaMailSender 구현용 디펜던시 -->
 		<dependency>
-			<groupId>org.thymeleaf.extras</groupId>
-			<artifactId>thymeleaf-extras-springsecurity6</artifactId>
-			 Temporary explicit version to fix Thymeleaf bug 
-			<version>3.1.1.RELEASE</version>
+   			 <groupId>org.springframework.boot</groupId>
+  		 	 <artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
-		
-		<dependency>
-			<groupId>org.springframework.security</groupId>
-			<artifactId>spring-security-test</artifactId>
-			<scope>test</scope>
-		</dependency>-->
-		
-		<!-- /세션로그인 전용 boot 시큐리티 디펜던시-->
 	</dependencies>
 
 	<build>

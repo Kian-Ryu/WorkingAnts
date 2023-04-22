@@ -50,9 +50,41 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
 	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
 	crossorigin="anonymous"></script>
+<!--네이버 api 스크립트  -->
+<script type="text/javascript"
+	src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
+	charset="utf-8"></script>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<!--//네이버 api 스크립트  -->
 </head>
 <body>
-	<jsp:include page="layout/header_logout.jsp" />
+	<!--네이버 api 스크립트  body-->
+	<script type="text/javascript">
+		var naver_id_login = new naver_id_login("d4BfN7Rrtw6r1gxH_amr",
+				"http://localhost:8080/naverMain");
+		// 접근 토큰 값 출력
+		/* alert(naver_id_login.oauthParams.access_token); */
+		// 네이버 사용자 프로필 조회
+		naver_id_login.get_naver_userprofile("naverSignInCallback()");
+		// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+		function naverSignInCallback() {
+			/* alert(naver_id_login.getProfileData('email'));
+			alert(naver_id_login.getProfileData('nickname'));
+			alert(naver_id_login.getProfileData('age')); */
+
+			var email = naver_id_login.getProfileData('email');
+			var nickname = naver_id_login.getProfileData('nickname');
+			var age = naver_id_login.getProfileData('age');
+
+			document.getElementById('naver-email').textContent = email;
+			document.getElementById('naver-nickname').textContent = nickname;
+			document.getElementById('naver-age').textContent = age;
+		}
+	</script>
+	<!--// 네이버 api 스크립트  body-->
+	<%-- ${user} --%>
+	<jsp:include page="layout/naverheader_logout.jsp" />
 	<jsp:include page="layout/nav.jsp" />
 	<div id="content">
 		<jsp:include page="./content.jsp" />
@@ -78,5 +110,16 @@
 			})
 		});
 	</script>
+	<div id="naver-profile">
+		<p>
+			Email: <span id="naver-email"></span>
+		</p>
+		<p>
+			Nickname: <span id="naver-nickname"></span>
+		</p>
+		<p>
+			Age: <span id="naver-age"></span>
+		</p>
+	</div>
 </body>
 </html>

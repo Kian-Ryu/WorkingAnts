@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleft.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>관리자 페이지</title>
+<!-- Favicon -->
+<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
+	rel="stylesheet">
+
+<!-- Icon Font Stylesheet -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+	rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="../lib/owlcarousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="../css/style.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="../css/main.css" rel="stylesheet">
+
+
+<!-- BootStrap Stylesheet -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+<!-- jQuery Script -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link
+	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+	rel="stylesheet" />
+<link href="css/sb-style.css" rel="stylesheet" />
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+	crossorigin="anonymous"></script>
+
+<!-- BootStrap Script -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+	crossorigin="anonymous"></script>
+
+</head>
+<body>
+	<header id="headerWrapper">
+		<a href="/jsp/index" id="logoImg"> </a>
+		<div class="searchContainer justify-content-center align-items-center">
+			<div class="row height d-flex align-items-center">
+				<div class="col-md-6 " id="searchFrmWrapper">
+					<div class="form">
+						<input type="text" class="form-control" id="searchInput">
+						<i class="bi bi-search"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div id="userWrapper">
+			<a href="login" id="a"> <i class="bi bi-person-fill"></i><span>로그인</span>
+			</a>
+		</div>
+	</header>
+	<nav class="nav">
+		<div class="justify-content-center" id="dropdownMenuLink"
+			aria-expanded="false">
+			<div class="navWrapper">
+				<button class="dropbtn" id="WorkPage">심부름</button>
+				<div class="dropdown-content" id="WorkContent">
+					<a href="#">사무</a> <a href="#">주거</a><a href="#">반려동물</a> <a
+						href="#">대행</a><a href="#">기타</a>
+				</div>
+			</div>
+			<div class="navWrapper">
+				<button class="dropbtn" id="ChatPage">채팅</button>
+			</div>
+			<div class="navWrapper">
+				<button class="dropbtn" id="myPage">마이페이지</button>
+				<div class="dropdown-content" id="myContent">
+					<a href="#">내 정보</a> <a href="#">내 심부름</a>
+				</div>
+			</div>
+			<div class="navWrapper">
+				<button class="dropbtn" id="serviceCenter">고객센터</button>
+				<div class="dropdown-content" id="serviceCenterContent">
+					<a href='javascript:void(0);' id="moveFAQ">자주 묻는 질문</a> <a
+						href='javascript:void(0);' id="moveInquiry">문의하기</a>
+				</div>
+			</div>
+		</div>
+	</nav>
+	<div id="layoutSidenav_content">
+		<main>
+			<div class="container-fluid px-4">
+				<h1 class="mt-4">관리자 페이지</h1>
+				<ol class="breadcrumb mb-4">
+					<li class="breadcrumb-item active">관리자 페이지</li>
+				</ol>
+
+				<div class="row">
+
+					<div class="col-xl-6">
+						<div class="card mb-4">
+							<div class="card-header">
+								<i class="fas fa-chart-area me-1"></i> 홈페이지 방문빈도
+							</div>
+							<div class="card-body">
+								<canvas id="myAreaChart" width="100%" height="40"></canvas>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-xl-6">
+						<div class="card mb-4">
+							<div class="card-header">
+								<i class="fas fa-chart-bar me-1"></i> 홈페이지 광고 수익
+							</div>
+							<div class="card-body">
+								<canvas id="myBarChart" width="100%" height="40"></canvas>
+							</div>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="card mb-4">
+					<div class="card-header">
+						<i class="fas fa-table me-1"></i> 회원 목록
+					</div>
+					<div class="card-body">
+						<table id="datatablesSimple">
+							<thead>
+								<tr>
+									<th>회원코드</th>
+									<th>회원지역</th>
+									<th>이름</th>
+									<th>닉네임</th>
+									<th>아이디</th>
+									<th>비밀번호</th>
+									<th>이메일</th>
+									<th>휴대폰</th>
+									<th>수정</th>
+									<th>삭제</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="user : ${list}">
+									<td th:text="${user.userCode}"></td>
+									<td th:text="${user.userRegion}"></td>
+									<td th:text="${user.userName}"></td>
+									<td th:text="${user.userNickName}"></td>
+									<td th:text="${user.userId}"></td>
+									<td th:text="${user.userPw}"></td>
+									<td th:text="${user.userEmail}"></td>
+									<td th:text="${user.userPhone}"></td>
+									<td><button type="button" class="btn btn-success"
+											data-toggle="modal" data-target="#myModal">수정</button></td>
+									<td><button type="button" class="btn btn-danger">삭제</button></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script src="js/scripts.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"
+		crossorigin="anonymous"></script>
+	<script src="assets/demo/chart-area-demo.js"></script>
+	<script src="assets/demo/chart-bar-demo.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/umd/simple-datatables.min.js"
+		crossorigin="anonymous"></script>
+	<script src="js/datatables-simple-demo.js"></script>
+</body>
+<footer class="container-fluid navbar-fixed-bottom footer">
+	<div id="footerContainer1">
+		<div id="footerContainerone">
+			<p>고객센터</p>
+			<p>2222-1111</p>
+		</div>
+		<div id="footerContainertwo">
+			<p>평일 9:00 ~ 18:00</p>
+			<p>Email : aaaa@ucamp.com</p>
+			<p class="grayfont">(주말, 공휴일 휴무)</p>
+		</div>
+	</div>
+	<div id="footerContainer2">
+		<p class="grayfont">회사명 : (주)일개미</p>
+		<p class="grayfont">주소 : 대한민국 서울특별시 강서구 마곡중앙8로 71 (마곡동)</p>
+		<p class="grayfont">Copyright © 일개미. All Rights Reserved.</p>
+	</div>
+
+	<div id="footerContainer3">
+		<i class="bi bi-chat-square-dots fa-3x"></i>
+		<p>자주묻는질문</p>
+	</div>
+	<div id="footerContainer4">
+		<i class="bi bi-envelope fa-3x"></i>
+		<p>온라인문의</p>
+	</div>
+	<!-- 모달 창 -->
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel">회원 정보 수정</h4>
+				</div>
+				<div class="modal-body">
+					<form id="editForm">
+						<div class="mb-3">
+							<label for="editUserCode" class="form-label">회원 코드</label> <input
+								type="text" class="form-control" id="editUserCode"
+								name="userCode" readonly>
+						</div>
+						<div class="mb-3">
+							<label for="editUserRegion" class="form-label">회원 지역</label> <input
+								type="text" class="form-control" id="editUserRegion"
+								name="userRegion" required>
+						</div>
+						<div class="mb-3">
+							<label for="editUserName" class="form-label">이름</label> <input
+								type="text" class="form-control" id="editUserName"
+								name="userName" required>
+						</div>
+						<div class="mb-3">
+							<label for="editUserNickName" class="form-label">닉네임</label> <input
+								type="text" class="form-control" id="editUserNickName"
+								name="userNickName" required>
+						</div>
+						<div class="mb-3">
+							<label for="editUserId" class="form-label">아이디</label> <input
+								type="text" class="form-control" id="editUserId" name="userId"
+								required>
+						</div>
+						<div class="mb-3">
+							<label for="editUserPw" class="form-label">비밀번호</label> <input
+								type="password" class="form-control" id="editUserPw"
+								name="userPw" required>
+						</div>
+						<div class="mb-3">
+							<label for="editUserEmail" class="form-label">이메일</label> <input
+								type="email" class="form-control" id="editUserEmail"
+								name="userEmail" required>
+						</div>
+						<div class="mb-3">
+							<label for="editUserPhone" class="form-label">휴대폰</label> <input
+								type="text" class="form-control" id="editUserPhone"
+								name="userPhone" required>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary"
+								data-dismiss="modal">취소</button>
+							<button type="button" class="btn btn-primary">저장</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</footer>
+<script>
+	$(document).ready(function() {
+		// 삭제 버튼 클릭 시
+		$('button.btn-danger').click(function(event) {
+			event.preventDefault();
+			var userCode = $(this).closest('tr').find('td:eq(0)').text(); // 클릭된 버튼과 같은 행의 첫 번째 열에서 userCode를 가져옴
+			$.ajax({
+				url : '/deleteUser?userCode=' + userCode,
+				type : 'DELETE',
+				success : function() {
+					alert('회원 정보가 삭제되었습니다.');
+					location.reload(); // 페이지 새로고침
+				},
+				error : function() {
+					alert('회원 정보가 삭제되었습니다.');
+					location.reload(); // 페이지 새로고침
+				}
+			});
+		});
+	});
+</script>
+<script>
+	//수정 버튼을 누르면 모달창이 뜨고, 해당 유저 정보가 모달창에 표시됩니다.
+	$(document).ready(function() {
+		$('#datatablesSimple').on('click', 'button.btn-success', function() {
+			var row = $(this).closest('tr');
+			var userCode = row.find('td:eq(0)').text();
+			var userRegion = row.find('td:eq(1)').text();
+			var userName = row.find('td:eq(2)').text();
+			var userNickName = row.find('td:eq(3)').text();
+			var userId = row.find('td:eq(4)').text();
+			var userPw = row.find('td:eq(5)').text();
+			var userEmail = row.find('td:eq(6)').text();
+			var userPhone = row.find('td:eq(7)').text();
+
+			$('#editUserCode').val(userCode);
+			$('#editUserRegion').val(userRegion);
+			$('#editUserName').val(userName);
+			$('#editUserNickName').val(userNickName);
+			$('#editUserId').val(userId);
+			$('#editUserPw').val(userPw);
+			$('#editUserEmail').val(userEmail);
+			$('#editUserPhone').val(userPhone);
+		});
+	});
+
+	// 저장 버튼을 누르면 AJAX를 사용하여 수정된 정보를 서버로 전송합니다.
+	$(document).ready(function() {
+		$('#editForm button.btn-primary').click(function() {
+			var user = {
+				userCode : $('#editUserCode').val(),
+				userRegion : $('#editUserRegion').val(),
+				userName : $('#editUserName').val(),
+				userNickName : $('#editUserNickName').val(),
+				userId : $('#editUserId').val(),
+				userPw : $('#editUserPw').val(),
+				userEmail : $('#editUserEmail').val(),
+				userPhone : $('#editUserPhone').val()
+			};
+
+			$.ajax({
+				url : '/updateUser',
+				type : 'PUT',
+				contentType : 'application/json',
+				data : JSON.stringify(user),
+				success : function(result) {
+					location.reload();
+				}
+			});
+		});
+	});
+</script>
+</html>

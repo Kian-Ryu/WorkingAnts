@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Register - SB Admin</title>
+<link href="css/sb-style.css" rel="stylesheet" />
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+	crossorigin="anonymous"></script>
+<!-- Favicon -->
+<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="../img/favicon.ico" type="image/x-icon">
+
+<!-- Google Web Fonts -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap"
+	rel="stylesheet">
+
+<!-- Icon Font Stylesheet -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
+	rel="stylesheet">
+
+<!-- Libraries Stylesheet -->
+<link href="../lib/owlcarousel/assets/owl.carousel.min.css"
+	rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="../css/style.css" rel="stylesheet">
+
+<!-- Template Stylesheet -->
+<link href="../css/main.css" rel="stylesheet">
+
+
+<!-- BootStrap Stylesheet -->
+<link rel="stylesheet" href="../css/bootstrap.min.css">
+
+<!-- jQuery Script -->
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<!-- BootStrap Script -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+	crossorigin="anonymous"></script>
+
+<link
+	href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css"
+	rel="stylesheet" />
+<link href="css/sb-style.css" rel="stylesheet" />
+<script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"
+	crossorigin="anonymous"></script>
+
+</head>
+<body class="bg-primary">
+	<div id="layoutAuthentication">
+		<div id="layoutAuthentication_content">
+			<main>
+				<div class="container">
+					<div class="row justify-content-center">
+						<div class="col-lg-7">
+							<div class="card shadow-lg border-0 rounded-lg mt-5">
+								<div class="card-header">
+									<h3 class="text-center font-weight-light my-4">계정 생성</h3>
+								</div>
+								<div class="card-body">
+									<form method="post" action="/createUser">
+										<div class="form-floating mb-3">
+											<input class="form-control" id="userName" type="text"
+												placeholder="이름 입력" name="userName" /> <label
+												for="inputEmail">이름</label>
+										</div>
+										<div class="form-floating mb-3">
+											<input class="form-control" id="userId" type="text"
+												placeholder="아이디 입력" name="userId" /> <label
+												for="inputEmail">아이디</label>
+										</div>
+
+										<div class="row mb-3">
+											<div class="col-md-6">
+												<div class="form-floating mb-3 mb-md-0">
+													<input class="form-control" id="userPw" type="text"
+														placeholder="비밀번호 입력" name="userPw" /> <label
+														for="inputPassword">비밀번호</label>
+												</div>
+											</div>
+											<!-- <div class="col-md-6">
+                                                    <div class="form-floating mb-3 mb-md-0">
+                                                        <input class="form-control" id="inputPasswordConfirm" type="text" placeholder="Confirm password" />
+                                                        <label for="inputPasswordConfirm">비밀번호 확인</label>
+                                                    </div>
+                                                </div> -->
+										</div>
+										<div class="form-floating mb-3">
+											<input class="form-control" id="userEmail" type="text"
+												placeholder="이메일 입력" name="userEmail" /> <label
+												for="inputEmail">이메일</label>
+										</div>
+										<div class="form-floating mb-3">
+											<input class="form-control" id="userPhone" type="text"
+												placeholder="전화번호 입력" name="userPhone" /> <label
+												for="inputEmail">전화번호</label>
+										</div>
+										<div class="form-floating mb-3">
+											<input class="form-control" id="userRegion" type="text"
+												placeholder="지역 입력" name="userRegion" /> <label
+												for="inputEmail">지역</label>
+										</div>
+										<div class="form-floating mb-3">
+											<input class="form-control" id="userNickName" type="text"
+												placeholder="닉네임 입력" name="userNickName" /> <label
+												for="inputEmail">닉네임</label>
+										</div>
+										<div class="mt-4 mb-0">
+											<button type="submit" class="btn btn-success">계정생성</button>
+										</div>
+									</form>
+								</div>
+								<div class="card-footer text-center py-3">
+									<div class="small">
+										<a href="login">로그인 창으로</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+		</div>
+		<footer class="container-fluid navbar-fixed-bottom footer">
+			<div id="footerContainer1">
+				<div id="footerContainerone">
+					<p>고객센터</p>
+					<p>2222-1111</p>
+				</div>
+				<div id="footerContainertwo">
+					<p>평일 9:00 ~ 18:00</p>
+					<p>Email : aaaa@ucamp.com</p>
+					<p class="grayfont">(주말, 공휴일 휴무)</p>
+				</div>
+			</div>
+			<div id="footerContainer2">
+				<p class="grayfont">회사명 : (주)일개미</p>
+				<p class="grayfont">주소 : 대한민국 서울특별시 강서구 마곡중앙8로 71 (마곡동)</p>
+				<p class="grayfont">Copyright © 일개미. All Rights Reserved.</p>
+			</div>
+
+			<div id="footerContainer3">
+				<i class="bi bi-chat-square-dots fa-3x"></i>
+				<p>자주묻는질문</p>
+			</div>
+			<div id="footerContainer4">
+				<i class="bi bi-envelope fa-3x"></i>
+				<p>온라인문의</p>
+			</div>
+
+		</footer>
+	</div>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+		crossorigin="anonymous"></script>
+	<script src="js/scripts.js"></script>
+</body>
+</html>
