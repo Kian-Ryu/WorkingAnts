@@ -17,11 +17,11 @@
 				data-ride="carousel justify-content-center">
 				<div class="carousel-inner active">
 					<div class="carousel-item active">
-						<div class="cards-wrapper justify-content-center">
+						<div class="cards-wrapper justify-content-center row">
 							<c:forEach var="i" begin="0" end="3">
-								<div class="card" onclick="cardView(${ work[i].listCode})">
+								<div class="card col-2" onclick="cardView(${ work[i].listCode})">
 									<img src="${imgsrc[i]}" class="card-img-top" alt="...">
-									<div class="card-body">
+									<div class="card-body col-12">
 										<h5 class="card-title">${work[i].listTitle}</h5>
 										<div class="card-detail">
 											<div>${work[i].listAmount}원</div>
@@ -33,11 +33,11 @@
 						</div>
 					</div>
 					<div class="carousel-item">
-						<div class="cards-wrapper">
+						<div class="cards-wrapper row">
 							<c:forEach var="i" begin="4" end="7">
-								<div class="card" onclick="cardView(${ work[i].listCode})">
+								<div class="card col-2" onclick="cardView(${ work[i].listCode})">
 									<img src="${imgsrc[i]}" class="card-img-top" alt="...">
-									<div class="card-body">
+									<div class="card-body col-12">
 										<h5 class="card-title">${work[i].listTitle}</h5>
 										<div class="card-detail">
 											<div>${work[i].listAmount}원</div>
@@ -63,11 +63,12 @@
 		</div>
 	</div>
 	<script>
+	
 	function cardView(listCode){
 		console.log(listCode);
 	    $.post("/jsp/view", {listCode:listCode}, function(data){
-	    	console.log(listCode);
-	    	$('#content').html(data);				
+ 	    	console.log(listCode);
+	    	$('#content').html(data);	 
 	    })
 	}
 		$(function() {

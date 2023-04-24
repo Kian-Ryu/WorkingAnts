@@ -13,22 +13,31 @@
 			<div class="row height d-flex align-items-center">
 				<div class="col-md-6 " id="searchFrmWrapper">
 					<div class="form">
-						<input type="text" class="form-control" id="searchInput">
-						<i class="bi bi-search"></i>
+						<input type="text" class="form-control" id="searchInput"
+							onkeypress="if( event.keyCode == 13 ){searchData();}"> <i
+							class="bi bi-search" onclick="searchData()"></i>
 					</div>
 				</div>
 			</div>
 		</div>
 		<div id="userWrapper">
 			<button class="dropbtn" id="logout">
-				<i class="bi bi-person-fill"></i>${user.userNickName} 님
+				<i class="bi bi-person-fill"></i> Logout
 			</button>
 			<div class="dropdown-content">
-				<a href="#">심부름</a>
-				<a href="#">내 정보</a>
-				<a href="logout">로그아웃</a>
+				<a href="#">심부름</a> <a href="#">내 정보</a>
 			</div>
 		</div>
 	</header>
+	<script>
+		function searchData() {
+			var searchData=($("#searchInput").val());
+			$.post("/jsp/listsearch", {
+				searchInput : searchData
+			}, function(data) {
+				$('#content').html(data);
+			})
+		}
+	</script>
 </body>
 </html>

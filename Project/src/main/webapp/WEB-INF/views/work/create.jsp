@@ -50,6 +50,7 @@
 			<div class="group">
 				<input type="text" list="listRegionList" name="listRegion" required>
 				<datalist id="listRegionList">
+					<option value="지역무관"></option>
 					<option value="관악구"></option>
 					<option value="강남구"></option>
 					<option value="강서구"></option>
