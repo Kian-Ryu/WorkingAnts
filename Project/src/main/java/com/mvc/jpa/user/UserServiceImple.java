@@ -2,8 +2,11 @@ package com.mvc.jpa.user;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -25,7 +28,7 @@ public class UserServiceImple implements UserService {
 	String fdir;
 	
 	@Override
-	public Long register(UserDTO dto, MultipartFile file) {
+	public void register(UserDTO dto, MultipartFile file) {
 		String projectPath = System.getProperty("user.dir") + fdir;
 		UUID uuid = UUID.randomUUID();
 		String fileName = uuid + "_" + file.getOriginalFilename();
@@ -45,9 +48,7 @@ public class UserServiceImple implements UserService {
 		Users u = dToEntity(dto);
 		repo.save(u);
 		
-		return u.getUserCode();
 	}
-
 	@Override
 	public UserDTO read(long userCode) {
 		log.info(userCode+"서비스연결 완");
@@ -68,6 +69,35 @@ public class UserServiceImple implements UserService {
 			entity.changeUserRegion(userRegion);
 			repo.save(entity);
 		}
+	}
+	
+	public void findByUserIdAndUserPw(String userId, String userPw) {
+		repo.findByUserIdAndUserPw(userId, userPw);
+	} // 로그인시 회원등록여부 파악
+	
+	public List<Users> UserAll() {
+		return (List<Users>) repo.findAll(); // admin 관리자 페이지에서 회원정보 전체조회
+	}
+	
+	public void deleteByUserCode(long userCode) {
+		repo.deleteById(userCode); // admin 관리자 페이지에서 회원정보 삭제
+	}
+	@Transactional // admin 관리자 페이지에서 모달창 통해서 회원정보 수정
+	public void updateUser(Users user) {
+		Users existingUser = repo.findById(user.getUserCode()).orElse(null);
+		if (existingUser != null) {
+			existingUser.setUserRegion(user.getUserRegion());
+			existingUser.setUserName(user.getUserName());
+			existingUser.setUserNickName(user.getUserNickName());
+			existingUser.setUserId(user.getUserId());
+			existingUser.setUserPw(user.getUserPw());
+			existingUser.setUserEmail(user.getUserEmail());
+			existingUser.setUserPhone(user.getUserPhone());
+			repo.save(existingUser);
+		}
+	}
+	public Users findByUserEmail(String userEmail) {
+		return repo.findByUserEmail(userEmail);
 	}
 	
 }

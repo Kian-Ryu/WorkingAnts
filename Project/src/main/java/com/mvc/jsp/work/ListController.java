@@ -34,8 +34,8 @@ public class ListController {
 		mv.setViewName("redirect:/jsp/view");
 		return mv;
 
-	}
-
+	}	
+	
 	@RequestMapping("/modifyList")
 	public ModelAndView workModify(WorkDto dto, RedirectAttributes redirectAttributes) {
 

@@ -1,8 +1,5 @@
 package com.ktj.controller;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.ktj.entity.Users;
-import com.ktj.repository.UserRepository;
-import com.ktj.service.UserService;
+import com.mvc.jpa.user.UserRepository;
+import com.mvc.jpa.user.Users;
 
 @Controller
 public class LoginController {

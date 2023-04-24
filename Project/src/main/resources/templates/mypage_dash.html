@@ -23,7 +23,15 @@
 
     <!-- Template Stylesheet -->
     <link th:href="@{/css/style.css}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+
+    
+    <link rel="stylesheet" th:href="@{/fonts/icomoon/style.css}">
+  
+    <link th:href='@{/fullcalendar/packages/core/main.css}' rel='stylesheet' />
+    <link th:href='@{/fullcalendar/packages/daygrid/main.css}' rel='stylesheet' />
     
     <style>
 		  .star {
@@ -49,6 +57,9 @@
 		    overflow: hidden;
 		    pointer-events: none;
 		  }
+		  #updateprofile {
+		  	cursor : pointer;
+		  }
     </style>
 
 </head>
@@ -64,22 +75,24 @@
             <div class="col-lg-4">
                 <div class="mb-5 text-center" id="users">
                     <div class="align-items-center">
-                        <a data-toggle="modal" href="#changeprofile"><img class="img-fluid mx-auto p-2 border border-5 rounded-circle mb-4" style="max-width: 10rem;" th:src="@{${dto.proName}}" alt=""></a>>
+<!--                     <button class="" data-bs-toggle="modal" data-bs-target="#changeprofile" style="opacity:0"> -->
+	                    <img class="img-fluid mx-auto p-2 border border-5 rounded-circle mb-4" style="max-width: 10rem;" th:src="@{/img/logo.png}" alt="" id="updateprofile">
+                        <!-- @{${dto.proName}} -->
+                    
                     </div>
-                    <h4 class="text-center">닉네임 : [[${dto.userNickname}]]</h4>
+                    <h4 class="text-center">닉네임 : [[${dto.userNickName}]]</h4>
                     <p class="mb-0">지역 : [[${dto.userRegion}]]<button class="btn-success rounded-2" data-bs-toggle="modal" data-bs-target="#ModalforReg">지역변경</button></p>
                     <p class="mb-0">이메일 : [[${dto.userEmail}]]</p>
                     <p class="mb-0">전화번호 : [[${dto.userPhone}]]</p>
                     <br>
-                    <button class="btn-success rounded-2" data-bs-toggle="modal" data-bs-target="#exampleModal">수정하기</button>
+                    <button class="btn-success rounded-2" data-bs-toggle="modal" data-bs-target="#modalForUp">수정하기</button>
                     <hr>
                     <p class="align-self-center">
                         평점 : 
                     </p>
 					<span class="star">
 					  ★★★★★
-					  <span style="width:20%">★★★★★</span>
-					  <input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10">
+					  <span th:style="${'width:'+(avgGrade*20)+'%'}">★★★★★</span>
 					  
 					</span>
                 </div>
@@ -99,7 +112,7 @@
                 </div> -->
             </div>
             <div class="col-lg-8 border border-dark rounded-1">
-                <ul class="nav nav-pills mb-3 .navbar-dark bg-dark" id="pills-tab" role="tablist">
+           <!--      <ul class="nav nav-pills mb-3 .navbar-dark bg-dark" id="pills-tab" role="tablist">
                     <li class="nav-item" role="presentation">
                       <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-count" type="button" role="tab" aria-controls="pills-count" aria-selected="true">현황</button>
                     </li>
@@ -140,81 +153,87 @@
                             </tr>
                           </table>
                     </div>
-                  </div>
+                  </div> -->
+                   <div class="content">
+				    <div id='calendar'></div>
+				  </div> 
             </div>
         </div>
     </div>
     <!--Body End-->
    
-    <div class="modal fade" id="exampleModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalForUp" tabindex="-1" data-bs-backdrop="static" aria-labelledby="modalForUpLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <h5 class="modal-title" id="modalForUpLabel">회원 정보 수정</h5>
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form class="row g-3" action="">
-                    <div class="col-md-4">
-                      <label for="validationServer02" class="form-label">name</label>
-                      <input type="text" class="form-control is-valid" id="validationServer02" value="Otto" required>
-                      <div class="valid-feedback">
-                        Looks good!
-                      </div>
+                <form class="row g-3" id="updateuser" action="">
+                	<input type="hidden" name="userCode" th:value="${dto.userCode}">
+                	<input type="hidden" name="userRegion" th:value="${dto.userRegion}">
+                	<input type="hidden" name="userName" th:value="${dto.userName}">
+                	<input type="hidden" name="userId" th:value="${dto.userId}">
+                	<input type="hidden" name="proName" th:value="${dto.proName}">
+                	<input type="hidden" name="proPath" th:value="${dto.proPath}">
+                    <div class="col-md-8">
+                      <label for="NickName" class="form-label">NickName</label>
+                      <input type="text" class="form-control is-valid" id="NickName" name="userNickName" th:value="${dto.userNickName}" required>
+<!--                       <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                        닉네임을 입력해 주세요
+                      </div> -->
                     </div>
-                    <div class="col-md-4">
-                      <label for="validationServerUsername" class="form-label">Username</label>
-                      <div class="input-group has-validation">
-                        <span class="input-group-text" id="inputGroupPrepend3">@</span>
-                        <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-                        <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                          Please choose a username.
-                        </div>
-                      </div>
+                    <div class="col-md-12">
+                      <label for="nowPassword" class="form-label">now Password</label>
+                        <input type="password" class="form-control is-invalid" id="nowPassword" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+<!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                          
+                        </div> -->
                     </div>
-                    <div class="col-md-6">
-                      <label for="validationServer03" class="form-label">City</label>
-                      <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
-                      <div id="validationServer03Feedback" class="invalid-feedback">
-                        Please provide a valid city.
-                      </div>
+                    <div class="col-md-12">
+                      <label for="aftPassword" class="form-label">aft Password</label>
+                        <input type="password" class="form-control is-invalid" id="aftPassword" name="userPw" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+<!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                          
+                        </div> -->
                     </div>
-                    <div class="col-md-3">
-                      <label for="validationServer04" class="form-label">State</label>
-                      <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                        <option selected disabled value="">Choose...</option>
-                        <option>...</option>
-                      </select>
-                      <div id="validationServer04Feedback" class="invalid-feedback">
-                        Please select a valid state.
-                      </div>
+                    <div class="col-md-12">
+                      <label for="chkPassword" class="form-label">chk Password</label>
+                        <input type="password" class="form-control is-invalid" id="chkPassword" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+<!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                          
+                        </div> -->
                     </div>
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required>
-                        <label class="form-check-label" for="invalidCheck3">
-                          Agree to terms and conditions
-                        </label>
-                        <div id="invalidCheck3Feedback" class="invalid-feedback">
-                          You must agree before submitting.
-                        </div>
-                      </div>
+                    <div class="col-md-12">
+                      <label for="email" class="form-label">email</label>
+                      <input type="text" class="form-control is-invalid" id="email" name="userEmail" th:value="${dto.userEmail}" aria-describedby="validationServer03Feedback" required>
+        <!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                          
+                        </div> -->
+                    </div>
+                    <div class="col-md-12">
+                      <label for="phone" class="form-label">Phone</label>
+                      <input type="text" class="form-control is-invalid" id="phone" name="userPhone" th:value="${dto.userPhone}" aria-describedby="validationServer03Feedback" required>
+        <!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                          
+                        </div> -->
                     </div>
                   </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" id="updateUserbtn" data-bs-dismiss="modal" onclick="updateuser()">Save changes</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
       </div>
 
-	 <div class="modal fade" id="ModalforReg" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	 <div class="modal fade" id="ModalforReg" tabindex="-1" data-bs-backdrop="static" aria-labelledby="modalForUpLabel" aria-hidden="true">
 	        <div class="modal-dialog">
 	          <div class="modal-content">
 	            <div class="modal-header">
-	              <h5 class="modal-title" id="exampleModalLabel">지역변경</h5>
+	              <h5 class="modal-title" id="modalForUpLabel">지역변경</h5>
 	              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 	            </div>
 	            <div class="modal-body">
@@ -223,9 +242,9 @@
 	                    	<input type="number" name="userCode" th:value="${dto.userCode}" id="userCode" hidden=true>
 	                      <label for="userRegion" class="form-label">지역</label>
 	                      <input type="text" class="form-control is-valid" name="userRegion" th:value="${dto.userRegion}" id="userRegion" required>
-	                      <div class="valid-feedback">
+<!-- 	                      <div class="valid-feedback">
 	                        Looks good!
-	                      </div>
+	                      </div> -->
 	                    </div>
 	                  </form>
 	            </div>
@@ -236,26 +255,34 @@
 	          </div>
 	        </div>
 	      </div>
-	      <div class="modal" id="changeprofile" tabindex="-1">
-			  <div class="modal-dialog">
-			    <div class="modal-content">
-			      <div class="modal-header">
-			        <h5 class="modal-title">프로필</h5>
-			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			      </div>
-			      <div class="modal-body">
-			        <form action="" method="post" enctype="multipart/form-data" id="changepro">
-			        	<label>profile</label>
-          				<input type="file" name="profile">
-			        </form>
-			      </div>
-			      <div class="modal-footer">
-			        <button type="submit" class="btn btn-primary" form="changepro">Save changes</button>
-			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-			      </div>
-			    </div>
-			  </div>
-			</div>
+      <div class="modal" id="changeprofile" tabindex="-1" data-bs-backdrop="static" aria-labelledby="modalForUpLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">프로필</h5>
+		        <button type="button" class="btn-close modalclose" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      <div class="modal-body">
+		        <form action="" method="post" enctype="multipart/form-data" id="changepro">
+		        	<label>profile</label>
+         				<input type="file" name="profile" onchange="readURL(this);">
+		        </form>
+		        <img id="preview" />
+		      </div>
+		      <div class="modal-footer">
+		        <button type="submit" class="btn btn-primary" form="changepro">Save changes</button>
+		        <button type="button" class="btn btn-secondary modalclose" data-bs-dismiss="modal">Close</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<!--     <script th:src="@{/js/popper.min.js}"></script> -->
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <script th:src='@{/fullcalendar/packages/core/main.js}'></script>
+    <script th:src='@{/fullcalendar/packages/interaction/main.js}'></script>
+    <script th:src='@{/fullcalendar/packages/daygrid/main.js}'></script>
     <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
@@ -265,20 +292,28 @@
     <script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
     <!-- Template Javascript -->
     <script th:src="@{/js/main.js}"></script>
-    <!-- 차트관련 -->
-
+    <!--알림 관련 -->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-	<script th:inline="javascript">
+    <!-- 캘린더 관련 -->
+    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+
+    <script th:src='@{/fullcalendar/packages/core/main.js}'></script>
+    <script th:src='@{/fullcalendar/packages/interaction/main.js}'></script>
+    <script th:src='@{/fullcalendar/packages/daygrid/main.js}'></script>
+    <script type="text/javascript">    
 		function userreload(){
 			$("#users").load(location.href+' #users')
 		}
 		function changeReg() {
 		    var userRegion = $("#userRegion").val();
 		    console.log(userRegion);
-		    var Code = 522;
+		    var Code = $("#userCode").val();
 		    var json = {"userRegion":userRegion, "Code":Code};
 		    $.ajax({
-		        url: "/user/updateReg",
+		        url: "/updateReg",
 		        data: json,
 		        type:"POST",
 		        async : false,
@@ -292,17 +327,91 @@
 		function changepro(){
 			$('#changepro').ajaxSubmit({
 				type: "POST",
-				enctype: 'multipart/form-data',	// 필수
-				url: '/user/updateProfile',
-				data: $("#changepro").serialize(),		// 필수
-				processData: false,	// 필수
-				contentType: false,	// 필수
+				enctype: 'multipart/form-data',
+				url: '/updateProfile',
+				data: $("#changepro").serialize(),
+				processData: false,
+				contentType: false,
 				success: function (result) {
 				},
 				error: function (e) {
 				}
 			})
 		}
+ 		$("#updateprofile").click(function(){
+		    $("#changeprofile").fadeIn();
+		  });
+ 		$(".modalclose").click(function(){
+		    $("#changeprofile").fadeOut();
+		  });
+ 		function updateuser(){
+	    	Swal.fire({
+                title: '확인해주세요!',
+                html: '닉네임 : ' + $("#NickName").val()+'<hr> 이메일 : ' + $("#email").val()+'<hr> 전화번호 : ' + $("#phone").val(),
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '예',
+                cancelButtonText: '아니오'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                	$("#nowPassword").attr("disabled");
+                    $("#chkPassword").attr("disabled");
+                	$('#updateuser').submit(function(){
+            			$('#updateuser').ajaxSubmit(optionR);
+            			return false;
+                	})
+                    Swal.fire(
+                  		'회원정보를 수정했습니다.',
+                        '',
+                        'success'
+                    )
+                }
+            })
+ 		};
+	    var optionR = {
+		    	type: "POST",
+		    	enctype: 'multipart/form-data',
+				url: '/updateUserbyU',
+				data: $("#updateuser").serialize,
+	            processData: false,
+	            contentType: false,
+				success: function (result) {
+				},
+				error: function (e) {
+				}
+		    }
+ 		function readURL(input) {
+ 			  if (input.files && input.files[0]) {
+ 			    var reader = new FileReader();
+ 			    reader.onload = function(e) {
+ 			      document.getElementById('preview').src = e.target.result;
+ 			    };
+ 			    reader.readAsDataURL(input.files[0]);
+ 			  } else {
+ 			    document.getElementById('preview').src = "";
+ 			  }
+ 			}
+	    function getTodaytype(){
+	    	var date = new Date();
+	    	return date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +("0" + date.getDate()).slice(-2);
+	    }
+	    document.addEventListener('DOMContentLoaded', function() {
+	    	var nowday = getTodaytype();
+	        var calendarEl = document.getElementById('calendar');
+
+	        var calendar = new FullCalendar.Calendar(calendarEl, {
+	          plugins: [ 'interaction', 'dayGrid' ],
+	          defaultDate: nowday,
+	          editable: true,
+	          eventLimit: true, // allow "more" link when too many events
+	          events: [
+	          ]
+	        });
+
+	        calendar.render();
+	      });
 	</script>
 </body>
 

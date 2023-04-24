@@ -9,6 +9,8 @@ public interface GradeService {
 		GradeDTO dto = GradeDTO.builder().gradeCode(entity.getGradeCode()).userCode(entity.getUserCode()).listCode(entity.getListCode()).grade(entity.getGrade()).build();
 		return dto;
 	}
-	long avgGrade(long userCode);
+	public void register(GradeDTO dto);
+	public double avgGrade(long userCode);
+//	long avgGrade(long userCode);
 	
 }

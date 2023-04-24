@@ -1,5 +1,8 @@
 package com.mvc.grade;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,15 +17,27 @@ public class GradeServiceImpl implements GradeService {
 	@Autowired
 	private final GradeRepository repo;
 	
+	public void read() {
+		
+	}
 	
 	public void register(GradeDTO dto) {
 		Grade g = dToEntity(dto);
 		repo.save(g);
 	}
 	
-	public long avgGrade(long userCode) {
-		return repo.avgGrade(userCode);
+	public double avgGrade(long userCode) {
+		double sum = 0.0;
+		List<Grade> result = repo.findByUserCode(userCode);
+		if(!result.isEmpty()) {
+			for (Grade grade : result) {
+				GradeDTO dto = eToDTO(grade);
+				sum = sum + grade.getGrade();
+			}
+		}
+		double avg = Math.round((sum/result.size())*100)/100.0;
+		return avg;
 	}
-	
+
 	
 }

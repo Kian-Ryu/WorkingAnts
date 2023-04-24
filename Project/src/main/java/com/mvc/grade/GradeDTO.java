@@ -16,5 +16,5 @@ public class GradeDTO {
 	
 	private Long listCode;
 	
-	private Long grade;
+	private Double grade;
 }
