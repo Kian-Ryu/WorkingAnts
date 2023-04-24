@@ -4,14 +4,18 @@ import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.ktj.service.EmailService;
 import com.mvc.grade.GradeService;
 
 import lombok.RequiredArgsConstructor;
@@ -19,23 +23,36 @@ import lombok.extern.log4j.Log4j2;
 
 @Controller
 @Log4j2
-@RequestMapping("/user")
+@RequestMapping("/")
 @RequiredArgsConstructor
 public class UserController {
 	private final UserService service;
 	private final GradeService gradeservice;
+	private final EmailService emailService;
 	
-	@GetMapping("/register")
-	public String register() {
-		log.info("resgister get...");
-		return "/register";
-	}
-	@PostMapping("/register")
-	public void registerPost(UserDTO dto, MultipartFile profile) {
+	@PostMapping("/createUser")
+	public String registerPost(UserDTO dto, MultipartFile profile) {
 		service.register(dto, profile);
-		log.info("처리 완료");
+		return"users/login";
 	}
-
+	
+	@DeleteMapping("/deleteUser") // 관리자 테이블 유저정보 삭제
+	public void deleteCustomer(long userCode) {
+		service.deleteByUserCode(userCode);
+	}
+	
+	@PutMapping("/updateUser") // 관리자 테이블 유저정보 수정
+	public String updateUser(@RequestBody Users user) {
+		service.updateUser(user);
+		return "users/admin";
+	}
+	@PostMapping(value ="/updateUserbyU", produces="application/json") // 유저 유저정보 수정
+	@ResponseBody
+	public void updateUserbyU(@RequestParam Users user) {
+		log.info(user);
+		service.updateUser(user);
+	}
+	
 	@GetMapping("/mypage/{userCode}")
 	public String mypage_dash(@PathVariable long userCode, Model m) {
 		UserDTO dto = service.read(userCode);
@@ -51,4 +68,18 @@ public class UserController {
 		log.info(param.get("Code"));
 		service.updateReg(Long.parseLong((String) param.get("Code")), (String)param.get("userRegion"));
 	}
+	@PostMapping("/find-password") // 패스워드정보확인용 확인용 문자 메일보내기 메서드
+	public String findPassword(@RequestParam String userEmail, Model model) {
+		Users user = service.findByUserEmail(userEmail);
+		if (user == null) {
+			model.addAttribute("error", "User not found");
+			return "find-password";
+		}
+		String password = user.getUserPw();
+		emailService.sendPassword(userEmail, password);
+		model.addAttribute("message", "Your password has been sent to your email");
+		return "users/login";
+	}
+	
 }
+

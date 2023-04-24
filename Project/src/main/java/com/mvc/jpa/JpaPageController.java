@@ -1,3 +1,6 @@
+package com.mvc.jpa;
+
+
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,47 +24,4 @@ public class JpaPageController {
 	public String tabletrying() {
 		return "/user/tabletrying";
 	}
-
-	@GetMapping("/login")
-	public String login() {
-		return "/user/login";
-	}
-
-	@GetMapping("/register")
-	public String register() {
-		return "/user/register";
-	}
-
-	@GetMapping("/password")
-	public String password() {
-		return "/user/password";
-	}
-
-	@GetMapping("/admin")
-	public String admin() {
-		return "/user/admin";
-<<<<<<< HEAD
-	}
 }
-=======
-	}
-//
-//<<<<<<< HEAD
-//	@GetMapping("/service")
-//	public String service() {
-//		return "/service";
-//	}
-//
-//	@GetMapping("/team")
-//	public String team() {
-//		return "/team";
-//	}
-//
-//	@GetMapping("/testimonial")
-//	public String testimonial() {
-//		return "/testimonial";
-//	}
-//	
-//
-//
->>>>>>> refs/remotes/origin/main

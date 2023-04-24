@@ -29,7 +29,7 @@ public class Users {
 	private String userName;
 	
 	@Column(length = 20, nullable = false)
-	private String userNickname;
+	private String userNickName;
 	
 	@Column(length = 25, nullable = false)
 	private String userId;

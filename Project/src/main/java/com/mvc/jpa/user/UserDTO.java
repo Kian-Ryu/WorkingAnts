@@ -17,7 +17,7 @@ public class UserDTO {
 	
 	private String userName;
 	
-	private String userNickname;
+	private String userNickName;
 	
 	private String userId;
 	
