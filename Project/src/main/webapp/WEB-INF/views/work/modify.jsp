@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>List Modify</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 <link rel="stylesheet" href="../css/work.css">
 </head>
@@ -45,11 +43,10 @@
 
 
 			<c:set var="arr" value="${fn:split(work.listCategory, '>')}" />
-			<div class="input-group mb-3">
+			<div class="input-group mb-3 group">
 				<input type="text" name="listCategory" value="${work.listCategory }"
 					style="display: none"> <select
-					class="custom-select listCategory" id="inputGroupSelect01"
-					name="listCategory">
+					class="custom-select listCategory" id="inputGroupSelect01">
 					<option value="">카테고리</option>
 					<option value="주거" <c:if test="${arr[0]=='주거'}">selected</c:if>>주거</option>
 					<option value="사무" <c:if test="${arr[0]=='사무'}">selected</c:if>>사무</option>
@@ -86,53 +83,55 @@
 	$('#listModifyBtn').on('click',function(){
 		var frm = $('.frm_summernote')[0];
 		frm.listCategory.value=$(".listCategory").val()+">"+$("#listCategory2").val();
+		console.log(frm.listCategory.value);
 	    var param = $(frm).serialize();
-	    $.post("/jsp/modify", param, function(data){
+	    $.post("/jsp/modifyList", param, function(data){
 	    	$('#content').html(data);				
 	    })
 	})  
-	$(document).ready(function() {
-		   var fonts = [ '맑은 고딕', '돋움', '궁서', '굴림', '굴림체', '궁서체', '나눔 고딕', '바탕',
-		         '바탕체', '새굴림', 'HY견고딕', 'HY견명조', 'HY궁서B', 'HY그래픽M', 'HY목각파임B',
-		         'HY신명조', 'HY얕은샘물M', 'HY엽서L', 'HY엽서M', 'HY중고딕', 'HY헤드라인M',
-		         '휴먼매직체', '휴먼모음T', '휴먼아미체', '휴먼둥근헤드라인', '휴먼편지체', '휴먼옛체' ];   //삽입할 글씨체
-		   fonts.sort();   //폰트 정렬(가나다순)
-		   
-		   $('#summernote').summernote({
-		      height : 600, // set editor height
-		      minHeight : null, // set minimum height of editor
-		      maxHeight : null, // set maximum height of editor
-		      focus : false, // set focus to editable area after initializing summernote
-		      lang: "ko-KR",
-		      fontNames : fonts,
-		      
-		      callbacks : {            
-		            onImageUpload : function(files, editor, welEditable) {      
-		               for (var i = files.length - 1; i >= 0; i--) {
-		                  sendFile(files[i], this);
-		               }
-		            }
-		         }            
-		   });
-		   
-		   function sendFile(file, el) {
-		      var form_data = new FormData();
-		      form_data.append('file', file);
-		      $.ajax({
-		         data : form_data,
-		         type : "POST",
-		         url : '/jsp/UploadFile',
-		         enctype : 'multipart/form-data',
-		         cache : false,
-		         contentType : false,
-		         processData : false,
-		         success : function(img_name) {         
-		            $('#summernote').summernote('editor.insertImage', img_name.url);
-		         }
-		      });
-		   }
-	});
-	
+		$(document).ready(function() {
+			   var fonts = [ '맑은 고딕', '돋움', '궁서', '굴림', '굴림체', '궁서체', '나눔 고딕', '바탕',
+			         '바탕체', '새굴림', 'HY견고딕', 'HY견명조', 'HY궁서B', 'HY그래픽M', 'HY목각파임B',
+			         'HY신명조', 'HY얕은샘물M', 'HY엽서L', 'HY엽서M', 'HY중고딕', 'HY헤드라인M',
+			         '휴먼매직체', '휴먼모음T', '휴먼아미체', '휴먼둥근헤드라인', '휴먼편지체', '휴먼옛체' ];   //삽입할 글씨체
+			   fonts.sort();   //폰트 정렬(가나다순)
+			   
+			   $('.summernote').summernote({
+			      height : 600, // set editor height
+			      minHeight : null, // set minimum height of editor
+			      maxHeight : null, // set maximum height of editor
+			      focus : false, // set focus to editable area after initializing summernote
+			      lang: "ko-KR",
+			      fontNames : fonts,
+			      
+			      callbacks : {           
+			            onImageUpload : function(files, editor, welEditable) {   
+			            	console.log('image upload:', files);   
+			               for (var i = files.length - 1; i >= 0; i--) {
+			                  sendFile(files[i], this);
+			               }
+			            }
+			         }            
+			   });
+			   
+			   function sendFile(file, el) {
+			      var form_data = new FormData();
+			      form_data.append('file', file);
+			      $.ajax({
+			         data : form_data,
+			         type : "POST",
+			         url : '/jsp/UploadFile',
+			         enctype : 'multipart/form-data',
+			         cache : false,
+			         contentType : false,
+			         processData : false,
+			         success : function(img_name) {         
+			            $('#summernote').summernote('editor.insertImage', img_name.url);
+			         }
+			      });
+			   }
+		});
+
 		function viewPageMove() {
 			$("#content").load("/jsp/view");
 		}

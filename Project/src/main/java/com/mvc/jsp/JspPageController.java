@@ -28,27 +28,29 @@ public class JspPageController {
 	WorkService service;
 
 	@RequestMapping("/index")
-    public ModelAndView mainPage(PageRequestDTO pageRequestDTO, Model model) {
-		List<Work> work=service.getList8(pageRequestDTO);
-		List<String> stringList = new ArrayList<String>();
-		for(Work w:work){
-			System.out.println(w);
+    public ModelAndView mainPage(PageRequestDTO pageRequestDTO, Long listCode, Model model) {
+		List<Work> workp=service.getList8(pageRequestDTO);
+		List<String> stringListp = new ArrayList<String>();
+		for(Work w:workp){
 			String[] imgsrc = w.getListContent().split("src=");
 			if(imgsrc.length>1) {
 				int firstQuoteIndex = imgsrc[1].indexOf("\"");
 				int secondQuoteIndex = imgsrc[1].indexOf("\"", firstQuoteIndex + 1);
 				String result = imgsrc[1].substring(firstQuoteIndex + 1, secondQuoteIndex);
-				stringList.add(result);
-				System.out.println("img"+result+" i"+w);
+				stringListp.add(result);
 			}
 			else {
-				stringList.add("../img/helpAnt.png");
+				stringListp.add("../img/helpAnt.png");
 			}
 		}
 		
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("imgsrc", stringList);
-		mv.addObject("work",work);
+		if(listCode==null) {
+			listCode=0L;
+		}
+		mv.addObject("listCode",listCode);
+		mv.addObject("imgsrc", stringListp);
+		mv.addObject("work",workp);
         mv.setViewName("main");
 		return mv;
     }

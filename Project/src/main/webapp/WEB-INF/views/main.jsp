@@ -23,6 +23,10 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
 	rel="stylesheet">
+	
+<!-- Latest compiled and minified CSS -->
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> -->
+	
 
 <!-- Libraries Stylesheet -->
 <link href="../lib/owlcarousel/assets/owl.carousel.min.css"
@@ -41,25 +45,34 @@
 <!-- BootStrap Script -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+	integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+	crossorigin="anonymous"></script>
 
 <!-- 서머노트를 위해 추가해야할 부분 -->
 <script src="../summernote/summernote-lite.js"></script>
 <script src="../summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="../summernote/summernote-lite.css">
 
+<!-- kakao공유하기 -->
+<script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"></script>
+<script>
+  Kakao.init('4156a6f854f602476df5f41fd0c7afd3'); // 사용하려는 앱의 JavaScript 키 입력
+</script>
 </head>
 <body>
-	<jsp:include page="layout/header_logout.jsp" />
+	<jsp:include page="layout/header_logout.jsp"/>
 	<jsp:include page="layout/nav.jsp" />
 	<div id="content">
 		<jsp:include page="./content.jsp" />
 	</div>
 	<jsp:include page="layout/footer.jsp" />
-
-	
+	<div style="position:fixed; bottom:5px;right:5px;">
+		<a href="#logoutHeaderWrapper"><img src="../img/top.png"></a>
+	</div>
 	<script>
+
 	$(function(){
 		$('#moveFAQ').on('click', function(){
 			$('#content').load('/jsp/faq');
@@ -71,8 +84,18 @@
 			$('#content').load('/jsp/inquiry');
 		})
 		$('#WorkPage').on('click', function(){
-			$('#content').load('/user/mypage/522');
+			var searchval = $("#searchInput").val();
+			$.post("/jsp/listsearch", {
+				searchInput : ""
+			}, function(data) {
+				$('#content').html(data);
+			})
 		})
+		if(${listCode}!=0) {
+ 		    $.post("/jsp/view", {listCode:${listCode}}, function(data){
+		    	$('#content').html(data);	 
+		    })
+	    } 
 
 	});
 	
