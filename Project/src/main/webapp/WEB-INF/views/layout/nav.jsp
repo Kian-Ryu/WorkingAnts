@@ -14,8 +14,8 @@
 			<div class="navWrapper">
 				<button class="dropbtn" id="WorkPage">심부름</button>
 				<div class="dropdown-content" id="WorkContent">
-					<a href="#">사무</a> <a href="#">주거</a><a href="#">반려동물</a> <a
-						href="#">대행</a><a href="#">기타</a>
+					<a href="#" onclick="CategoryCheck(this)">사무</a> <a href="#" onclick="CategoryCheck(this)">주거</a><a href="#" onclick="CategoryCheck(this)">반려동물</a> <a
+						href="#" onclick="CategoryCheck(this)">대행</a><a href="#" onclick="CategoryCheck(this)">기타</a>
 				</div>
 			</div>
 			<div class="navWrapper">
@@ -36,5 +36,15 @@
 			</div>
 		</div>
 	</nav>
+	<script>
+	function CategoryCheck(ths){
+		console.log($(ths).text());
+ 			$.post("/jsp/listCheck", {
+			Category : $(ths).text(),
+		}, function(data) {
+			$('#content').html(data);
+		})  
+	}
+	</script>
 </body>
 </html>

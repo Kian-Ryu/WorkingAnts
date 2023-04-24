@@ -14,8 +14,14 @@ public interface WorkService {
 	WorkDto read(Long listcode);
 	
 	List<Work> getList8(PageRequestDTO requestDTO);
-	
+
+	List<Work> getList(Integer amount,String category,String region);
+
 	void remove(Long gno);
+
+	List<Work> getCategoryList(String category);
+	
+	List<Work> getSearchList(String search);
 
 	default Work dtoToEntity(WorkDto dto) {
 
@@ -88,5 +94,6 @@ public interface WorkService {
 		return dto;
 
 	}
+
 
 }

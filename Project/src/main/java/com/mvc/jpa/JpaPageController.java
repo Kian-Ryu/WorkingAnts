@@ -1,3 +1,4 @@
+package com.mvc.jpa;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,6 +42,7 @@ public class JpaPageController {
 	public String admin() {
 		return "/user/admin";
 	}
+}
 //
 //<<<<<<< HEAD
 //	@GetMapping("/service")
