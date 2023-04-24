@@ -15,7 +15,7 @@ public interface WorkService {
 	
 	List<Work> getList8(PageRequestDTO requestDTO);
 
-	List<Work> getList(Integer amount,String category,String region);
+	List<Work> getList(String amount,String category,String region);
 
 	void remove(Long gno);
 

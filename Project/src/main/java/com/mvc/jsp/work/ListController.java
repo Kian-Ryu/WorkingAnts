@@ -1,6 +1,7 @@
 package com.mvc.jsp.work;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,8 +36,8 @@ public class ListController {
 		mv.setViewName("redirect:/jsp/view");
 		return mv;
 
-	}	
-	
+	}
+
 	@RequestMapping("/modifyList")
 	public ModelAndView workModify(WorkDto dto, RedirectAttributes redirectAttributes) {
 
@@ -161,25 +163,35 @@ public class ListController {
 		mv.setViewName("/user/list2");
 		return mv;
 	}
-	/*
-	 * @RequestMapping("/categoryCheck") public ModelAndView checkCategory(Integer
-	 * amount, String category, String region, PageRequestDTO pageRequestDTO, Model
-	 * model) { System.out.println(amount + " " + category + " " + region);
-	 * 
-	 * ModelAndView mv = new ModelAndView();
-	 * 
-	 * // 요즘뜨는거 List<Work> workp = service.getList(amount,category,region);
-	 * List<String> stringListp = new ArrayList<String>(); for (Work w : workp) {
-	 * String[] imgsrc = w.getListContent().split("src="); if (imgsrc.length > 1) {
-	 * int firstQuoteIndex = imgsrc[1].indexOf("\""); int secondQuoteIndex =
-	 * imgsrc[1].indexOf("\"", firstQuoteIndex + 1); String result =
-	 * imgsrc[1].substring(firstQuoteIndex + 1, secondQuoteIndex);
-	 * stringListp.add(result); } else { stringListp.add("../img/helpAnt.png"); } }
-	 * 
-	 * mv.addObject("imgsrcp", stringListp); mv.addObject("workp", workp);
-	 * mv.setViewName("/user/list2");
-	 * 
-	 * return mv; }
-	 */
+
+	@RequestMapping("/categoryCheck")
+	public ModelAndView checkCategory(String amount, String category, String region,
+			PageRequestDTO pageRequestDTO, Model model) {
+		System.out.println("categoryCheck" + amount + " " + category + " " + region);
+		
+		  ModelAndView mv = new ModelAndView();
+		 
+		// 요즘뜨는거
+		List<Work> workp = service.getList(amount, category, region);
+		List<String> stringListp = new ArrayList<String>();
+		for (Work w : workp) {
+			String[] imgsrc = w.getListContent().split("src=");
+			if (imgsrc.length > 1) {
+				int firstQuoteIndex = imgsrc[1].indexOf("\"");
+				int secondQuoteIndex = imgsrc[1].indexOf("\"", firstQuoteIndex + 1);
+				String result = imgsrc[1].substring(firstQuoteIndex + 1, secondQuoteIndex);
+				stringListp.add(result);
+			} else {
+				stringListp.add("../img/helpAnt.png");
+			}
+		}
+
+		mv.addObject("imgsrc", stringListp);
+		mv.addObject("work", workp);
+		mv.setViewName("/user/list2 :: #ListContent");
+
+
+		return mv;
+	}
 
 }

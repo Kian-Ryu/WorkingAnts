@@ -86,7 +86,7 @@
 				<option value="">금액별</option>
 				<option value="10000">10,000원 이하</option>
 				<option value="50000">50,000원 이하</option>
-				<option value="50000">50,000원 이상</option>
+				<option value="50001">50,000원 이상</option>
 			</select>
 
 
@@ -97,7 +97,7 @@
 		<section class="py-5">
 			<div class="container px-4 px-lg-5 mt-5">
 				<div
-					class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+					id="ListContent" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 					<div class="col mb-5" th:each="article,i: ${work}">
 						<div class="card h-100"
 							th:onclick="cardView([[${article.listCode}]])">
@@ -145,20 +145,17 @@
 		}
 
 		function onChangeSelect() {
-
-			console.log($("#amount").val() + " " + $("#category").val() + " "
-					+ $("#region").val());
-			/* $.ajax({
+			 $.ajax({
 				url : "/jsp/categoryCheck",
 				type : "post",
-				data : "amount=" + $("#amount").val()+"category=" + $("#category").val()+"region=" + $("#region").val(),
+				data : "amount=" + $("#amount").val()+"&category=" + $("#category").val()+"&region=" + $("#region").val(),
 				success : function(data) {
-					alert(data);
+	                $("#ListContent").replaceWith(data);
 				},
 				error : function() {
 					alert("error");
 				}
-			}) */
+			}) 
 		}
 	</script>
 </body>
