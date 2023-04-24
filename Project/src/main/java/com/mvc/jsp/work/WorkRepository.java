@@ -20,6 +20,9 @@ public interface WorkRepository extends JpaRepository<Work, Long>, QuerydslPredi
 	@Query("SELECT w FROM Work w WHERE w.listAmount <= :amount and w.listRegion like :region and w.listState like :listState and w.listCategory like :categoryLike order by w.listDate Desc")
 	List<Work> findByListAmountAndListCategoryAndListRegionAndListState(@Param("amount") Integer amount,@Param("categoryLike") String categoryLike,@Param("region") String regionLike,@Param("listState") String listState);
 
+	@Query("SELECT w FROM Work w WHERE w.listAmount >= :amount and w.listRegion like :region and w.listState like :listState and w.listCategory like :categoryLike order by w.listDate Desc")
+	List<Work> findByListAmount2AndListCategoryAndListRegionAndListState(@Param("amount") Integer amount,@Param("categoryLike") String categoryLike,@Param("region") String regionLike,@Param("listState") String listState);
+
 	@Query("SELECT w FROM Work w WHERE w.listRegion like :region and w.listState like :listState and w.listCategory like :categoryLike order by w.listDate Desc")
 	List<Work> findByListCategoryAndListRegionAndListState(@Param("categoryLike") String categoryLike,@Param("region") String regionLike,@Param("listState") String listState);
 

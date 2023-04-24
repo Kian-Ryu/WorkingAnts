@@ -94,9 +94,7 @@ public class WorkServiceImpl implements WorkService {
 	
 	// main list 조회순으로 출력
 	@Override
-	public List<Work> getList(Integer amount,String category,String region) {
-
-		System.out.println("service"+amount+category+region);
+	public List<Work> getList(String amount,String category,String region) {
 		String listState = "모집중";
 		if(category==null) {
 			category="";
@@ -108,12 +106,14 @@ public class WorkServiceImpl implements WorkService {
 		List<Work> workList;
 		
 		
-		System.out.println("service"+amount+categoryLike+regionLike);
-		if(amount ==null) {
+		if(amount ==null||amount=="") {
 			workList=repository.findByListCategoryAndListRegionAndListState(categoryLike,regionLike,listState);
 		}
+		else if(amount == "50001") {
+			workList=repository.findByListAmount2AndListCategoryAndListRegionAndListState(Integer.parseInt(amount),categoryLike,regionLike,listState);
+		}
 		else {
-			workList = repository.findByListAmountAndListCategoryAndListRegionAndListState(amount,categoryLike,regionLike,listState);
+			workList = repository.findByListAmountAndListCategoryAndListRegionAndListState(Integer.parseInt(amount),categoryLike,regionLike,listState);
 		}
 		return workList;
 
@@ -123,7 +123,6 @@ public class WorkServiceImpl implements WorkService {
 	@Override
 	public List<Work> getSearchList(String search) {
 		String listState = "모집중";
-		System.out.println("service+"+search);
 		String searchLike = "%" + search + "%";
 		List<Work> workList = repository.findByListCategoryOrListTitleOrListRegion(searchLike, listState);
 		
