@@ -7,7 +7,7 @@ var ctx = document.getElementById("myBarChart");
 var myLineChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["4월 1주차", "4월 2주차", "4월 3주차", "4월 4주차", "5월 1주차", "5월 2주차"],
     datasets: [{
       label: "Revenue",
       backgroundColor: "rgba(2,117,216,1)",

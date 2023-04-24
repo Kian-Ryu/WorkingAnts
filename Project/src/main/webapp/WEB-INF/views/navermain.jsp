@@ -72,14 +72,37 @@
 			/* alert(naver_id_login.getProfileData('email'));
 			alert(naver_id_login.getProfileData('nickname'));
 			alert(naver_id_login.getProfileData('age')); */
-
-			var email = naver_id_login.getProfileData('email');
-			var nickname = naver_id_login.getProfileData('nickname');
+		
 			var age = naver_id_login.getProfileData('age');
+			var birthday = naver_id_login.getProfileData('birthday');
+			var email = naver_id_login.getProfileData('email');
+			var enc_id = naver_id_login.getProfileData('enc_id');
+			var gender = naver_id_login.getProfileData('gender');
+			var id = naver_id_login.getProfileData('id');
+			var nickname = naver_id_login.getProfileData('nickname');
+			var profile_image = naver_id_login.getProfileData('profile_image');
 
-			document.getElementById('naver-email').textContent = email;
+			//document.getElementById('naver-email').textContent = email;
 			document.getElementById('naver-nickname').textContent = nickname;
-			document.getElementById('naver-age').textContent = age;
+			//document.getElementById('naver-age').textContent = age;
+
+			console.log("나이 :" + age);
+			console.log("생일 :" + birthday);
+			console.log("이메일 :" + email);
+			console.log("enc_id :" + enc_id);
+			console.log("성별 :" + gender);
+			console.log("아이디 :" + id);
+			console.log("닉네임 :" + nickname);
+			console.log("프로필 이미지 :" + profile_image);
+
+			$.ajax({
+				url : '/saveNaverUserInfo',
+				type : 'POST',
+				data : {
+					email : email,
+					nickname : nickname,
+				}
+			});
 		}
 	</script>
 	<!--// 네이버 api 스크립트  body-->
@@ -110,7 +133,7 @@
 			})
 		});
 	</script>
-	<div id="naver-profile">
+	<!-- <div id="naver-profile">
 		<p>
 			Email: <span id="naver-email"></span>
 		</p>
@@ -120,6 +143,14 @@
 		<p>
 			Age: <span id="naver-age"></span>
 		</p>
-	</div>
+	</div>  -->
+
+	<script>
+		$(document).ready(function() {
+			$("#goChat").click(function() {
+				window.location.href = "/users/naverchat";
+			});
+		});
+	</script>
 </body>
 </html>
