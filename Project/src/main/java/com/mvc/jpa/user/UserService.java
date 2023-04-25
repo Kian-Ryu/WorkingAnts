@@ -1,11 +1,11 @@
 package com.mvc.jpa.user;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
 public interface UserService {
-	void register(UserDTO dto, MultipartFile file);
 	
 	default Users dToEntity(UserDTO dto) {
 		Users entity = Users.builder()
@@ -38,10 +38,13 @@ public interface UserService {
 				.build();
 		return dto;
 	}
+	void createUser(Users user);
 	void deleteByUserCode(long userCode);
 	UserDTO read(long userCode);
 	void updateUser(Users user);
 	void updateReg(long userCode, String userRegion);
 	Users findByUserEmail(String userEmail);
 	List<Users> UserAll();
+	void addImg(long userCode, MultipartFile file) throws IllegalStateException, IOException;
+	void updateAnother(long userCode, String usernickName, String userPw, String userEmail, String userPhone);
 }

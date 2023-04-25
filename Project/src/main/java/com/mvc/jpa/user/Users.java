@@ -52,5 +52,16 @@ public class Users {
 	public void changeUserRegion(String userRegion) {
 		this.userRegion = userRegion;
 	}
+	public void changeUserAnother(String userNickName, String userPw, String userEmail, String userPhone) {
+		this.userNickName = userNickName;
+		this.userPw = userPw;
+		this.userEmail = userEmail;
+		this.userPhone = userPhone;
+	}
+	public void addImg(String proName, String proPath) {
+		this.proName = proName;
+		this.proPath = proPath;
+	}
+	
 	
 }

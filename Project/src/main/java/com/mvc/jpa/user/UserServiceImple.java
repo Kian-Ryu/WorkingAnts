@@ -24,31 +24,11 @@ public class UserServiceImple implements UserService {
 	@Autowired
 	private final UserRepository repo;
 	
-	@Value("${users.profile}")
-	String fdir;
-	
-	@Override
-	public void register(UserDTO dto, MultipartFile file) {
-		String projectPath = System.getProperty("user.dir") + fdir;
-		UUID uuid = UUID.randomUUID();
-		String fileName = uuid + "_" + file.getOriginalFilename();
-		File f = new File(projectPath, fileName);
-		log.info("서비스 연결 완료");
-		try {
-			file.transferTo(f);
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		dto.setProName(fileName);
-		dto.setProPath(projectPath);
-		Users u = dToEntity(dto);
-		repo.save(u);
-		
+	public void createUser(Users user) {
+		user.addImg("기본이미지.jpg", System.getProperty("user.dir") + "/src/main/resources/static/img/profile");
+		repo.save(user);
 	}
+
 	@Override
 	public UserDTO read(long userCode) {
 		log.info(userCode+"서비스연결 완");
@@ -70,10 +50,34 @@ public class UserServiceImple implements UserService {
 			repo.save(entity);
 		}
 	}
+	@Override
+	public void updateAnother(long userCode, String usernickName, String userPw, String userEmail, String userPhone) {
+		log.info(userCode+"서비스연결 완");
+		Optional<Users> result = repo.findByUserCode(userCode);
+		if(result.isPresent()) {
+			Users entity = result.get();
+			entity.changeUserAnother(usernickName, userPw, userEmail, userPhone);
+			repo.save(entity);
+		}
+	}
 	
 	public void findByUserIdAndUserPw(String userId, String userPw) {
 		repo.findByUserIdAndUserPw(userId, userPw);
 	} // 로그인시 회원등록여부 파악
+	
+	public void addImg(long userCode, MultipartFile file) throws IllegalStateException, IOException {
+		String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/img/profile";
+		UUID uuid = UUID.randomUUID();
+		String fileName = uuid + "_" + file.getOriginalFilename();
+		File f = new File(projectPath, fileName);
+		file.transferTo(f);
+		Optional<Users> result = repo.findById(userCode);
+		if(result.isPresent()) {
+			Users entity = result.get();
+			entity.addImg(fileName,projectPath);
+			repo.save(entity);
+		}
+	}
 	
 	public List<Users> UserAll() {
 		return (List<Users>) repo.findAll(); // admin 관리자 페이지에서 회원정보 전체조회

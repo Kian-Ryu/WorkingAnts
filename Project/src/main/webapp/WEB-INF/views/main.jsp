@@ -83,6 +83,15 @@
 		$('#moveInquiry').on('click', function(){
 			$('#content').load('/jsp/inquiry');
 		})
+		$('#myPagedash').on('click', function(){
+			var userCode = 0;
+			/* 세션에서 불러온 값 */
+			$.get("/mypage/1", {
+			}, function(data) {
+				$('#content').html(data);
+			})
+			/* $('#content').load('/mypage/1'); */
+		})
 		$('#WorkPage').on('click', function(){
 			var searchval = $("#searchInput").val();
 			$.post("/jsp/listsearch", {

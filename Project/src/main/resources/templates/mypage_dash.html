@@ -53,7 +53,7 @@
 		    width: 0;
 		    position: absolute; 
 		    left: 0;
-		    color: red;
+		    color: yellow;
 		    overflow: hidden;
 		    pointer-events: none;
 		  }
@@ -67,7 +67,7 @@
 <body>
    
     <!--Body Start-->
-    <div class="container py-5 pb-lg-0">
+    <div class="container py-5 pb-lg-0" id="fortile">
         <div class="mx-auto text-center mb-3 pb-2" style="max-width: 500px;">
             <h1 class="display-5 ">MyPage</h1>
         </div>
@@ -171,15 +171,16 @@
             </div>
             <div class="modal-body">
                 <form class="row g-3" id="updateuser" action="">
-                	<input type="hidden" name="userCode" th:value="${dto.userCode}">
+                	<input type="hidden" name="userCode" th:value="${dto.userCode}" id="realCode">
+                	<input type="hidden" name="realPw" th:value="${dto.userPw}" id="realPw">
                 	<input type="hidden" name="userRegion" th:value="${dto.userRegion}">
                 	<input type="hidden" name="userName" th:value="${dto.userName}">
                 	<input type="hidden" name="userId" th:value="${dto.userId}">
                 	<input type="hidden" name="proName" th:value="${dto.proName}">
                 	<input type="hidden" name="proPath" th:value="${dto.proPath}">
                     <div class="col-md-8">
-                      <label for="NickName" class="form-label">NickName</label>
-                      <input type="text" class="form-control is-valid" id="NickName" name="userNickName" th:value="${dto.userNickName}" required>
+                      <label for="NickName" class="form-label">NickName</button></label>
+                      <input type="text" class="form-control is-valid" id="userNickName" name="userNickName" th:value="${dto.userNickName}" required>
 <!--                       <div id="validationServerUsernameFeedback" class="invalid-feedback">
                         닉네임을 입력해 주세요
                       </div> -->
@@ -193,7 +194,7 @@
                     </div>
                     <div class="col-md-12">
                       <label for="aftPassword" class="form-label">aft Password</label>
-                        <input type="password" class="form-control is-invalid" id="aftPassword" name="userPw" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+                        <input type="password" class="form-control is-invalid" id="userPw" name="userPw" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
 <!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                           
                         </div> -->
@@ -207,22 +208,25 @@
                     </div>
                     <div class="col-md-12">
                       <label for="email" class="form-label">email</label>
-                      <input type="text" class="form-control is-invalid" id="email" name="userEmail" th:value="${dto.userEmail}" aria-describedby="validationServer03Feedback" required>
+                      <input type="text" class="form-control is-invalid" id="userEmail" name="userEmail" th:value="${dto.userEmail}" aria-describedby="validationServer03Feedback" required>
         <!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                           
                         </div> -->
                     </div>
                     <div class="col-md-12">
                       <label for="phone" class="form-label">Phone</label>
-                      <input type="text" class="form-control is-invalid" id="phone" name="userPhone" th:value="${dto.userPhone}" aria-describedby="validationServer03Feedback" required>
+                      <input type="text" class="form-control is-invalid" id="userPhone" name="userPhone" th:value="${dto.userPhone}" aria-describedby="validationServer03Feedback" required>
         <!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                           
                         </div> -->
                     </div>
+                    <div class="col-md-12">
+                    	<button class="btn btn-danger" data-bs-dismiss="modal" onclick="deleteuser()">탈퇴하기</button>
+                    </div>
                   </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="updateUserbtn" data-bs-dismiss="modal" onclick="updateuser()">Save changes</button>
+                <button type="button" class="btn btn-primary" id="updateUserbtn" data-bs-dismiss="modal" onclick="updateuser()">수정</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
@@ -270,7 +274,7 @@
 		        <img id="preview" />
 		      </div>
 		      <div class="modal-footer">
-		        <button type="submit" class="btn btn-primary" form="changepro">Save changes</button>
+		        <button type="button" class="btn btn-primary" onclick="addImg()">Save changes</button>
 		        <button type="button" class="btn btn-secondary modalclose" data-bs-dismiss="modal">Close</button>
 		      </div>
 		    </div>
@@ -303,115 +307,249 @@
     <script th:src='@{/fullcalendar/packages/core/main.js}'></script>
     <script th:src='@{/fullcalendar/packages/interaction/main.js}'></script>
     <script th:src='@{/fullcalendar/packages/daygrid/main.js}'></script>
-    <script type="text/javascript">    
-		function userreload(){
-			$("#users").load(location.href+' #users')
-		}
-		function changeReg() {
-		    var userRegion = $("#userRegion").val();
-		    console.log(userRegion);
+    <script type="text/javascript">
+   		function changeReg() {
+    		    var userRegion = $("#userRegion").val();
+    		    console.log(userRegion);
+    		    var Code = $("#userCode").val();
+    		    var json = {"userRegion":userRegion, "Code":Code};
+    		    $.ajax({
+    		        url: "/updateReg",
+    		        data: "userCode=" + Code + "&userRegion=" + userRegion,
+    		        type:"POST",
+    		        success: function(data){
+    		        	$("#users").replaceWith(data);
+    		        }
+    		    })
+    		}
+   		function addImg() {
+		    var changepro = $("#changepro").val();
 		    var Code = $("#userCode").val();
-		    var json = {"userRegion":userRegion, "Code":Code};
 		    $.ajax({
-		        url: "/updateReg",
-		        data: json,
+		        url: "/addImg",
+		        data: "userCode=" + Code + "&file=" + changepro,
 		        type:"POST",
-		        async : false,
-		        dataType:"json",
-		        complete: function(){
-		        	userreload();
+		        success: function(data){
+		        	$("#users").replaceWith(data);
 		        }
 		    })
 		}
-		
-		function changepro(){
-			$('#changepro').ajaxSubmit({
-				type: "POST",
-				enctype: 'multipart/form-data',
-				url: '/updateProfile',
-				data: $("#changepro").serialize(),
-				processData: false,
-				contentType: false,
-				success: function (result) {
-				},
-				error: function (e) {
-				}
-			})
-		}
- 		$("#updateprofile").click(function(){
-		    $("#changeprofile").fadeIn();
-		  });
- 		$(".modalclose").click(function(){
-		    $("#changeprofile").fadeOut();
-		  });
- 		function updateuser(){
-	    	Swal.fire({
-                title: '확인해주세요!',
-                html: '닉네임 : ' + $("#NickName").val()+'<hr> 이메일 : ' + $("#email").val()+'<hr> 전화번호 : ' + $("#phone").val(),
-                icon: 'info',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: '예',
-                cancelButtonText: '아니오'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                	$("#nowPassword").attr("disabled");
-                    $("#chkPassword").attr("disabled");
-                	$('#updateuser').submit(function(){
-            			$('#updateuser').ajaxSubmit(optionR);
-            			return false;
-                	})
-                    Swal.fire(
-                  		'회원정보를 수정했습니다.',
-                        '',
-                        'success'
-                    )
-                }
-            })
- 		};
-	    var optionR = {
-		    	type: "POST",
-		    	enctype: 'multipart/form-data',
-				url: '/updateUserbyU',
-				data: $("#updateuser").serialize,
-	            processData: false,
-	            contentType: false,
-				success: function (result) {
-				},
-				error: function (e) {
-				}
-		    }
- 		function readURL(input) {
- 			  if (input.files && input.files[0]) {
- 			    var reader = new FileReader();
- 			    reader.onload = function(e) {
- 			      document.getElementById('preview').src = e.target.result;
- 			    };
- 			    reader.readAsDataURL(input.files[0]);
- 			  } else {
- 			    document.getElementById('preview').src = "";
- 			  }
- 			}
-	    function getTodaytype(){
-	    	var date = new Date();
-	    	return date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +("0" + date.getDate()).slice(-2);
-	    }
-	    document.addEventListener('DOMContentLoaded', function() {
-	    	var nowday = getTodaytype();
-	        var calendarEl = document.getElementById('calendar');
+    		function changeAnother() {
+    		    var userNickName = $("#userNickName").val();
+    		    var userPw = $("#userPw").val();
+    		    var userEmail = $("#userEmail").val();
+    		    var userPhone = $("#userPhone").val();
+    		    var Code = $("#userCode").val();
+    		    $.ajax({
+    		        url: "/updateAnother",
+    		        data: "userCode=" + Code + "&userNickName=" + userNickName+ "&userPw=" + userPw + "&userEmail=" + userEmail + "&userPhone=" + userPhone,
+    		        type:"POST",
+    		        success: function(data){
+    		        	$("#users").replaceWith(data);
+    		        }
+    		    })
+    		}
+    		
+    		function changepro(){
+    			$('#changepro').ajaxSubmit({
+    				type: "POST",
+    				enctype: 'multipart/form-data',
+    				url: '/updateProfile',
+    				data: $("#changepro").serialize(),
+    				processData: false,
+    				contentType: false,
+    				success: function (result) {
+    				},
+    				error: function (e) {
+    				}
+    			})
+    		}
+     		$("#updateprofile").click(function(){
+    		    $("#changeprofile").fadeIn();
+    		  });
+     		$(".modalclose").click(function(){
+    		    $("#changeprofile").fadeOut();
+    		  });
+     		function deleteuser(){
+     			Swal.fire({
+                    title: '확인해주세요!',
+                    html: '여태까지의 모든 기록과 명성 비슷한게 사라집니다.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '예',
+                    cancelButtonText: '아니오'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+             			Swal.fire({
+                            title: '비밀번호를 다시 입력해주세요.',
+                            html: '<input type="password" id="pwfordel">',
+                            icon: 'question',
+                            confirmButtonColor: '#3085d6',
+                            confirmButtonText: '확인',
+                        }).then((result) => {
+                        	if (result.isConfirmed){
+	                        	if(result.isConfirmed){
+	                        		if($("#pwfordel").val()==$("#realPw").val()){
+	                        			Swal.fire({
+	                                        title: '비밀번호가 틀렸습니다?',
+	                                        icon: 'success',
+	                                        confirmButtonColor: '#3085d6',
+	                                        confirmButtonText: '다시 확인'
+	                                    }).then((result) =>{
+	                                    	if (result.isConfirmed){
+	                                    		Swal.fire({
+	    	                                        title: '사실 안틀렸습니다.',
+	    	                                        text: '이용해주셔서 감사했습니다. 확인버튼을 누르면 탈퇴가 완료됩니다.',
+	    	                                        imageUrl: '../img/회원탈퇴.gif',
+	    	                                        imageWidth: 400,
+	    	                                        imageHeight: 200,
+	    	                                        confirmButtonColor: '#d33',
+	    	                                        cancelButtonColor: '#3085d6',
+	    	                                        confirmButtonText: '예',
+	    	                                        cancelButtonText: '마지막으로 생각하기'
+	    	                                    }).then((result) =>{
+	    	                                    	if (result.isConfirmed){
+	    	                                    		realdelete();	
+	    	                                    	}
+	    	                                    })
+	                                    	}
+	                                    })
+	                        		}else{
+	                        			Swal.fire(
+	                        				  '아쉽게도 비밀번호가 틀렸군요',         
+	                        				  '하핫 다시시도해 주세요',  
+	                        				  'success',                         
+	                        				);
+	                        		}
+	                        		
+	                        	}
+                        		
+                        	}
+                        })
+                        
+                    }
+                })
+     		}
+     		function updateuser(){
+    	    	Swal.fire({
+                    title: '확인해주세요!',
+                    html: '닉네임 : ' + $("#userNickName").val()+'<hr> 이메일 : ' + $("#userEmail").val()+'<hr> 전화번호 : ' + $("#userPhone").val(),
+                    icon: 'info',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '예',
+                    cancelButtonText: '아니오'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                    	$("#nowPassword").attr("disabled");
+                        $("#chkPassword").attr("disabled");
+    					changeAnother();
+                        Swal.fire(
+                      		'회원정보를 수정했습니다.',
+                            '',
+                            'success'
+                        )
+                        
+                    }
+                })
+     		};
+     		function realdelete(){
+     			location.href = '/deleteuserbyself?userCode='+ $("#realCode").val();
+     		}
+     		function readURL(input) {
+     			  if (input.files && input.files[0]) {
+     			    var reader = new FileReader();
+     			    reader.onload = function(e) {
+     			      document.getElementById('preview').src = e.target.result;
+     			    };
+     			    reader.readAsDataURL(input.files[0]);
+     			  } else {
+     			    document.getElementById('preview').src = "";
+     			  }
+     			}
+    	    function getTodaytype(){
+    	    	var date = new Date();
+    	    	return date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +("0" + date.getDate()).slice(-2);
+    	    }
+    	    document.addEventListener('DOMContentLoaded', function() {
+    	    	var nowday = getTodaytype();
+    	        var calendarEl = document.getElementById('calendar');
 
-	        var calendar = new FullCalendar.Calendar(calendarEl, {
-	          plugins: [ 'interaction', 'dayGrid' ],
-	          defaultDate: nowday,
-	          editable: true,
-	          eventLimit: true, // allow "more" link when too many events
-	          events: [
-	          ]
-	        });
+    	        var calendar = new FullCalendar.Calendar(calendarEl, {
+    	          plugins: [ 'interaction', 'dayGrid' ],
+    	          defaultDate: nowday,
+    	          editable: false,
+    	          eventLimit: true, // allow "more" link when too many events
+    	          locale:'ko',
+    	          events: [
+            	  	{
+                      title: '강아지 산책하기',
+                      url:'',
+                      start: '2023-04-25'
+                    },
+                    {
+                      title: '쓰레기 대신버려주기',
+                      url:'',
+                      start: '2023-04-15'
+                    },
+            	  	{
+                      title: '편의점 알바 대타',
+                      url:'',
+                      start: '2023-04-17'
+                    },
+                    {
+                      title: '맛집 줄 서기',
+                      url:'',
+                      start: '2023-04-28'
+                   	},
+            	  	{
+                      title: '강아지 목욕도우미',
+                      url:'',
+                      start: '2023-04-01'
+                    },
+                    {
+                      title: '강아지 산책하기',
+                      url:'',
+                      start: '2023-03-07'
+                   	},
+            	  	{
+                      title: '택배 대신받기',
+                      url:'',
+                      start: '2023-03-28'
+                    },
+                    {
+                      title: '문서 타이핑',
+                      url:'',
+                      start: '2023-03-11'
+                   	},
+            	  	{
+                      title: '물고기 밥주기',
+                      url:'',
+                      start: '2023-05-01'
+                    },
+                    {
+                      title: '강아지 산책하기',
+                      url:'',
+                      start: '2023-05-07'
+                   	},
+            	  	{
+                      title: '편의점 알바 대타',
+                      url:'',
+                      start: '2023-04-18'
+                    },
+                    {
+                      title: '물건 대리 수령',
+                      url:'',
+                      start: '2023-05-02'
+                   	},
+    	          ]
+    	        });
 
-	        calendar.render();
-	      });
+    	        calendar.render();
+    	      });
 	</script>
 </body>
 

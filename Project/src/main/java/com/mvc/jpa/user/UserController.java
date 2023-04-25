@@ -1,6 +1,8 @@
 package com.mvc.jpa.user;
 
-import java.util.Map;
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ktj.service.EmailService;
 import com.mvc.grade.GradeService;
@@ -30,15 +33,20 @@ public class UserController {
 	private final GradeService gradeservice;
 	private final EmailService emailService;
 	
-	@PostMapping("/createUser")
-	public String registerPost(UserDTO dto, MultipartFile profile) {
-		service.register(dto, profile);
-		return"users/login";
+	@PostMapping("/createUser") // 계정생성
+	public String createUser(Users user) {
+		service.createUser(user);
+		return "users/login";
 	}
 	
 	@DeleteMapping("/deleteUser") // 관리자 테이블 유저정보 삭제
 	public void deleteCustomer(long userCode) {
 		service.deleteByUserCode(userCode);
+	}
+	@GetMapping("/deleteuserbyself")
+	public String deleteUserBySelf(long userCode) {
+		service.deleteByUserCode(userCode);
+		 return "redirect:/jsp/index";
 	}
 	
 	@PutMapping("/updateUser") // 관리자 테이블 유저정보 수정
@@ -53,20 +61,62 @@ public class UserController {
 		service.updateUser(user);
 	}
 	
+	@RequestMapping("/addImg")
+	public ModelAndView addImg(long userCode, MultipartFile file, Model m) throws IllegalStateException, IOException {
+		ModelAndView mv = new ModelAndView();
+		service.addImg(userCode, file);
+		UserDTO dto = service.read(userCode);
+		mv.addObject("dto",dto);
+		mv.addObject("avgGrade", gradeservice.avgGrade(userCode));
+		mv.setViewName("/user/mypage_dash :: #users");
+		return mv;
+		
+	}
+	
 	@GetMapping("/mypage/{userCode}")
 	public String mypage_dash(@PathVariable long userCode, Model m) {
+		log.info(System.getProperty("user.dir") + "/src/main/resources/static/img/profile");
 		UserDTO dto = service.read(userCode);
 		m.addAttribute("dto", dto);
 		m.addAttribute("avgGrade", gradeservice.avgGrade(userCode));
 //		log.info();
 		return "/mypage_dash";
 	}
-	@PostMapping(value = "/updateReg", produces = "application/json")
-	@ResponseBody
-	public void updateReg(@RequestParam Map<String, Object> param) {
-		log.info("updatereg 실행");
-		log.info(param.get("Code"));
-		service.updateReg(Long.parseLong((String) param.get("Code")), (String)param.get("userRegion"));
+//	@PostMapping(value = "/updateReg", produces = "application/json")
+//	@ResponseBody
+//	public void updateReg(@RequestParam Map<String, Object> param) {
+//		log.info("updatereg 실행");
+//		log.info(param.get("Code"));
+//		service.updateReg(Long.parseLong((String) param.get("Code")), (String)param.get("userRegion"));
+//	}
+	@RequestMapping("/updateReg")
+	public ModelAndView updateReg1(long userCode, String userRegion, Model m) {
+		ModelAndView mv = new ModelAndView();
+		service.updateReg(userCode, userRegion);
+		UserDTO dto = service.read(userCode);
+		log.info(dto);
+		mv.addObject("dto",dto);
+		mv.addObject("avgGrade", gradeservice.avgGrade(userCode));
+		mv.setViewName("/user/mypage_dash :: #users");
+		return mv;
+	}
+//	@PostMapping(value = "/updateAnother", produces = "application/json")
+//	@ResponseBody
+//	public void updateAnother(@RequestParam Map<String, Object> param) {
+//		log.info("updateAnother 실행");
+//		log.info(param.get("Code"));
+//		service.updateAnother(Long.parseLong((String) param.get("Code")), (String)param.get("userNickName"),  (String)param.get("userPw"),  (String)param.get("userEmail"),  (String)param.get("userPhone"));
+//	}
+	@RequestMapping("/updateAnother")
+	public ModelAndView updateAnother1(long userCode, String userNickName, String userEmail, String userPw, String userPhone, Model m) {
+		ModelAndView mv = new ModelAndView();
+		service.updateAnother(userCode, userNickName, userPw, userEmail, userPhone);
+		UserDTO dto = service.read(userCode);
+		log.info(dto);
+		mv.addObject("dto",dto);
+		mv.addObject("avgGrade", gradeservice.avgGrade(userCode));
+		mv.setViewName("/user/mypage_dash :: #users");
+		return mv;
 	}
 	@PostMapping("/find-password") // 패스워드정보확인용 확인용 문자 메일보내기 메서드
 	public String findPassword(@RequestParam String userEmail, Model model) {
@@ -80,5 +130,9 @@ public class UserController {
 		model.addAttribute("message", "Your password has been sent to your email");
 		return "users/login";
 	}
-	
+	@GetMapping("/test")
+	public String test(long userCode, MultipartFile file) throws IllegalStateException, IOException {
+		service.addImg(userCode, file);
+		return "/user/tablerequest";
+	}
 }
