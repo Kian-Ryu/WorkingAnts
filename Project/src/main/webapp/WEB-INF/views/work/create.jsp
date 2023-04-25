@@ -52,11 +52,9 @@
 				<datalist id="listRegionList">
 					<option value="지역무관"></option>
 					<option value="관악구"></option>
-					<option value="강남구"></option>
-					<option value="강서구"></option>
+					<option value="양천구"></option>
+					<option value="영등포"></option>
 					<option value="구로구"></option>
-					<option value="용산구"></option>
-					<option value="종로구"></option>
 				</datalist>
 				<span class="highlight"></span> <span class="bar"></span> <label>지역*</label>
 			</div>

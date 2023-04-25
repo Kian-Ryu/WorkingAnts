@@ -185,6 +185,7 @@ border: 1px solid gray;
 	background-size: contain;
 	height: 15vh;
 }
+/* create */
 .ModifyWrapper {
 	width: 80%;
 	margin: 10vh auto;
@@ -196,7 +197,7 @@ border: 1px solid gray;
 .ModifyWrapper #listCreateTime input{
 	display:inline-block;
 }
-.ModifyWrapper input, .ModifyWrapper textarea {
+.ModifyWrapper .group input, .ModifyWrapper .group textarea {
 	background: none;
 	color: #53596e;
 	font-size: 18px;
@@ -207,33 +208,41 @@ border: 1px solid gray;
 	border-radius: 10px;
 	border: 1px solid #c6c6c6;
 }
-
-.ModifyWrapper input:hover {
+.ModifyWrapper .note-modal-content{
+	padding:20px;
+}
+.ModifyWrapper .note-modal .form-group{
+	margin-top:20px;
+}
+.ModifyWrapper .note-modal .note-modal-body label{
+	width:fit-content;
+}
+.ModifyWrapper .group input:hover {
 	border: 3px solid black;
 }
 
-.ModifyWrapper input:focus, .ModifyWrapper textarea:focus {
+.ModifyWrapper .group input:focus, .ModifyWrapper .group textarea:focus {
 	outline: none;
 	border: 3px solid #f00;
 }
 
-.ModifyWrapper input ~ label, .ModifyWrapper textarea ~ label {
+.ModifyWrapper .group input ~ label, .ModifyWrapper .group textarea ~ label {
 	top: -5px;
 	font-size: 12px;
 	color: #000;
 	left: 11px;
 }
 
-.ModifyWrapper input:focus ~ label, .ModifyWrapper input:valid ~ label, .ModifyWrapper textarea:focus ~ label,
-	.ModifyWrapper textarea:valid ~ label {
+.ModifyWrapper .group input:focus ~ label, .ModifyWrapper .group input:valid ~ label, .ModifyWrapper .group textarea:focus ~ label,
+	.ModifyWrapper .group textarea:valid ~ label {
 	color: #f00;
 }
 
-.ModifyWrapper input:focus ~ .bar:before, .ModifyWrapper textarea:focus ~ .bar:before {
+.ModifyWrapper .group input:focus ~ .bar:before, .ModifyWrapper .group textarea:focus ~ .bar:before {
 	width: 320px;
 }
 
-.ModifyWrapper input[type="password"] {
+.ModifyWrapper .group input[type="password"] {
 	letter-spacing: 0.3em;
 }
 
@@ -250,7 +259,7 @@ border: 1px solid gray;
 	margin:5vh auto;
 }
 
-.ModifyWrapper label {
+.ModifyWrapper  label {
 	color: #c6c6c6;
 	font-size: 16px;
 	font-weight: normal;
@@ -272,7 +281,7 @@ padding:10px 15px;
 color:black;
 border-radius : 5px;
 }
-.ModifyWrapper #listModifyBtn:hover{
+.ModifyWrapper #listCreateBtn:hover{
 border: 1px solid gray;
 }
 
@@ -294,8 +303,8 @@ border: 1px solid gray;
 	cursor:pointer;
 	display:scroll;
 	position:fixed;
-	bottom:15px;
-	right:10px;
+	bottom:20px;
+	right:90px;
 }
 
 #workMain #workContentDate {

@@ -32,7 +32,7 @@
 		</div>
 		<div id="footerContainer4">
 			<i class="bi bi-envelope fa-3x"></i>
-			<p>온라인문의</p>
+			<p >온라인문의</p>
 		</div>
 
 	</footer>

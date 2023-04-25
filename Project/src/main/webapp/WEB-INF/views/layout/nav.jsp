@@ -30,6 +30,7 @@
 			<div class="navWrapper">
 				<button class="dropbtn" id="serviceCenter">고객센터</button>
 				<div class="dropdown-content" id="serviceCenterContent">
+					<a href='javascript:void(0);' id="moveIntro" >회사소개</a>
 					<a href='javascript:void(0);' id="moveFAQ" >자주 묻는 질문</a>
 					<a href='javascript:void(0);' id="moveInquiry" >문의하기</a>
 				</div>

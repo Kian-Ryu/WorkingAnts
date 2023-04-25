@@ -104,17 +104,21 @@ public class WorkServiceImpl implements WorkService {
 		String categoryLike = "%" + category + "%";
 		String regionLike = "%" + region + "%";
 		List<Work> workList;
-		
+		int amountInt = 0;
 		
 		if(amount ==null||amount=="") {
 			workList=repository.findByListCategoryAndListRegionAndListState(categoryLike,regionLike,listState);
 		}
-		else if(amount == "50001") {
-			workList=repository.findByListAmount2AndListCategoryAndListRegionAndListState(Integer.parseInt(amount),categoryLike,regionLike,listState);
-		}
 		else {
-			workList = repository.findByListAmountAndListCategoryAndListRegionAndListState(Integer.parseInt(amount),categoryLike,regionLike,listState);
+			amountInt = Integer.parseInt(amount);
+			if(amountInt > 50000) {
+				workList=repository.findByListAmount2AndListCategoryAndListRegionAndListState(50000,categoryLike,regionLike,listState);
+			}
+			else {
+				workList = repository.findByListAmountAndListCategoryAndListRegionAndListState(Integer.parseInt(amount),categoryLike,regionLike,listState);
+			}
 		}
+		
 		return workList;
 
 	}

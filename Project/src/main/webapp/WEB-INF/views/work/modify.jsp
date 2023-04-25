@@ -14,7 +14,7 @@
 	<div class="ModifyWrapper">
 		<form name='frm_summernote' class='frm_summernote'>
 			<h4 class="mb-3">구인공고 수정</h4>
-			<input type="text" value="${work.listCode }" name="listCode" style="">
+			<input type="hidden" value="${work.listCode }" name="listCode" style="">
 			<div class="group">
 				<input type="text" value="${work.listTitle}" name="listTitle"
 					required> <span class="highlight"></span> <span class="bar"></span>

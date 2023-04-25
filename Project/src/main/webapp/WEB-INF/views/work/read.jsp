@@ -47,8 +47,7 @@
 				<div id='work_content_detail_2'>
 					<div id='work_view_icon'></div>
 					<div id='work_view_num'>${work.listCnt }</div>
-					<div id='work_copy_icon'
-						onclick="shareMessage()"></div>
+					<div id='work_copy_icon' onclick="shareMessage()"></div>
 
 					<div id='work_to_list' onclick="BackPage()">목록으로</div>
 					<div id='work_content_crud'>
@@ -109,7 +108,13 @@
 	    });
 	}
 		function BackPage(){
-			$("#content").load("/jsp/list");
+			var searchval = $("#searchInput").val();
+			$.post("/jsp/listsearch", {
+				searchInput : ""
+			}, function(data) {
+				$('#content').html(data);
+			
+		})
 		}
 		function modifyPageMove(listCode){
 			console.log("js-modify"+listCode);

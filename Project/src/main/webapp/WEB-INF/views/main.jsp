@@ -77,11 +77,20 @@
 		$('#moveFAQ').on('click', function(){
 			$('#content').load('/jsp/faq');
 		})
-		$('#serviceCenter').on('click', function(){
+		$('#footerContainer3').on('click', function(){
 			$('#content').load('/jsp/faq');
+		})
+		$('#footerContainer4').on('click', function(){
+			$('#content').load('/jsp/inquiry');
+		})
+		$('#serviceCenter').on('click', function(){
+			$('#content').load('/jsp/introduce');
 		})
 		$('#moveInquiry').on('click', function(){
 			$('#content').load('/jsp/inquiry');
+		})
+		$('#moveIntro').on('click', function(){
+			$('#content').load('/jsp/introduce');
 		})
 		$('#WorkPage').on('click', function(){
 			var searchval = $("#searchInput").val();

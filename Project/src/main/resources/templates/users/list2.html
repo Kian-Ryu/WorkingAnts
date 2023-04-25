@@ -33,7 +33,7 @@
 
 	<!-- Products Start -->
 	<div class="container-fluid">
-		<div class="container">
+		<div class="container pb-5">
 			<div class="mx-auto text-center mb-5" style="max-width: 500px;">
 				<h1 class="display-5">
 					<a href="#" class="btn btn-secondary" onclick="workCreate()">구인공고
@@ -44,7 +44,7 @@
 			</div>
 
 			<div class="owl-carousel product-carousel px-5">
-				<div class="pb-5" th:each="article,i: ${workp}">
+				<div th:each="article,i: ${workp}">
 					<div th:onclick="cardView([[${article.listCode}]])">
 						<div
 							class=" product-item position-relative bg-white d-flex flex-column text-center">
@@ -94,7 +94,7 @@
 	</div>
 
 	<div class="container px-4 px-lg-5 my-5">
-		<section class="py-5">
+		<section class="">
 			<div class="container px-4 px-lg-5 mt-5">
 				<div
 					id="ListContent" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -107,7 +107,8 @@
 							<div class="card-body p-4">
 								<div class="text-center">
 									<!-- Product name-->
-									<h5 class="fw-bolder">&#91;[[${article.listRegion}]]&#93;[[${article.listTitle}]]</h5>
+									&#91;[[${article.listRegion}]]&#93;
+									<h5 class="card-title">[[${article.listTitle}]]</h5>
 									<!-- Product price-->
 									금액:[[${article.listAmount}]]<br>
 									조회수:[[${article.listCnt}]]

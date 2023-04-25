@@ -372,3 +372,12 @@ nav ul li:hover ul {
   width:fit-content;
   z-index:10;
 }
+img.card-img-top{
+	height:100%;
+	object-fit:cover;
+}
+h5.card-title{
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}

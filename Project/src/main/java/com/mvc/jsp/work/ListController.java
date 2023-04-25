@@ -117,7 +117,7 @@ public class ListController {
 		mv.addObject("searchInput", searchInput);
 		mv.addObject("imgsrc", stringList);
 		mv.addObject("work", work);
-		mv.setViewName("/user/list2");
+		mv.setViewName("/users/list2");
 		return mv;
 	}
 
@@ -160,7 +160,7 @@ public class ListController {
 		mv.addObject("workp", workp);
 		mv.addObject("imgsrc", stringList);
 		mv.addObject("work", work);
-		mv.setViewName("/user/list2");
+		mv.setViewName("/users/list2");
 		return mv;
 	}
 
@@ -188,7 +188,7 @@ public class ListController {
 
 		mv.addObject("imgsrc", stringListp);
 		mv.addObject("work", workp);
-		mv.setViewName("/user/list2 :: #ListContent");
+		mv.setViewName("/users/list2 :: #ListContent");
 
 
 		return mv;

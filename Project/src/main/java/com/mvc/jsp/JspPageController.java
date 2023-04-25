@@ -72,12 +72,7 @@ public class JspPageController {
 
 	/* work */
 
-	@RequestMapping("/list")
-	public ModelAndView workReadPage() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("work/list");
-		return mv;
-	}
+	
 
 	@RequestMapping("/create")
 	public ModelAndView workCreatePage() {
