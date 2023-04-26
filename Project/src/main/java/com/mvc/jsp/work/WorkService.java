@@ -33,8 +33,10 @@ public interface WorkService {
 
 				.listCategory(dto.getListCategory())
 
-//				.usercode(dto.getUsercode())
+				.userCode(dto.getUserCode())
 
+				.userCode2(dto.getUserCode2())
+				
 				.listContent(dto.getListContent())
 
 				.listAmount(dto.getListAmount())
@@ -69,7 +71,9 @@ public interface WorkService {
 
 				.listCategory(entity.getListCategory())
 
-//				.usercode(entity.getUsercode())
+				.userCode(entity.getUserCode())
+
+				.userCode2(entity.getUserCode2())
 
 				.listContent(entity.getListContent())
 
@@ -94,6 +98,8 @@ public interface WorkService {
 		return dto;
 
 	}
+
+	String getUsernickname(int userCode);
 
 
 }

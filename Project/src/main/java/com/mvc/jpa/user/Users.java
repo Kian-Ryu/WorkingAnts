@@ -19,8 +19,8 @@ import lombok.NoArgsConstructor;
 public class Users {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long userCode;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int userCode;
 	
 	@Column(length = 20, nullable = false)
 	private String userRegion;
@@ -52,5 +52,14 @@ public class Users {
 	public void changeUserRegion(String userRegion) {
 		this.userRegion = userRegion;
 	}
-	
+	public void changeUserAnother(String userNickName, String userPw, String userEmail, String userPhone) {
+		this.userNickName = userNickName;
+		this.userPw = userPw;
+		this.userEmail = userEmail;
+		this.userPhone = userPhone;
+	}
+	public void addImg(String proName, String proPath) {
+		this.proName = proName;
+		this.proPath = proPath;
+	}
 }

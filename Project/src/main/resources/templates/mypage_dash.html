@@ -2,311 +2,297 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <!-- Favicon -->
-    <link th:href="@{img/favicon.ico}" rel="icon">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+<!-- Libraries Stylesheet -->
+<link th:href="@{../lib/owlcarousel/assets/owl.carousel.min.css}"
+	rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+<!-- Customized Bootstrap Stylesheet -->
+<link th:href="@{../css/bootstrap.min.css}" rel="stylesheet">
 
-    <!-- Libraries Stylesheet -->
-    <link th:href="@{/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+<!-- Template Stylesheet -->
+<link th:href="@{../css/style.css}" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap"
+	rel="stylesheet">
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap"
+	rel="stylesheet">
 
-    <!-- Template Stylesheet -->
-    <link th:href="@{/css/style.css}" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" th:href="@{../fonts/icomoon/style.css}">
 
-    
-    <link rel="stylesheet" th:href="@{/fonts/icomoon/style.css}">
-  
-    <link th:href='@{/fullcalendar/packages/core/main.css}' rel='stylesheet' />
-    <link th:href='@{/fullcalendar/packages/daygrid/main.css}' rel='stylesheet' />
-    
-    <style>
-		  .star {
-		    position: relative;
-		    font-size: 2rem;
-		    color: #ddd;
-		  }
-		  
-		  .star input {
-		    width: 100%;
-		    height: 100%;
-		    position: absolute;
-		    left: 0;
-		    opacity: 0;
-		    cursor: pointer;
-		  }
-		  
-		  .star span {
-		    width: 0;
-		    position: absolute; 
-		    left: 0;
-		    color: red;
-		    overflow: hidden;
-		    pointer-events: none;
-		  }
-		  #updateprofile {
-		  	cursor : pointer;
-		  }
-    </style>
+<link th:href='@{../fullcalendar/packages/core/main.css}'
+	rel='stylesheet' />
+<link th:href='@{../fullcalendar/packages/daygrid/main.css}'
+	rel='stylesheet' />
+
+<style>
+.star {
+	position: relative;
+	font-size: 2rem;
+	color: #ddd;
+}
+
+.star input {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	left: 0;
+	opacity: 0;
+	cursor: pointer;
+}
+
+.star span {
+	width: 0;
+	position: absolute;
+	left: 0;
+	color: yellow;
+	overflow: hidden;
+	pointer-events: none;
+}
+
+#updateprofile {
+	cursor: pointer;
+}
+</style>
 
 </head>
 
 <body>
-   
-    <!--Body Start-->
-    <div class="container py-5 pb-lg-0">
-        <div class="mx-auto text-center mb-3 pb-2" style="max-width: 500px;">
-            <h1 class="display-5 ">MyPage</h1>
-        </div>
-        <div class="row g-5">
-            <div class="col-lg-4">
-                <div class="mb-5 text-center" id="users">
-                    <div class="align-items-center">
-<!--                     <button class="" data-bs-toggle="modal" data-bs-target="#changeprofile" style="opacity:0"> -->
-	                    <img class="img-fluid mx-auto p-2 border border-5 rounded-circle mb-4" style="max-width: 10rem;" th:src="@{/img/logo.png}" alt="" id="updateprofile">
-                        <!-- @{${dto.proName}} -->
-                    
-                    </div>
-                    <h4 class="text-center">닉네임 : [[${dto.userNickName}]]</h4>
-                    <p class="mb-0">지역 : [[${dto.userRegion}]]<button class="btn-success rounded-2" data-bs-toggle="modal" data-bs-target="#ModalforReg">지역변경</button></p>
-                    <p class="mb-0">이메일 : [[${dto.userEmail}]]</p>
-                    <p class="mb-0">전화번호 : [[${dto.userPhone}]]</p>
-                    <br>
-                    <button class="btn-success rounded-2" data-bs-toggle="modal" data-bs-target="#modalForUp">수정하기</button>
-                    <hr>
-                    <p class="align-self-center">
-                        평점 : 
-                    </p>
-					<span class="star">
-					  ★★★★★
-					  <span th:style="${'width:'+(avgGrade*20)+'%'}">★★★★★</span>
-					  
-					</span>
-                </div>
-<!--                 <div class="row">
-                    <div class="col-4">
-                        <span class="bg-secondary rounded-pill d-flex align-items-center justify-content-center mb-3" style="width: 60px; height: 60px;">
-                            <i class="fa fa-award fs-4 text-white"></i>
-                        </span>
-                    </div>
-                    <div class="col-8">
-                        <h4>칭호</h4>
-                        <table class="table table-hover" style="width: 100%;">
-                            <tr><td>동심수호자</td><td>23.04.17</td></tr>
-                            <tr><td>강아지수면가스</td><td>23.04.17</td></tr>
-                        </table>
-                    </div>
-                </div> -->
-            </div>
-            <div class="col-lg-8 border border-dark rounded-1">
-           <!--      <ul class="nav nav-pills mb-3 .navbar-dark bg-dark" id="pills-tab" role="tablist">
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-count" type="button" role="tab" aria-controls="pills-count" aria-selected="true">현황</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-req" type="button" role="tab" aria-controls="pills-req" aria-selected="false">Request</button>
-                    </li>
-                    <li class="nav-item" role="presentation">
-                      <button class="nav-link" id="pills-contact-tab" data-bs-toggle="pill" data-bs-target="#pills-res" type="button" role="tab" aria-controls="pills-res" aria-selected="false">Response</button>
-                    </li>
-                  </ul>
-                  <div class="tab-content" id="pills-tabContent">
-                    <div class="tab-pane fade show active" id="pills-count" role="tabpanel" aria-labelledby="pills-home-count">
-							
 
-                      <div class="align-items-center">
-                         <p class="bg-danger text-white-50" style="opacity: 50%;">
-                             Request : 50000
-                         </p>
-                         <p class="bg-success text-white-50" style="opacity: 50%;">
-                             Response : 100000
-                         </p>
-                         <hr>
-                         <div class="bg-success text-white"> 총 50000을 버셨어요~</div>
-                     </div>
-                    </div>
-                    <div class="tab-pane fade" id="pills-req" role="tabpanel" aria-labelledby="pills-profile-req" onclick="location.href='#'">
-                        <table class="table table-hover" style="width: 100%;">
-                            <caption class="text-white">Requset</caption>
-                            <tr>
-                                <th>no</th>
-                                <th>title</th>
-                                <th>state</th>
-                            </tr>
-                            <tr onclick="location.href='#'" style="inherits: false;">
-                                <td>1</td>
-                                <td>15년 후에 어쩌고저쩌고</td>
-                                <td><span class="badge bg-success">완료</span></td>
-                            </tr>
-                          </table>
-                    </div>
-                  </div> -->
-                   <div class="content">
-				    <div id='calendar'></div>
-				  </div> 
-            </div>
-        </div>
-    </div>
-    <!--Body End-->
-   
-    <div class="modal fade" id="modalForUp" tabindex="-1" data-bs-backdrop="static" aria-labelledby="modalForUpLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalForUpLabel">회원 정보 수정</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form class="row g-3" id="updateuser" action="">
-                	<input type="hidden" name="userCode" th:value="${dto.userCode}">
-                	<input type="hidden" name="userRegion" th:value="${dto.userRegion}">
-                	<input type="hidden" name="userName" th:value="${dto.userName}">
-                	<input type="hidden" name="userId" th:value="${dto.userId}">
-                	<input type="hidden" name="proName" th:value="${dto.proName}">
-                	<input type="hidden" name="proPath" th:value="${dto.proPath}">
-                    <div class="col-md-8">
-                      <label for="NickName" class="form-label">NickName</label>
-                      <input type="text" class="form-control is-valid" id="NickName" name="userNickName" th:value="${dto.userNickName}" required>
-<!--                       <div id="validationServerUsernameFeedback" class="invalid-feedback">
+	<!--Body Start-->
+	<div class="container py-5 pb-lg-0" id="fortile">
+		<div class="mx-auto text-center mb-3 pb-2" style="max-width: 500px;">
+			<h1 class="display-5 ">MyPage</h1>
+		</div>
+		<div class="row g-5">
+			<div class="col-lg-4">
+				<div class="mb-5 text-center" id="users">
+					<div class="align-items-center">
+						<!--                     <button class="" data-bs-toggle="modal" data-bs-target="#changeprofile" style="opacity:0"> -->
+						<img
+							class="img-fluid mx-auto p-2 border border-5 rounded-circle mb-4"
+							style="max-width: 10rem;" th:src="@{/img/logo.png}" alt=""
+							id="updateprofile">
+						<!-- @{${dto.proName}} -->
+
+					</div>
+					<h4 class="text-center">닉네임 : [[${dto.userNickName}]]</h4>
+					<p class="mb-0">
+						지역 : [[${dto.userRegion}]]
+						<button class="btn-success rounded-2" data-bs-toggle="modal"
+							data-bs-target="#ModalforReg">지역변경</button>
+					</p>
+					<p class="mb-0">이메일 : [[${dto.userEmail}]]</p>
+					<p class="mb-0">전화번호 : [[${dto.userPhone}]]</p>
+					<br>
+					<button class="btn-success rounded-2" data-bs-toggle="modal"
+						data-bs-target="#modalForUp">수정하기</button>
+					<hr>
+					<p class="align-self-center">평점 :</p>
+					<span class="star"> ★★★★★ <span
+						th:style="${'width:'+(avgGrade*20)+'%'}">★★★★★</span>
+
+					</span>
+				</div>
+			</div>
+			<div class="col-lg-8 border border-dark rounded-1">
+				<div class="content">
+					<div id='calendar'></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--Body End-->
+
+	<div class="modal fade" id="modalForUp" tabindex="-1"
+		data-bs-backdrop="static" aria-labelledby="modalForUpLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalForUpLabel">회원 정보 수정</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form class="row g-3" id="updateuser" action="">
+						<input type="hidden" name="userCode" th:value="${dto.userCode}"
+							id="realCode"> <input type="hidden" name="realPw"
+							th:value="${dto.userPw}" id="realPw"> <input
+							type="hidden" name="userRegion" th:value="${dto.userRegion}">
+						<input type="hidden" name="userName" th:value="${dto.userName}">
+						<input type="hidden" name="userId" th:value="${dto.userId}">
+						<input type="hidden" name="proName" th:value="${dto.proName}">
+						<input type="hidden" name="proPath" th:value="${dto.proPath}">
+						<div class="col-md-8">
+							<label for="NickName" class="form-label">NickName
+								</button>
+							</label> <input type="text" class="form-control is-valid"
+								id="userNickName" name="userNickName"
+								th:value="${dto.userNickName}" required>
+							<!--                       <div id="validationServerUsernameFeedback" class="invalid-feedback">
                         닉네임을 입력해 주세요
                       </div> -->
-                    </div>
-                    <div class="col-md-12">
-                      <label for="nowPassword" class="form-label">now Password</label>
-                        <input type="password" class="form-control is-invalid" id="nowPassword" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-<!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
+						</div>
+						<div class="col-md-12">
+							<label for="nowPassword" class="form-label">now Password</label>
+							<input type="password" class="form-control is-invalid"
+								id="nowPassword"
+								aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
+								required>
+							<!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                           
                         </div> -->
-                    </div>
-                    <div class="col-md-12">
-                      <label for="aftPassword" class="form-label">aft Password</label>
-                        <input type="password" class="form-control is-invalid" id="aftPassword" name="userPw" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-<!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
+						</div>
+						<div class="col-md-12">
+							<label for="aftPassword" class="form-label">aft Password</label>
+							<input type="password" class="form-control is-invalid"
+								id="userPw" name="userPw"
+								aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
+								required>
+							<!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                           
                         </div> -->
-                    </div>
-                    <div class="col-md-12">
-                      <label for="chkPassword" class="form-label">chk Password</label>
-                        <input type="password" class="form-control is-invalid" id="chkPassword" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-<!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
+						</div>
+						<div class="col-md-12">
+							<label for="chkPassword" class="form-label">chk Password</label>
+							<input type="password" class="form-control is-invalid"
+								id="chkPassword"
+								aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback"
+								required>
+							<!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                           
                         </div> -->
-                    </div>
-                    <div class="col-md-12">
-                      <label for="email" class="form-label">email</label>
-                      <input type="text" class="form-control is-invalid" id="email" name="userEmail" th:value="${dto.userEmail}" aria-describedby="validationServer03Feedback" required>
-        <!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
+						</div>
+						<div class="col-md-12">
+							<label for="email" class="form-label">email</label> <input
+								type="text" class="form-control is-invalid" id="userEmail"
+								name="userEmail" th:value="${dto.userEmail}"
+								aria-describedby="validationServer03Feedback" required>
+							<!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                           
                         </div> -->
-                    </div>
-                    <div class="col-md-12">
-                      <label for="phone" class="form-label">Phone</label>
-                      <input type="text" class="form-control is-invalid" id="phone" name="userPhone" th:value="${dto.userPhone}" aria-describedby="validationServer03Feedback" required>
-        <!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
+						</div>
+						<div class="col-md-12">
+							<label for="phone" class="form-label">Phone</label> <input
+								type="text" class="form-control is-invalid" id="userPhone"
+								name="userPhone" th:value="${dto.userPhone}"
+								aria-describedby="validationServer03Feedback" required>
+							<!--                         <div id="validationServerUsernameFeedback" class="invalid-feedback">
                           
                         </div> -->
-                    </div>
-                  </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" id="updateUserbtn" data-bs-dismiss="modal" onclick="updateuser()">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="updateUserbtn"
+						data-bs-dismiss="modal" onclick="updateuser()">Save
+						changes</button>
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	 <div class="modal fade" id="ModalforReg" tabindex="-1" data-bs-backdrop="static" aria-labelledby="modalForUpLabel" aria-hidden="true">
-	        <div class="modal-dialog">
-	          <div class="modal-content">
-	            <div class="modal-header">
-	              <h5 class="modal-title" id="modalForUpLabel">지역변경</h5>
-	              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	            </div>
-	            <div class="modal-body">
-	                <form class="row g-3" action="/user/updateReg" method="post" id="forReg">
-	                    <div class="col-md-4">
-	                    	<input type="number" name="userCode" th:value="${dto.userCode}" id="userCode" hidden=true>
-	                      <label for="userRegion" class="form-label">지역</label>
-	                      <input type="text" class="form-control is-valid" name="userRegion" th:value="${dto.userRegion}" id="userRegion" required>
-<!-- 	                      <div class="valid-feedback">
+	<div class="modal fade" id="ModalforReg" tabindex="-1"
+		data-bs-backdrop="static" aria-labelledby="modalForUpLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="modalForUpLabel">지역변경</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form class="row g-3" action="/user/updateReg" method="post"
+						id="forReg">
+						<div class="col-md-4">
+							<input type="number" name="userCode" th:value="${dto.userCode}"
+								id="userCode" hidden=true> <label for="userRegion"
+								class="form-label">지역</label> <input type="text"
+								class="form-control is-valid" name="userRegion"
+								th:value="${dto.userRegion}" id="userRegion" required>
+							<!-- 	                      <div class="valid-feedback">
 	                        Looks good!
 	                      </div> -->
-	                    </div>
-	                  </form>
-	            </div>
-	            <div class="modal-footer">
-	                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="changeReg()">Save changes</button>
-	                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-      <div class="modal" id="changeprofile" tabindex="-1" data-bs-backdrop="static" aria-labelledby="modalForUpLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title">프로필</h5>
-		        <button type="button" class="btn-close modalclose" data-bs-dismiss="modal" aria-label="Close"></button>
-		      </div>
-		      <div class="modal-body">
-		        <form action="" method="post" enctype="multipart/form-data" id="changepro">
-		        	<label>profile</label>
-         				<input type="file" name="profile" onchange="readURL(this);">
-		        </form>
-		        <img id="preview" />
-		      </div>
-		      <div class="modal-footer">
-		        <button type="submit" class="btn btn-primary" form="changepro">Save changes</button>
-		        <button type="button" class="btn btn-secondary modalclose" data-bs-dismiss="modal">Close</button>
-		      </div>
-		    </div>
-		  </div>
+						</div>
+						<div class="col-md-12">
+							<button class="btn btn-danger" data-bs-dismiss="modal"
+								onclick="deleteuser()">탈퇴하기</button>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" id="updateUserbtn"
+						data-bs-dismiss="modal" onclick="updateuser()">수정</button>
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
 		</div>
-    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
-<!--     <script th:src="@{/js/popper.min.js}"></script> -->
-    <script th:src="@{/js/bootstrap.min.js}"></script>
+	</div>
+	<div class="modal" id="changeprofile" tabindex="-1"
+		data-bs-backdrop="static" aria-labelledby="modalForUpLabel"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title">프로필</h5>
+					<button type="button" class="btn-close modalclose"
+						data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="" method="post" enctype="multipart/form-data"
+						id="changepro">
+						<label>profile</label> <input type="file" name="profile"
+							onchange="readURL(this);">
+					</form>
+					<img id="preview" />
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" onclick="addImg()">Save
+						changes</button>
+					<button type="button" class="btn btn-secondary modalclose"
+						data-bs-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script th:src="@{../js/jquery-3.3.1.min.js}"></script>
+	<!--     <script th:src="@{/js/popper.min.js}"></script> -->
 
-    <script th:src='@{/fullcalendar/packages/core/main.js}'></script>
-    <script th:src='@{/fullcalendar/packages/interaction/main.js}'></script>
-    <script th:src='@{/fullcalendar/packages/daygrid/main.js}'></script>
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script th:src='@{../fullcalendar/packages/core/main.js}'></script>
+	<script th:src='@{../fullcalendar/packages/interaction/main.js}'></script>
+	<script th:src='@{../fullcalendar/packages/daygrid/main.js}'></script>
+	<!-- JavaScript Libraries -->
+	<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 
-    <script th:src="@{/lib/easing/easing.min.js}"></script>
-    <script th:src="@{/lib/waypoints/waypoints.min.js}"></script>
-    <script th:src="@{/lib/counterup/counterup.min.js}"></script>
-    <script th:src="@{/lib/owlcarousel/owl.carousel.min.js}"></script>
-    <!-- Template Javascript -->
-    <script th:src="@{/js/main.js}"></script>
-    <!--알림 관련 -->
+	<script th:src="@{../lib/easing/easing.min.js}"></script>
+	<script th:src="@{../lib/waypoints/waypoints.min.js}"></script>
+	<script th:src="@{../lib/counterup/counterup.min.js}"></script>
+	<script th:src="@{../lib/owlcarousel/owl.carousel.min.js}"></script>
+	<!-- Template Javascript -->
+	<script th:src="@{../js/main.js}"></script>
+	<!--알림 관련 -->
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- 캘린더 관련 -->
-    <script th:src="@{/js/jquery-3.3.1.min.js}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script th:src="@{/js/bootstrap.min.js}"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- 캘린더 관련 -->
+	<!-- <script th:src="@{../js/jquery-3.3.1.min.js}"></script> -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+		integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+		crossorigin="anonymous"></script>
+	<script th:src="@{../js/bootstrap.min.js}"></script>
 
-    <script th:src='@{/fullcalendar/packages/core/main.js}'></script>
-    <script th:src='@{/fullcalendar/packages/interaction/main.js}'></script>
-    <script th:src='@{/fullcalendar/packages/daygrid/main.js}'></script>
-    <script type="text/javascript">    
-		function userreload(){
-			$("#users").load(location.href+' #users')
-		}
+	<script type="text/javascript">  
 		function changeReg() {
 		    var userRegion = $("#userRegion").val();
 		    console.log(userRegion);
@@ -314,16 +300,42 @@
 		    var json = {"userRegion":userRegion, "Code":Code};
 		    $.ajax({
 		        url: "/updateReg",
-		        data: json,
+		        data: "userCode=" + Code + "&userRegion=" + userRegion,
 		        type:"POST",
-		        async : false,
-		        dataType:"json",
-		        complete: function(){
-		        	userreload();
+		        success: function(data){
+		        	$("#users").replaceWith(data);
 		        }
 		    })
 		}
-		
+		function addImg() {
+	    var changepro = $("#changepro").val();
+		    var Code = $("#userCode").val();
+		    
+		    $.ajax({
+		    	 url: "/addImg",
+			        data: "userCode=" + Code + "&file=" + changepro,
+		        type:"POST",
+		        success: function(data){
+		        	$("#users").replaceWith(data);
+		        }
+		    })
+		}
+		function changeAnother() {
+		    var userNickName = $("#userNickName").val();
+		    var userPw = $("#userPw").val();
+		    var userEmail = $("#userEmail").val();
+		    var userPhone = $("#userPhone").val();
+		    var Code = $("#userCode").val();
+		    $.ajax({
+		        url: "/updateAnother",
+		        data: "userCode=" + Code + "&userNickName=" + userNickName+ "&userPw=" + userPw + "&userEmail=" + userEmail + "&userPhone=" + userPhone,
+		        type:"POST",
+		        success: function(data){
+		        	$("#users").replaceWith(data);
+		        }
+		    })
+		}
+
 		function changepro(){
 			$('#changepro').ajaxSubmit({
 				type: "POST",
@@ -344,10 +356,72 @@
  		$(".modalclose").click(function(){
 		    $("#changeprofile").fadeOut();
 		  });
+ 		function deleteuser(){
+ 			Swal.fire({
+                title: '확인해주세요!',
+                html: '여태까지의 모든 기록과 명성 비슷한게 사라집니다.',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '예',
+                cancelButtonText: '아니오'
+            }).then((result) => {
+                if (result.isConfirmed) {
+         			Swal.fire({
+                        title: '비밀번호를 다시 입력해주세요.',
+                        html: '<input type="password" id="pwfordel">',
+                        icon: 'question',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: '확인',
+                    }).then((result) => {
+                    	if (result.isConfirmed){
+                        	if(result.isConfirmed){
+                        		if($("#pwfordel").val()==$("#realPw").val()){
+                        			Swal.fire({
+                                        title: '비밀번호가 틀렸습니다?',
+                                        icon: 'success',
+                                        confirmButtonColor: '#3085d6',
+                                        confirmButtonText: '다시 확인'
+                                    }).then((result) =>{
+                                    	if (result.isConfirmed){
+                                    		Swal.fire({
+    	                                        title: '사실 안틀렸습니다.',
+    	                                        text: '이용해주셔서 감사했습니다. 확인버튼을 누르면 탈퇴가 완료됩니다.',
+    	                                        imageUrl: '../img/회원탈퇴.gif',
+    	                                        imageWidth: 400,
+    	                                        imageHeight: 200,
+    	                                        confirmButtonColor: '#d33',
+    	                                        cancelButtonColor: '#3085d6',
+    	                                        confirmButtonText: '예',
+    	                                        cancelButtonText: '마지막으로 생각하기'
+    	                                    }).then((result) =>{
+    	                                    	if (result.isConfirmed){
+    	                                    		realdelete();	
+    	                                    	}
+    	                                    })
+                                    	}
+                                    })
+                        		}else{
+                        			Swal.fire(
+                        				  '아쉽게도 비밀번호가 틀렸군요',         
+                        				  '하핫 다시시도해 주세요',  
+                        				  'success',                         
+                        				);
+                        		}
+
+                        	}
+
+                    	}
+                    })
+
+                }
+            })
+ 		}
  		function updateuser(){
 	    	Swal.fire({
                 title: '확인해주세요!',
-                html: '닉네임 : ' + $("#NickName").val()+'<hr> 이메일 : ' + $("#email").val()+'<hr> 전화번호 : ' + $("#phone").val(),
+                html: '닉네임 : ' + $("#userNickName").val()+'<hr> 이메일 : ' + $("#userEmail").val()+'<hr> 전화번호 : ' + $("#userPhone").val(),
                 icon: 'info',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -358,30 +432,19 @@
                 if (result.isConfirmed) {
                 	$("#nowPassword").attr("disabled");
                     $("#chkPassword").attr("disabled");
-                	$('#updateuser').submit(function(){
-            			$('#updateuser').ajaxSubmit(optionR);
-            			return false;
-                	})
+					changeAnother();
                     Swal.fire(
                   		'회원정보를 수정했습니다.',
                         '',
                         'success'
                     )
+
                 }
             })
  		};
-	    var optionR = {
-		    	type: "POST",
-		    	enctype: 'multipart/form-data',
-				url: '/updateUserbyU',
-				data: $("#updateuser").serialize,
-	            processData: false,
-	            contentType: false,
-				success: function (result) {
-				},
-				error: function (e) {
-				}
-		    }
+ 		function realdelete(){
+ 			location.href = '/deleteuserbyself?userCode='+ $("#realCode").val();
+ 		}
  		function readURL(input) {
  			  if (input.files && input.files[0]) {
  			    var reader = new FileReader();
@@ -398,6 +461,81 @@
 	    	return date.getFullYear() + "-" + ("0"+(date.getMonth()+1)).slice(-2) + "-" +("0" + date.getDate()).slice(-2);
 	    }
 	    document.addEventListener('DOMContentLoaded', function() {
+	    	var nowday = getTodaytype();
+	        var calendarEl = document.getElementById('calendar');
+
+	        var calendar = new FullCalendar.Calendar(calendarEl, {
+  	          plugins: [ 'interaction', 'dayGrid' ],
+  	          defaultDate: nowday,
+  	          editable: false,
+  	          eventLimit: true, // allow "more" link when too many events
+  	          locale:'ko',
+  	          events: [
+          	  	{
+                    title: '강아지 산책하기',
+                    url:'',
+                    start: '2023-04-25'
+                  },
+                  {
+                    title: '쓰레기 대신버려주기',
+                    url:'',
+                    start: '2023-04-15'
+                  },
+          	  	{
+                    title: '편의점 알바 대타',
+                    url:'',
+                    start: '2023-04-17'
+                  },
+                  {
+                    title: '맛집 줄 서기',
+                    url:'',
+                    start: '2023-04-28'
+                 	},
+          	  	{
+                    title: '강아지 목욕도우미',
+                    url:'',
+                    start: '2023-04-01'
+                  },
+                  {
+                    title: '강아지 산책하기',
+                    url:'',
+                    start: '2023-03-07'
+                 	},
+          	  	{
+                    title: '택배 대신받기',
+                    url:'',
+                    start: '2023-03-28'
+                  },
+                  {
+                    title: '문서 타이핑',
+                    url:'',
+                    start: '2023-03-11'
+                 	},
+          	  	{
+                    title: '물고기 밥주기',
+                    url:'',
+                    start: '2023-05-01'
+                  },
+                  {
+                    title: '강아지 산책하기',
+                    url:'',
+                    start: '2023-05-07'
+                 	},
+          	  	{
+                    title: '편의점 알바 대타',
+                    url:'',
+                    start: '2023-04-18'
+                  },
+                  {
+                    title: '물건 대리 수령',
+                    url:'',
+                    start: '2023-05-02'
+                 	},
+  	          ]
+  	        });
+	        calendar.render();
+	      });
+	    $(function() {
 	    	var nowday = getTodaytype();
 	        var calendarEl = document.getElementById('calendar');
 

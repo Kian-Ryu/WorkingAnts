@@ -14,7 +14,7 @@ public interface GradeRepository extends JpaRepository<Grade, Long>, QuerydslPre
 //	
 //	final EntityManager em = emf.createEntityManager();
 	
-	List<Grade> findByUserCode(Long userCode);
+	List<Grade> findByUserCode(int userCode);
 	
 //	@Query(value = "select avg(g.grade) from Grade g where g.userCode = ")
 //	public long avgGrade(long userCode);

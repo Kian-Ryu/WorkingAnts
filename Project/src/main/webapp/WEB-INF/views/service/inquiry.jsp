@@ -66,7 +66,9 @@
 	    	$('#content').html(data);				
 	    	swal("문의가 전송되었습니다!", "24시간내에 답변해드리겠습니다.", "success");
 	    })
-	})  
+	})
+
+	
 	</script>
 
 </body>

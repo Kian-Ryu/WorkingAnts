@@ -40,35 +40,42 @@ public class Work {
 	@Column(length = 20, nullable = false)
 	private String listCategory; // 카테고리
 
-	/*
-	 * @ManyToOne(fetch = FetchType.EAGER, targetEntity=Work.class) // 기본전략
-	 * 
-	 * @JoinColumn(name = "userCode") // 실제디비엔 userCode칼럼명으로 들어감 private Long
-	 * usercode;
-	 */
+	
+	@Column(length = 20, nullable = false)
+	private Integer userCode; // 글쓴이
+	
+
+	@Column(nullable = true)
+	private Integer userCode2; // 담당유저
+	 
 	
 	@Lob
-	@Column
+	@Column(nullable=false)
 	private String listContent; // 내용
 
-	@Column
+	@Column(nullable=false)
 	private int listAmount; // 금액
 
-	@Column
+	@Column(nullable=false)
 	private int listCnt; // 조회수
-	
-	@Column
+
+	@Column(nullable=false)
 	private String listState; // 상태
-	@Column
+
+	@Column(nullable=false)
 	private String listRegion; // 지역
-	@Column
+
+	@Column(nullable = true)
 	private int listStartTime; // 시작시간
-	@Column
+
+	@Column(nullable = true)
 	private int listEndTime; // 끝시간
+	
 	@Column
 	@CreationTimestamp
 	private Timestamp listDate;
-	@Column
+
+	@Column(nullable = false)
 	private String listFinishDate;
 
 	//조회수

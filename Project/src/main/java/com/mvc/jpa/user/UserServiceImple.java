@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.mvc.jsp.work.Work;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
@@ -24,33 +26,12 @@ public class UserServiceImple implements UserService {
 	@Autowired
 	private final UserRepository repo;
 	
-	@Value("${users.profile}")
-	String fdir;
+	/*
+	 * @Value("${users.profile}") String fdir;
+	 */
 	
 	@Override
-	public void register(UserDTO dto, MultipartFile file) {
-		String projectPath = System.getProperty("user.dir") + fdir;
-		UUID uuid = UUID.randomUUID();
-		String fileName = uuid + "_" + file.getOriginalFilename();
-		File f = new File(projectPath, fileName);
-		log.info("서비스 연결 완료");
-		try {
-			file.transferTo(f);
-		} catch (IllegalStateException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		dto.setProName(fileName);
-		dto.setProPath(projectPath);
-		Users u = dToEntity(dto);
-		repo.save(u);
-		
-	}
-	@Override
-	public UserDTO read(long userCode) {
+	public UserDTO read(int userCode) {
 		log.info(userCode+"서비스연결 완");
 		Optional<Users> result = repo.findByUserCode(userCode);
 		if(result.isPresent()) {
@@ -61,7 +42,7 @@ public class UserServiceImple implements UserService {
 	}
 
 	@Override
-	public void updateReg(long userCode, String userRegion) {
+	public void updateReg(int userCode, String userRegion) {
 		log.info(userCode+"서비스연결 완");
 		Optional<Users> result = repo.findByUserCode(userCode);
 		if(result.isPresent()) {
@@ -70,16 +51,35 @@ public class UserServiceImple implements UserService {
 			repo.save(entity);
 		}
 	}
-	
+	@Override
+	public void updateAnother(int userCode, String usernickName, String userPw, String userEmail, String userPhone) {
+		log.info(userCode+"서비스연결 완");
+		Optional<Users> result = repo.findByUserCode(userCode);
+		if(result.isPresent()) {
+			Users entity = result.get();
+			entity.changeUserAnother(usernickName, userPw, userEmail, userPhone);
+			repo.save(entity);
+		}
+	}
+	public void addImg(int userCode, MultipartFile file) throws IllegalStateException, IOException {
+		
+		  String projectPath = System.getProperty("user.dir") +
+		  "/src/main/resources/static/img/profile"; UUID uuid = UUID.randomUUID();
+		  String fileName = uuid + "_" + file.getOriginalFilename(); File f = new
+		  File(projectPath, fileName); file.transferTo(f); Optional<Users> result =
+		  repo.findById(userCode); if(result.isPresent()) { Users entity =
+		  result.get(); entity.addImg(fileName,projectPath); repo.save(entity); }
+		 
+	}
 	public void findByUserIdAndUserPw(String userId, String userPw) {
 		repo.findByUserIdAndUserPw(userId, userPw);
 	} // 로그인시 회원등록여부 파악
 	
 	public List<Users> UserAll() {
-		return (List<Users>) repo.findAll(); // admin 관리자 페이지에서 회원정보 전체조회
+		return repo.findAll(); // admin 관리자 페이지에서 회원정보 전체조회
 	}
 	
-	public void deleteByUserCode(long userCode) {
+	public void deleteByUserCode(int userCode) {
 		repo.deleteById(userCode); // admin 관리자 페이지에서 회원정보 삭제
 	}
 	@Transactional // admin 관리자 페이지에서 모달창 통해서 회원정보 수정
@@ -99,5 +99,13 @@ public class UserServiceImple implements UserService {
 	public Users findByUserEmail(String userEmail) {
 		return repo.findByUserEmail(userEmail);
 	}
-	
+
+	@Override
+	public void createUser(UserDTO dto) {
+		Users entity = dToEntity(dto);
+		entity.addImg("기본이미지.jpg", System.getProperty("user.dir") + "/src/main/resources/static/img/profile");
+		System.out.println("propath"+entity.getProPath());
+		System.out.println("getusercode "+dto.getUserCode());
+		repo.save(entity);
+	}
 }

@@ -25,7 +25,7 @@ public class Grade {
 	private Long listCode;
 	
 	@Column(nullable = true)
-	private Long userCode;
+	private int userCode;
 	
 	@Column(nullable = true)
 	private Double grade;

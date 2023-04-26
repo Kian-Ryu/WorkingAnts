@@ -11,6 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.mvc.jpa.user.UserRepository;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.BooleanExpression;
 
@@ -25,15 +26,22 @@ import javax.persistence.TypedQuery;
 public class WorkServiceImpl implements WorkService {
 
 	private final WorkRepository repository;
+	private final UserRepository userRepository;
 
 	// 등록
 	@Override
 	public Long register(WorkDto dto) {
 		System.out.println("service register");
 		Work entity = dtoToEntity(dto);
+		System.out.println(dto.getUserCode());
 		entity.setListState("모집중");
 		repository.save(entity);
 		return entity.getListCode();
+	}
+	
+	@Override
+	public String getUsernickname(int userCode) {
+		return userRepository.findByuserCode(userCode);
 	}
 
 	// 상세보기
@@ -46,7 +54,6 @@ public class WorkServiceImpl implements WorkService {
 			Work entity = result.get();
 			entity.increaselistCnt();
 			repository.save(entity);
-			;
 		}
 
 		return result.isPresent() ? entityToDto(result.get()) : null;

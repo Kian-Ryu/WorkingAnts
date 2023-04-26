@@ -21,11 +21,12 @@
 			</div>
 		</div>
 		<div id="userWrapper">
-			<button class="dropbtn" id="logout">
-				<i class="bi bi-person-fill"></i> Logout
+			<button type="button" class="dropbtn" id="logout">
+				<i class="bi bi-person-fill" > <span id="naver-nickname"></span></i>${userNickName }
 			</button>
 			<div class="dropdown-content">
 				<a href="#">심부름</a> <a href="#">내 정보</a>
+				<a href="/logout">로그아웃</a>
 			</div>
 		</div>
 	</header>

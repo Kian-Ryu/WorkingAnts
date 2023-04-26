@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>일개미</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta content="Free HTML Templates" name="keywords">
+<meta content="Free HTML Templates" name="description">
+<style type="text/css"></style>
+<style>
+.selectpicker {
+	color: #677083;
+	margin: 10px;
+	border: none;
+	width: fit-content;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box
+}
+
+body, html {
+	height: 100%;
+	font-family: sans-serif
+}
+
+a {
+	margin: 0;
+	transition: all .4s;
+	-webkit-transition: all .4s;
+	-o-transition: all .4s;
+	-moz-transition: all .4s
+}
+
+a:focus {
+	outline: none !important
+}
+
+a:hover {
+	text-decoration: none
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0
+}
+
+p {
+	margin: 0
+}
+
+ul, li {
+	margin: 0;
+	list-style-type: none
+}
+
+input {
+	display: block;
+	outline: none;
+	border: none !important
+}
+
+textarea {
+	display: block;
+	outline: none
+}
+
+textarea:focus, input:focus {
+	border-color: transparent !important
+}
+
+button {
+	outline: none !important;
+	border: none;
+	background: 0 0
+}
+
+button:hover {
+	cursor: pointer
+}
+
+iframe {
+	border: none !important
+}
+
+.js-pscroll {
+	position: relative;
+	overflow: hidden
+}
+
+.table100 .ps__rail-y {
+	width: 9px;
+	background-color: transparent;
+	opacity: 1 !important;
+	right: 5px
+}
+
+.table100 .ps__rail-y::before {
+	content: "";
+	display: block;
+	position: absolute;
+	background-color: #ebebeb;
+	border-radius: 5px;
+	width: 100%;
+	height: calc(100% - 30px);
+	left: 0;
+	top: 15px
+}
+
+.table100 .ps__rail-y .ps__thumb-y {
+	width: 100%;
+	right: 0;
+	background-color: transparent;
+	opacity: 1 !important
+}
+
+.table100 .ps__rail-y .ps__thumb-y::before {
+	content: "";
+	display: block;
+	position: absolute;
+	background-color: #ccc;
+	border-radius: 5px;
+	width: 100%;
+	height: calc(100% - 30px);
+	left: 0;
+	top: 15px
+}
+
+.limiter {
+	width: 1366px;
+	margin: 0 auto
+}
+
+.container-table100 {
+	width: 100%;
+	min-height: 100vh;
+	background: #fff;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-wrap: wrap;
+	padding: 33px 30px
+}
+
+.wrap-table100 {
+	width: 1170px
+}
+
+.table100 {
+	background-color: #fff
+}
+
+table {
+	width: 100%
+}
+
+th, td {
+	font-weight: unset;
+	padding-right: 10px
+}
+
+.column1 {
+	width: 33%;
+	padding-left: 40px
+}
+
+.column2 {
+	width: 13%
+}
+
+.column3 {
+	width: 22%
+}
+
+.column4 {
+	width: 19%
+}
+
+.column5 {
+	width: 13%
+}
+
+.table100-head th {
+	padding-top: 18px;
+	padding-bottom: 18px
+}
+
+.table100-body td {
+	padding-top: 16px;
+	padding-bottom: 16px
+}
+
+.table100 {
+	position: relative;
+	padding-top: 60px;
+	margin: auto;
+	width: 80%;
+}
+
+.table100-head {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	background-color: #ffc107;
+	border-radius: 5px;
+}
+
+.table100-body {
+	max-height: 585px;
+	overflow: auto
+}
+
+.table100.ver4 {
+	margin-bottom: 10%;
+}
+
+.table100.ver4 .table100-head {
+	padding-right: 20px
+}
+
+.table100.ver4 th {
+	font-family: Lato-Bold;
+	font-size: 18px;
+	color: #fff;
+	line-height: 1.4;
+	background-color: transparent;
+	border-bottom: 2px solid #f2f2f2
+}
+
+.table100.ver4 .column1 {
+	padding-left: 7px
+}
+
+.table100.ver4 td {
+	font-family: Lato-Regular;
+	font-size: 15px;
+	color: gray;
+	line-height: 1.4
+}
+
+.table100.ver4 .table100-body tr {
+	border-bottom: 1px solid #f2f2f2
+}
+
+.table100.ver4 {
+	overflow: hidden
+}
+
+.table100.ver4 .table100-body {
+	padding-right: 20px
+}
+
+.table100.ver4 .ps__rail-y {
+	right: 0
+}
+
+.table100.ver4 .ps__rail-y::before {
+	background-color: #ebebeb
+}
+
+.table100.ver4 .ps__rail-y .ps__thumb-y::before {
+	background-color: #ccc
+}
+
+#gocreate {
+	margin-right: 10px;
+	color: #fff;
+	font-size: 1.5rem;
+	border: none;
+	background-color: #ffc022;
+	width: fit-content;
+	padding: 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	z-index:10;
+	display: scroll;
+	position: fixed;
+	bottom: 20px;
+	right: 90px;
+}
+</style>
+<link href="../css/style.css" rel="stylesheet">
+</head>
+<body>
+	<!-- Topbar Start -->
+
+	<div class="container-fluid px-5 d-none d-lg-block">
+		<div class="row gx-5 py-3 align-items-center">
+
+			<div class="col-lg-6 width-33p">
+				<div class="d-flex align-items-center justify-content-center">
+					<a href="index.html" class="navbar-brand ms-lg-5"> </a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Products Start -->
+	<div class="container-fluid">
+		<div class="container pb-5">
+			<div class="mx-auto text-center mb-5" style="max-width: 500px;">
+				
+				<br>
+				<h5 class="text-uppercase">요즘 뜨는 일자리</h5>
+			</div>
+
+			<div class="owl-carousel product-carousel px-5">
+
+				<div th:each="article,i: ${workp}">
+					<div th:onclick="cardView([[${article.listCode}]])">
+						<div id="pcarditem"
+							class=" product-item position-relative bg-white d-flex flex-column text-center">
+							<img class="img-fluid mb-4" th:src="${imgsrcp[i.index]}" />
+							&#91;[[${article.listRegion}]]&#93;
+							<h5 class="mb-3">[[${article.listTitle}]]</h5>
+							<h6 class="mb-3">금액:[[${article.listAmount}]]</h6>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<div class="mx-auto text-center mb-5" id="workSelect"
+		style="max-width: 600px;">
+		<h1 class="display-5"></h1>
+		<nav>
+
+			<select class="selectpicker" id="region" data-size="4"
+				th:onchange="onChangeSelect()">
+				<option value="">구군별</option>
+				<option value="지역무관">지역무관</option>
+				<option value="관악구">관악구</option>
+				<option value="양천구">양천구</option>
+				<option value="영등포">영등포</option>
+				<option value="구로구">구로구</option>
+			</select> <select class="selectpicker" id="category" data-size="4"
+				th:onchange="onChangeSelect()">
+				<option value="">카테고리별</option>
+				<option value="주거">주거</option>
+				<option value="사무">사무</option>
+				<option value="반려동물">반려동물</option>
+				<option value="대행">대행</option>
+				<option value="_ppm_wp_password_expired">기타</option>
+			</select> <select class="selectpicker" id="amount" data-size="4"
+				th:onchange="onChangeSelect()">
+				<option value="">금액별</option>
+				<option value="10000">10,000원 이하</option>
+				<option value="50000">50,000원 이하</option>
+				<option value="50001">50,000원 이상</option>
+			</select> <select class="selectpicker" id="design" data-size="4"
+				th:onchange="onChangeSelect()">
+				<option value="card">카드리스트</option>
+				<option value="table">표리스트</option>
+			</select>
+		</nav>
+	</div>
+	<div id="ListContent">
+		<div class="container px-4 px-lg-5 my-5" id="cardWorkList">
+			<section class="">
+				<div class="container px-4 px-lg-5 mt-5">
+					<div id="ListContent"
+						class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+						<div class="col mb-5" th:each="article,i: ${work}">
+							<div class="card" id="cardlist2"
+								th:onclick="cardView([[${article.listCode}]])">
+								<!-- Product image-->
+								<img class="card-img-top" th:src="${imgsrc[i.index]}" />
+								<!-- Product details-->
+								<div class="card-body p-4">
+									<div class="text-center">
+										<!-- Product name-->
+										&#91;[[${article.listRegion}]]&#93;
+										<h5 class="card-title">[[${article.listTitle}]]</h5>
+										<!-- Product price-->
+										금액:[[${article.listAmount}]]
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div class="table100 ver4 m-b-110" id="tableWorkList">
+			<div class="table100-head">
+				<table>
+					<thead>
+						<tr class="row100 head">
+							<th class="cell100 column1">제목</th>
+							<th class="cell100 column2">위치</th>
+							<th class="cell100 column3">날짜</th>
+							<th class="cell100 column4">작성자</th>
+							<th class="cell100 column5">가격</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+			<div class="table100-body js-pscroll ps ps--active-y">
+				<table>
+					<tbody>
+						<tr class="row100 body" th:each="article,i: ${work}"
+							th:onclick="cardView([[${article.listCode}]])">
+							<td class="cell100 column1">[[${article.listTitle}]]</td>
+							<td class="cell100 column2">[[${article.listRegion}]]</td>
+							<td class="cell100 column3">[[${article.listDate}]]</td>
+							<td class="cell100 column4">[[${string[i.index]}]]</td>
+							<td class="cell100 column5">[[${article.listAmount}]]</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+		</div>
+	</div>
+	<div id="gocreate" onclick="workCreate()" style="display: inline;">구인하기</div>
+
+
+	<!-- JavaScript Libraries -->
+	<!-- Latest compiled and minified JavaScript -->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="../lib/easing/easing.min.js"></script>
+	<script src="../lib/waypoints/waypoints.min.js"></script>
+	<script src="../lib/counterup/counterup.min.js"></script>
+	<script src="../lib/owlcarousel/owl.carousel.min.js"></script>
+	<script src="../js/main.js"></script>
+	<script>
+		function cardView(listCode) {
+			console.log(listCode);
+			$.post("/jsp/view", {
+				listCode : listCode
+			}, function(data) {
+				console.log(listCode);
+				$('#content').html(data);
+			})
+		}
+		workCreate = function() {
+			$("#content").load("/jsp/create");
+		}
+
+		function onChangeSelect() {
+			console.log($("#design").val())
+			if ($("#design").val() == "card") {
+				$.ajax({
+					url : "/jsp/categoryCheck",
+					type : "post",
+					data : "amount=" + $("#amount").val() + "&category="
+							+ $("#category").val() + "&region="
+							+ $("#region").val(),
+					success : function(data) {
+						$("#ListContent").html(data);
+					},
+					error : function() {
+						alert("error");
+					}
+				})
+			} else {
+				$.ajax({
+					url : "/jsp/categoryTableCheck",
+					type : "post",
+					data : "amount=" + $("#amount").val() + "&category="
+							+ $("#category").val() + "&region="
+							+ $("#region").val(),
+					success : function(data) {
+						$("#ListContent").html(data);
+					},
+					error : function() {
+						alert("error");
+					}
+				})
+			}
+		}
+
+		function changeTable() {
+
+		}
+	</script>
+</body>
+
+</html>

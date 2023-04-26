@@ -135,7 +135,7 @@ header {
 	padding: 14px 50px;
 }
 
-.nav .navWrapper #serviceCenter, .nav .navWrapper #myPage, .nav .navWrapper #ChatPage,
+.nav .navWrapper #serviceCenter, .nav .navWrapper #myPage, .nav .navWrapper #moveIntro,
 	.nav .navWrapper #WorkPage {
 	float: left;
 	font-weight: bolder;
@@ -159,7 +159,20 @@ header {
 	z-index: 1;
 	top: 50px;
 }
-
+.nav .navWrapper #serviceCenter, .navWrapper #AllChat, .nav .navWrapper #myPage,
+   .nav .navWrapper #ChatPage, .nav .navWrapper #WorkPage {
+   float: left;
+   font-weight: bolder;
+   font-size: 16px;
+   overflow: hidden;
+   font-size: 16px;
+   border: none;
+   outline: none;
+   background-color: white;
+   padding: 12px 14px;
+   font-family: inherit;
+   margin: 0;
+}
 .nav .navWrapper #serviceCenterContent a, .nav .navWrapper #myContent a,
 	.nav .navWrapper #WorkContent a {
 	float: none;
@@ -216,7 +229,7 @@ header {
 }
 
 #contentbody .card img {
-	height: 100%;
+	height: 25vh;
 	object-fit: cover;
 }
 

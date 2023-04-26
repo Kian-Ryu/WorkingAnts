@@ -13,10 +13,10 @@ public class EmailService {
 
 	public void sendPassword(String to, String password) {
 		SimpleMailMessage message = new SimpleMailMessage();
-		message.setFrom("your-email@example.com"); // 발신자 이메일 주소
+		message.setFrom("Ant@co.kr"); // 발신자 이메일 주소
 		message.setTo(to); // 수신자 이메일 주소
-		message.setSubject("Your Password"); // 이메일 제목
-		message.setText("Your password is " + password); // 이메일 본문
+		message.setSubject("일개미 사이트에서 비밀번호를 알려드립니다!"); // 이메일 제목
+		message.setText("패스워드 " + password); // 이메일 본문
 		javaMailSender.send(message); // 이메일 전송
 	}
 }

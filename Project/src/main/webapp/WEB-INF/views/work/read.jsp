@@ -50,6 +50,7 @@
 					<div id='work_copy_icon' onclick="shareMessage()"></div>
 
 					<div id='work_to_list' onclick="BackPage()">목록으로</div>
+					<c:if test="${sessionName eq userid }">
 					<div id='work_content_crud'>
 						<div id='work_content_crud_list'>
 							<div id='work_content_crud_modify'
@@ -58,6 +59,7 @@
 								onclick="deleteTrue(${work.listCode})">삭제하기</div>
 						</div>
 					</div>
+					</c:if>
 				</div>
 				<div id='work_content_detail_2_blank'></div>
 			</div>
@@ -146,6 +148,11 @@
 			  }
 			});
 		}
+	      $(function() {
+	         $("#goChat").click(function() {
+	            window.location.href = "/users/chat";
+	         });
+	      });
 	</script>
 </body>
 </html>

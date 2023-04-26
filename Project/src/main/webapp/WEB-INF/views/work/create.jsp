@@ -1,14 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+	
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>List Create</title>
 <link rel="stylesheet" href="../css/work.css">
+<style>
+	.CreateWrapper .dropdown-toggle::after{
+		display:none !important;
+	}
+</style>
 </head>
 <body>
 	<div class="CreateWrapper">
+	<fmt:formatDate value='${now}' pattern='yyyy-MM-dd' />
 		<form name='frm_summernote' class='frm_summernote'>
 			<h4 class="mb-3">구인공고 등록</h4>
 
@@ -24,7 +33,7 @@
 
 
 			<div class="group">
-				<input type="date" name="listFinishDate" required> <span
+				<input type="date" name="listFinishDate" required min="${now }"/> <span
 					class="highlight"></span> <span class="bar"></span> <label>날짜*</label>
 			</div>
 
@@ -72,15 +81,15 @@
 		$('#listCreateBtn').on('click',function(){
 			var frm = $('.frm_summernote')[0];
 			frm.listCategory.value=$(".listCategory").val()+">"+$("#listCategory2").val();
-			
+			console.log(frm.listStartTime.value);
 		    var param = $(frm).serialize();
 		    $.post("/jsp/createList", param, function(data){
 		    	$('#content').html(data);				
 		    })
 		})  
 		$(document).ready(function() {
-			   var fonts = [ '맑은 고딕', '돋움', '궁서', '굴림', '굴림체', '궁서체', '나눔 고딕', '바탕',
-			         '바탕체', '새굴림', 'HY견고딕', 'HY견명조', 'HY궁서B', 'HY그래픽M', 'HY목각파임B',
+			   var fonts = [ '맑은 고딕', '돋움', '궁서', '굴림', '나눔 고딕', '바탕',
+			         'HY견고딕', 'HY견명조', 'HY궁서B', 'HY그래픽M', 'HY목각파임B',
 			         'HY신명조', 'HY얕은샘물M', 'HY엽서L', 'HY엽서M', 'HY중고딕', 'HY헤드라인M',
 			         '휴먼매직체', '휴먼모음T', '휴먼아미체', '휴먼둥근헤드라인', '휴먼편지체', '휴먼옛체' ];   //삽입할 글씨체
 			   fonts.sort();   //폰트 정렬(가나다순)
@@ -116,7 +125,10 @@
 			         processData : false,
 			         success : function(img_name) {         
 			            $('#summernote').summernote('editor.insertImage', img_name.url);
-			         }
+			         },
+			      	error :function(){
+			      		alert("이미지 크기가 너무 큽니다!");
+			      	}
 			      });
 			   }
 		});

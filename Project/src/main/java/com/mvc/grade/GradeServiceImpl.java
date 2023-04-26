@@ -26,7 +26,7 @@ public class GradeServiceImpl implements GradeService {
 		repo.save(g);
 	}
 	
-	public double avgGrade(long userCode) {
+	public double avgGrade(int userCode) {
 		double sum = 0.0;
 		List<Grade> result = repo.findByUserCode(userCode);
 		if(!result.isEmpty()) {

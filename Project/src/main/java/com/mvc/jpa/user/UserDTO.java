@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserDTO {
 
-	private Long userCode;
+	private int userCode;
 	
 	private String userRegion;
 	

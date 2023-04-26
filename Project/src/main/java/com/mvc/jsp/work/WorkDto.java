@@ -29,5 +29,6 @@ public class WorkDto {
 	private int listEndTime; // 끝시간
 	private Timestamp listDate;
 	private String listFinishDate;
-//	private Long usercode;
+	private Integer userCode; //유저코드
+	private Integer userCode2; //연결된 유저코드
 }

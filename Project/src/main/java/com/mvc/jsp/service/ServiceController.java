@@ -31,7 +31,7 @@ public class ServiceController {
 	public ModelAndView serviceIntro(RedirectAttributes redirectAttributes) {
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("/users/introducePage");
+		mv.setViewName("/service/introducePage");
 		return mv;
 
 	}

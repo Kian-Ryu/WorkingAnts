@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 public class GradeDTO {
 	private Long gradeCode;
 	
-	private Long userCode;
+	private int userCode;
 	
 	private Long listCode;
 	

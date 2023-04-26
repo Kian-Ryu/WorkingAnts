@@ -197,7 +197,7 @@
 }
 
 .product-carousel .img-fluid {
-    height: 100%;
+    height: 30vh;
     object-fit: cover;
 }
 
@@ -373,11 +373,17 @@ nav ul li:hover ul {
   z-index:10;
 }
 img.card-img-top{
-	height:100%;
+	height:60%;
 	object-fit:cover;
 }
 h5.card-title{
 	overflow:hidden;
 	text-overflow:ellipsis;
 	white-space:nowrap;
+}
+#pcarditem{
+	height:50vh;
+}
+#cardlist2{
+	height: 48vh !important;
 }

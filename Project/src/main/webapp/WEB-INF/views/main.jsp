@@ -23,10 +23,10 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css"
 	rel="stylesheet">
-	
+
 <!-- Latest compiled and minified CSS -->
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"> -->
-	
+
 
 <!-- Libraries Stylesheet -->
 <link href="../lib/owlcarousel/assets/owl.carousel.min.css"
@@ -55,6 +55,11 @@
 <script src="../summernote/lang/summernote-ko-KR.js"></script>
 <link rel="stylesheet" href="../summernote/summernote-lite.css">
 
+<!-- 캘린더부분 -->
+<!-- <script src='../fullcalendar/packages/core/main.js'></script>
+<script src='../fullcalendar/packages/interaction/main.js'></script>
+<script src='../fullcalendar/packages/daygrid/main.js'></script> -->
+
 <!-- kakao공유하기 -->
 <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.1.0/kakao.min.js"></script>
 <script>
@@ -62,13 +67,13 @@
 </script>
 </head>
 <body>
-	<jsp:include page="layout/header_logout.jsp"/>
+	<jsp:include page="layout/header_logout.jsp" />
 	<jsp:include page="layout/nav.jsp" />
 	<div id="content">
 		<jsp:include page="./content.jsp" />
 	</div>
 	<jsp:include page="layout/footer.jsp" />
-	<div style="position:fixed; bottom:5px;right:5px;">
+	<div style="position: fixed; bottom: 5px; right: 5px;">
 		<a href="#logoutHeaderWrapper"><img src="../img/top.png"></a>
 	</div>
 	<script>
@@ -92,6 +97,14 @@
 		$('#moveIntro').on('click', function(){
 			$('#content').load('/jsp/introduce');
 		})
+		$('#myPagedash').on('click', function(){
+			
+			$.get("/mypage", {
+			}, function(data) {
+				$('#content').html(data);
+			})
+			/* $('#content').load('/mypage/1'); */
+		})
 		$('#WorkPage').on('click', function(){
 			var searchval = $("#searchInput").val();
 			$.post("/jsp/listsearch", {
@@ -110,5 +123,6 @@
 	
 	
 	</script>
+	
 </body>
 </html>

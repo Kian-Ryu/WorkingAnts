@@ -10,7 +10,7 @@ public interface GradeService {
 		return dto;
 	}
 	public void register(GradeDTO dto);
-	public double avgGrade(long userCode);
+	public double avgGrade(int userCode);
 //	long avgGrade(long userCode);
 	
 }

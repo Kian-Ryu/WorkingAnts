@@ -19,6 +19,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 
+import com.mvc.jpa.user.Users;
+
 @Controller
 @RequestMapping("/jsp")
 @RestController
@@ -28,9 +30,12 @@ public class ListController {
 	WorkService service;
 
 	@RequestMapping("/createList")
-	public ModelAndView workView(WorkDto dto, RedirectAttributes redirectAttributes) {
-		System.out.println("만들어져라 얍");
+	public ModelAndView workView(WorkDto dto, RedirectAttributes redirectAttributes, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
+		Users user = (Users) session.getAttribute("user");
+		System.out.println(user.getUserCode());
+		dto.setUserCode(user.getUserCode());
+		System.out.println("service"+dto.getListCategory());
 		Long listcode = service.register(dto);
 		mv.addObject("listCode", listcode);
 		mv.setViewName("redirect:/jsp/view");
@@ -40,7 +45,6 @@ public class ListController {
 
 	@RequestMapping("/modifyList")
 	public ModelAndView workModify(WorkDto dto, RedirectAttributes redirectAttributes) {
-
 		ModelAndView mv = new ModelAndView();
 		Long listcode = service.modify(dto);
 		mv.addObject("listCode", listcode);
@@ -50,12 +54,16 @@ public class ListController {
 	}
 
 	@RequestMapping("/view")
-	public ModelAndView workViewPage(Long listCode, Model model) {
+	public ModelAndView workViewPage(Long listCode, Model model, HttpSession session) {
 		System.out.println("list>view+" + listCode);
+		Users user = (Users) session.getAttribute("user");
+		String userNickname = user.getUserNickName();
 		ModelAndView mv = new ModelAndView();
 		WorkDto wdto = service.read(listCode);
+		String nickname = service.getUsernickname(wdto.getUserCode());
+		mv.addObject("sessionName",userNickname);
 		mv.addObject("work", wdto);
-		mv.addObject("userid", "ALLO");
+		mv.addObject("userid", nickname);
 		mv.setViewName("work/read");
 		return mv;
 	}
@@ -100,7 +108,9 @@ public class ListController {
 
 		List<Work> workp = service.getList8(pageRequestDTO);
 		List<String> stringListp = new ArrayList<String>();
+		List<String> userListp = new ArrayList<String>();
 		for (Work w : workp) {
+			userListp.add(service.getUsernickname(w.getUserCode()));
 			String[] imgsrc = w.getListContent().split("src=");
 			if (imgsrc.length > 1) {
 				int firstQuoteIndex = imgsrc[1].indexOf("\"");
@@ -112,12 +122,13 @@ public class ListController {
 			}
 		}
 
+		mv.addObject("string", userListp);
 		mv.addObject("imgsrcp", stringListp);
 		mv.addObject("workp", workp);
 		mv.addObject("searchInput", searchInput);
 		mv.addObject("imgsrc", stringList);
 		mv.addObject("work", work);
-		mv.setViewName("/users/list2");
+		mv.setViewName("/work/list2");
 		return mv;
 	}
 
@@ -127,9 +138,11 @@ public class ListController {
 		// 최신순리스트
 		List<Work> work = service.getCategoryList(Category);
 		List<String> stringList = new ArrayList<String>();
+		List<String> userListp = new ArrayList<String>();
 		for (Work w : work) {
 			System.out.println(w);
 			String[] imgsrc = w.getListContent().split("src=");
+			userListp.add(service.getUsernickname(w.getUserCode()));
 			if (imgsrc.length > 1) {
 				int firstQuoteIndex = imgsrc[1].indexOf("\"");
 				int secondQuoteIndex = imgsrc[1].indexOf("\"", firstQuoteIndex + 1);
@@ -156,26 +169,30 @@ public class ListController {
 			}
 		}
 
+		mv.addObject("string", userListp);
 		mv.addObject("imgsrcp", stringListp);
 		mv.addObject("workp", workp);
 		mv.addObject("imgsrc", stringList);
 		mv.addObject("work", work);
-		mv.setViewName("/users/list2");
+		mv.setViewName("/work/list2");
 		return mv;
 	}
 
 	@RequestMapping("/categoryCheck")
 	public ModelAndView checkCategory(String amount, String category, String region,
 			PageRequestDTO pageRequestDTO, Model model) {
-		System.out.println("categoryCheck" + amount + " " + category + " " + region);
+		System.out.println("categoryCheckCard" + amount + " " + category + " " + region);
 		
 		  ModelAndView mv = new ModelAndView();
 		 
 		// 요즘뜨는거
 		List<Work> workp = service.getList(amount, category, region);
 		List<String> stringListp = new ArrayList<String>();
+		List<String> userListp = new ArrayList<String>();
+		
 		for (Work w : workp) {
 			String[] imgsrc = w.getListContent().split("src=");
+			userListp.add(service.getUsernickname(w.getUserCode()));
 			if (imgsrc.length > 1) {
 				int firstQuoteIndex = imgsrc[1].indexOf("\"");
 				int secondQuoteIndex = imgsrc[1].indexOf("\"", firstQuoteIndex + 1);
@@ -186,12 +203,48 @@ public class ListController {
 			}
 		}
 
+		mv.addObject("string", userListp);
 		mv.addObject("imgsrc", stringListp);
 		mv.addObject("work", workp);
-		mv.setViewName("/users/list2 :: #ListContent");
+		mv.setViewName("/work/list2 :: #cardWorkList");
 
 
 		return mv;
 	}
 
+	@RequestMapping("/categoryTableCheck")
+	public ModelAndView categoryTableCheck(String amount, String category, String region,
+			PageRequestDTO pageRequestDTO, Model model) {
+		System.out.println("categoryCheckTable" + amount + " " + category + " " + region);
+		
+		  ModelAndView mv = new ModelAndView();
+		 
+		// 요즘뜨는거
+		List<Work> workp = service.getList(amount, category, region);
+		List<String> stringListp = new ArrayList<String>();
+		List<String> userListp = new ArrayList<String>();
+		
+		for (Work w : workp) {
+			String[] imgsrc = w.getListContent().split("src=");
+			userListp.add(service.getUsernickname(w.getUserCode()));
+			
+			if (imgsrc.length > 1) {
+				int firstQuoteIndex = imgsrc[1].indexOf("\"");
+				int secondQuoteIndex = imgsrc[1].indexOf("\"", firstQuoteIndex + 1);
+				String result = imgsrc[1].substring(firstQuoteIndex + 1, secondQuoteIndex);
+				stringListp.add(result);
+			} else {
+				stringListp.add("../img/helpAnt.png");
+			}
+		}
+
+		mv.addObject("string", userListp);
+		mv.addObject("imgsrc", stringListp);
+		mv.addObject("work", workp);
+		mv.setViewName("/work/list2 :: #tableWorkList");
+
+
+		return mv;
+	}
+	
 }

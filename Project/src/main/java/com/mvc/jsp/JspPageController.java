@@ -71,9 +71,6 @@ public class JspPageController {
 	}
 
 	/* work */
-
-	
-
 	@RequestMapping("/create")
 	public ModelAndView workCreatePage() {
 		ModelAndView mv = new ModelAndView();
