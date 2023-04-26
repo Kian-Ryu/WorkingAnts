@@ -96,4 +96,13 @@ public interface WorkService {
 	}
 
 
+	
+	
+	
+	
+	/*
+	 * add by ryu
+	*/
+	
+	List<Work> getListByUsercode(long userCode);
 }

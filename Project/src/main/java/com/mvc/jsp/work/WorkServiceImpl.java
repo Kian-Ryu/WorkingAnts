@@ -139,4 +139,20 @@ public class WorkServiceImpl implements WorkService {
 		return workList;
 
 	}
+	
+	
+	
+	
+	
+	
+	
+	/*
+	 * add by ryu
+	*/
+	
+	public List<Work> getListByUsercode(long userCode){
+//		List<Work> workList = repository.findByUserCode(userCode);
+		List<Work> workList = null;
+		return workList;
+	}
 }

@@ -24,7 +24,7 @@
 			<div class="navWrapper">
 				<button class="dropbtn" id="myPage">마이페이지</button>
 				<div class="dropdown-content" id="myContent">
-					<a href="javascript:void(0);" id="myPagedash">내 정보</a> <a href="/test">내 심부름</a>
+					<a href="javascript:void(0);" id="myPagedash">내 정보</a> <a href="/table">내 심부름</a>
 				</div>
 			</div>
 			<div class="navWrapper">

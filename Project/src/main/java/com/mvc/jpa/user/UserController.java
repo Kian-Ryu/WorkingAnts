@@ -1,8 +1,7 @@
 package com.mvc.jpa.user;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ktj.service.EmailService;
+import com.mvc.grade.Grade;
 import com.mvc.grade.GradeService;
+import com.mvc.jsp.work.Work;
+import com.mvc.jsp.work.WorkService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -32,6 +34,7 @@ public class UserController {
 	private final UserService service;
 	private final GradeService gradeservice;
 	private final EmailService emailService;
+	private final WorkService workService;
 	
 	@PostMapping("/createUser") // 계정생성
 	public String createUser(Users user) {
@@ -62,7 +65,7 @@ public class UserController {
 	}
 	
 	@RequestMapping("/addImg")
-	public ModelAndView addImg(long userCode, MultipartFile file, Model m) throws IllegalStateException, IOException {
+	public ModelAndView addImg(@RequestParam("userCode") long userCode,@RequestParam("profile") MultipartFile file, Model m) throws IllegalStateException, IOException {
 		ModelAndView mv = new ModelAndView();
 		service.addImg(userCode, file);
 		UserDTO dto = service.read(userCode);
@@ -82,13 +85,6 @@ public class UserController {
 //		log.info();
 		return "/mypage_dash";
 	}
-//	@PostMapping(value = "/updateReg", produces = "application/json")
-//	@ResponseBody
-//	public void updateReg(@RequestParam Map<String, Object> param) {
-//		log.info("updatereg 실행");
-//		log.info(param.get("Code"));
-//		service.updateReg(Long.parseLong((String) param.get("Code")), (String)param.get("userRegion"));
-//	}
 	@RequestMapping("/updateReg")
 	public ModelAndView updateReg1(long userCode, String userRegion, Model m) {
 		ModelAndView mv = new ModelAndView();
@@ -100,13 +96,6 @@ public class UserController {
 		mv.setViewName("/user/mypage_dash :: #users");
 		return mv;
 	}
-//	@PostMapping(value = "/updateAnother", produces = "application/json")
-//	@ResponseBody
-//	public void updateAnother(@RequestParam Map<String, Object> param) {
-//		log.info("updateAnother 실행");
-//		log.info(param.get("Code"));
-//		service.updateAnother(Long.parseLong((String) param.get("Code")), (String)param.get("userNickName"),  (String)param.get("userPw"),  (String)param.get("userEmail"),  (String)param.get("userPhone"));
-//	}
 	@RequestMapping("/updateAnother")
 	public ModelAndView updateAnother1(long userCode, String userNickName, String userEmail, String userPw, String userPhone, Model m) {
 		ModelAndView mv = new ModelAndView();
@@ -130,9 +119,16 @@ public class UserController {
 		model.addAttribute("message", "Your password has been sent to your email");
 		return "users/login";
 	}
-	@GetMapping("/test")
-	public String test(long userCode, MultipartFile file) throws IllegalStateException, IOException {
-		service.addImg(userCode, file);
-		return "/user/tablerequest";
+	
+	@RequestMapping("/myreqlist")
+	public ModelAndView myreqTable(long userCode, Model m) {
+		ModelAndView mv = new ModelAndView();
+		List<Work> workp = workService.getListByUsercode(userCode);
+		List<Grade> grade = gradeservice.findByUserCode(userCode);
+		
+		mv.addObject("workp", workp);
+		mv.addObject("gradelist", grade);
+		mv.setViewName("reqtable");
+		return mv;
 	}
 }

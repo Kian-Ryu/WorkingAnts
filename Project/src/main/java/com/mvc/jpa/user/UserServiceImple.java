@@ -24,8 +24,11 @@ public class UserServiceImple implements UserService {
 	@Autowired
 	private final UserRepository repo;
 	
+	@Value("${ImgLocation}")
+    private String imgLocation;
+	
 	public void createUser(Users user) {
-		user.addImg("기본이미지.jpg", System.getProperty("user.dir") + "/src/main/resources/static/img/profile");
+		user.addImg("기본이미지.jpg", "C:/temp/profile/기본이미지.jpg	");
 		repo.save(user);
 	}
 
@@ -66,7 +69,8 @@ public class UserServiceImple implements UserService {
 	} // 로그인시 회원등록여부 파악
 	
 	public void addImg(long userCode, MultipartFile file) throws IllegalStateException, IOException {
-		String projectPath = System.getProperty("user.dir") + "/src/main/resources/static/img/profile";
+//		String projectPath = System.getProperty("user.dir") + "\\src\\main\\resources\\static\\img\\profile";
+		String projectPath = imgLocation;
 		UUID uuid = UUID.randomUUID();
 		String fileName = uuid + "_" + file.getOriginalFilename();
 		File f = new File(projectPath, fileName);
@@ -74,7 +78,7 @@ public class UserServiceImple implements UserService {
 		Optional<Users> result = repo.findById(userCode);
 		if(result.isPresent()) {
 			Users entity = result.get();
-			entity.addImg(fileName,projectPath);
+			entity.addImg(fileName,projectPath+fileName);
 			repo.save(entity);
 		}
 	}
